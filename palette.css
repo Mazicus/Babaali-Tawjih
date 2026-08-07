@@ -1,0 +1,109 @@
+:root{
+--primary:#082a7a;
+--secondary:#ffc400;
+--primary-switch:#082a7a;
+--secondary-switch:#ffc400;
+--light-transparent-1:rgba(255, 255, 255, .97);
+--light-transparent-2:rgba(255, 255, 255, .88);
+--dark-transparent-1:rgba(0, 0, 0, .97);
+--dark-transparent-2:rgba(0, 0, 0, .88);
+--light:#ffffff;
+--gray:#f4f6fa;
+--black:#000000;
+--navy-blue:#1e3a8a;
+--logo-gold:#fbbf24;
+--accent-blue:#2563eb;
+--accent-blue-dark:#1e40af;
+--accent-blue-hover:#1d4ed8;
+--accent-blue-shadow:rgba(37, 99, 235, 0.3);
+--text-gray:#444;
+--text-muted:#666;
+--border-gray:#ddd;
+--placeholder-gray:#9ca3af;
+--nav-mobile-bg:rgba(252, 240, 240, 0.307);
+--border-light-transparent:rgba(255,255,255,.2);
+--mobile-nav-text:rgb(103, 103, 103);
+--secondary-transparent:rgba(255, 196, 0, 0.323);
+--hero-overlay-1:rgba(255,255,255,.97);
+--hero-overlay-2:rgba(255,255,255,.88);
+--shadow-medium:rgba(0,0,0,.15);
+--shadow-light:rgba(0,0,0,.08);
+--shadow-subtle:rgba(0,0,0,0.05);
+--filter-blue:#2f5ed7;
+--filter-blue-dark:#244bb0;
+--filter-blue-shadow:rgba(47, 94, 215, 0.3);
+--whatsapp-green:#45cd77;
+--whatsapp-green-dark:#3ab065;
+--whatsapp-brand-green:#25D366;
+--bureau-blue:#2142b8;
+--light-blue-bg:#eef4ff;
+--light-blue-bg2:#edf3ff;
+--border-blue-light:#d8e3ff;
+--info-blue:#0063e6;
+--text-dark-blue:#26374d;
+--dark-blue-text:#243b63;
+--body-bg-alt:#f5f5f5;
+}
+.darkmode{
+/* Brand core */
+--primary:#5c7cfa;          
+--secondary:#ffd60a;        
+--primary-switch:#ffc400;
+--secondary-switch:#082a7a;
+--light:#12141c;            
+--light-transparent-1:rgba(0, 0, 0, .97);
+--light-transparent-2:rgba(0, 0, 0, .88);
+--dark-transparent-1:rgba(255, 255, 255, .97);
+--dark-transparent-2:rgba(255, 255, 255, .88);
+--gray:#262a35;             
+--black:#f5f5f7;            
+/* Logo */
+--navy-blue:#5577e0;        
+--logo-gold:#fcd34d;        
+/* Accent blue system (buttons, links, gradients) */
+--accent-blue:#4d8dff;
+--accent-blue-dark:#1e3a8a;
+--accent-blue-hover:#3a63c8;
+--accent-blue-shadow:rgba(77, 141, 255, 0.35);
+/* Body text */
+--text-gray:#d1d5db;        
+--text-muted:#9ca3af;       
+--border-gray:#3a3f4b;      
+--placeholder-gray:#6b7280; 
+/* Mobile nav glass panel */
+--nav-mobile-bg:rgba(18, 20, 28, 0.75);
+--border-light-transparent:rgba(255,255,255,.08);
+--mobile-nav-text:rgb(200, 200, 205);
+--secondary-transparent:rgba(255, 214, 10, 0.25);
+/* Hero overlay (wash over the photo) */
+--hero-overlay-1:rgba(10,12,18,.92);
+--hero-overlay-2:rgba(10,12,18,.80);
+/* Shadows (deepened so they still read on dark backgrounds) */
+--shadow-medium:rgba(0,0,0,.45);
+--shadow-light:rgba(0,0,0,.35);
+--shadow-subtle:rgba(0,0,0,.25);
+/* Filter button */
+--filter-blue:#4a74e0;
+--filter-blue-dark:#2b4bb5;
+--filter-blue-shadow:rgba(74, 116, 224, 0.35);
+/* WhatsApp accents */
+--whatsapp-green:#4ade80;
+--whatsapp-green-dark:#34a76a;
+--whatsapp-brand-green:#25D366;
+/* Bureau / info section */
+--bureau-blue:#4a63d6;
+--light-blue-bg:#1a2540;
+--light-blue-bg2:#17223d;
+--border-blue-light:#4d6bb3;
+--info-blue:#4d94ff;
+--text-dark-blue:#c9d6ea;
+--dark-blue-text:#cbd8f0;
+/* Alternate page background */
+--body-bg-alt:#101114;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
