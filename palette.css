@@ -43,6 +43,33 @@
 --text-dark-blue:#26374d;
 --dark-blue-text:#243b63;
 --body-bg-alt:#f5f5f5;
+ /* ecoles */
+    --ec-navy: var(--navy-blue);
+    --ec-navy-deep: #071c3d;
+    --ec-navy-soft: #123b7a;
+    --ec-gold: var(--logo-gold);
+    --ec-gold-light: #e8c376;
+    --ec-gold-soft: rgba(201, 147, 46, 0.14);
+
+    --ec-surface: var(--light);
+    --ec-surface-alt: #f6f8fc;
+    --ec-surface-sunken: #eef1f8;
+    --ec-border: var(--border-gray);
+    --ec-text: var(--black);
+    --ec-text-muted: var(--text-muted);
+    --ec-text-faint: var(--placeholder-gray);
+
+    --ec-shadow-sm: 0 2px 10px var(--shadow-light);
+    --ec-shadow-md: 0 10px 30px var(--shadow-light);
+    --ec-shadow-lg: 0 18px 45px var(--shadow-medium);
+
+    --ec-radius-sm: 10px;
+    --ec-radius-md: 16px;
+    --ec-radius-lg: 24px;
+    --ec-speed: 0.25s;
+
+    --ec-surface-transparent-grad-1: rgba(255, 255, 255, 0.3);
+    --ec-surface-transparent-grad-2: rgba(255, 255, 255, 0.92);
 }
 .darkmode{
 /* Brand core */
@@ -100,6 +127,28 @@
 --dark-blue-text:#cbd8f0;
 /* Alternate page background */
 --body-bg-alt:#101114;
+    /*ecole*/
+    --ec-navy: #23477f;
+    --ec-navy-deep: #0d1b33;
+    --ec-navy-soft: #2c5aa3;
+    --ec-gold: #e0ae55;
+    --ec-gold-light: #f2cd85;
+    --ec-gold-soft: rgba(224, 174, 85, 0.16);
+
+    --ec-surface: var(--light);
+    --ec-surface-alt: #101728;
+    --ec-surface-sunken: #0c1220;
+    --ec-border: #283355;
+    --ec-text: #edf0f8;
+    --ec-text-muted: #a6afc9;
+    --ec-text-faint: #7b859f;
+
+    --ec-shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+    --ec-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.40);
+    --ec-shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.55);
+
+    --ec-surface-transparent-grad-1: rgba(0, 0, 0, 0.92);
+    --ec-surface-transparent-grad-2: rgba(0, 0, 0, 0.99);
 }
 *{
     margin:0;

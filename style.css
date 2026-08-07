@@ -740,10 +740,6 @@ footer h3 { color: var(--secondary); }
 /* ==========================================================================
    12. DARK MODE (base)
    ========================================================================== */
-.darkmode {
-    /* Dark mode is applied via .darkmode class on body */
-}
-
 .darkmode .card,
 .darkmode .step,
 .darkmode .contact-info,
@@ -1058,66 +1054,12 @@ footer h3 { color: var(--secondary); }
    14. ECOLES SUPERIEURES — self-contained design module
    ========================================================================== */
 
-/* ---------- 14.1 Design tokens ---------- */
 .ecoles {
-    /* Light mode palette — all values use palette.css variables */
-    --ec-navy: var(--navy-blue);
-    --ec-navy-deep: #071c3d;
-    --ec-navy-soft: #123b7a;
-    --ec-gold: var(--logo-gold);
-    --ec-gold-light: #e8c376;
-    --ec-gold-soft: rgba(201, 147, 46, 0.14);
-
-    --ec-surface: var(--light);
-    --ec-surface-alt: #f6f8fc;
-    --ec-surface-sunken: #eef1f8;
-    --ec-border: var(--border-gray);
-    --ec-text: var(--black);
-    --ec-text-muted: var(--text-muted);
-    --ec-text-faint: var(--placeholder-gray);
-
-    --ec-shadow-sm: 0 2px 10px var(--shadow-light);
-    --ec-shadow-md: 0 10px 30px var(--shadow-light);
-    --ec-shadow-lg: 0 18px 45px var(--shadow-medium);
-
-    --ec-radius-sm: 10px;
-    --ec-radius-md: 16px;
-    --ec-radius-lg: 24px;
-    --ec-speed: 0.25s;
-
-    --ec-surface-transparent-grad-1: rgba(255, 255, 255, 0.3);
-    --ec-surface-transparent-grad-2: rgba(255, 255, 255, 0.92);
-
     scroll-margin-top: 80px;
     padding: 70px 8% 60px;
     margin-bottom: 40px;
     background: var(--ec-surface-alt);
     transition: background var(--ec-speed);
-}
-
-/* ---------- 14.2 Dark mode tokens ---------- */
-.darkmode .ecoles {
-    --ec-navy: #23477f;
-    --ec-navy-deep: #0d1b33;
-    --ec-navy-soft: #2c5aa3;
-    --ec-gold: #e0ae55;
-    --ec-gold-light: #f2cd85;
-    --ec-gold-soft: rgba(224, 174, 85, 0.16);
-
-    --ec-surface: var(--light);
-    --ec-surface-alt: #101728;
-    --ec-surface-sunken: #0c1220;
-    --ec-border: #283355;
-    --ec-text: #edf0f8;
-    --ec-text-muted: #a6afc9;
-    --ec-text-faint: #7b859f;
-
-    --ec-shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
-    --ec-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.40);
-    --ec-shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.55);
-
-    --ec-surface-transparent-grad-1: rgba(0, 0, 0, 0.92);
-    --ec-surface-transparent-grad-2: rgba(0, 0, 0, 0.99);
 }
 
 /* ---------- 14.3 Section title ---------- */
@@ -1437,6 +1379,7 @@ footer h3 { color: var(--secondary); }
 
 /* Section header */
 .section-header {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -1444,26 +1387,72 @@ footer h3 { color: var(--secondary); }
     gap: 20px;
     max-height: 130px;
     padding: 30px;
-    background-image: url(./img/assets/bg-header-colorful-tiles.png);
-    background-color: var(--ec-surface);
-    background-blend-mode: luminosity;
-    background-repeat: no-repeat;
-    background-position: right bottom;
     border-radius: var(--ec-radius-lg);
     box-shadow: var(--ec-shadow-sm);
-    transition: background var(--ec-speed), border-color var(--ec-speed);
     flex-direction: row;
     align-content: center;
+    transition: border-color var(--ec-speed);
 }
 
+/* B&W background layer (default) */
+.section-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(./img/assets/bg-header-colorful-tiles.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-color: var(--ec-surface);
+    background-blend-mode: luminosity;
+    border-radius: var(--ec-radius-lg);
+    opacity: 1;
+    transition: opacity 1s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Color background layer (hidden by default, appears on hover) */
+.section-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(./img/assets/bg-header-colorful-tiles.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-color: var(--ec-surface);
+    background-blend-mode: normal;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* CRITICAL: All content must be above the background */
+.section-header-content,
+.section-image,
+.section-header > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Secondary section border color */
 .ecole-subsection.section-secondary .section-header {
     border-top-color: var(--ec-gold);
 }
 
+/* Section content styles (unchanged) */
 .section-header-content {
     display: flex;
     align-items: center;
     gap: 16px;
+    position: relative;
+    z-index: 1;
 }
 
 .section-icon {
@@ -1497,22 +1486,43 @@ footer h3 { color: var(--secondary); }
     color: var(--ec-text-muted);
 }
 
+/* Section image with B&W to color transition */
 .section-image {
     flex-shrink: 0;
     width: 10rem;
     height: 10rem;
     margin-bottom: 1.7rem;
+    filter: grayscale(100%);
     overflow: hidden;
+    transition: all 1s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .section-image img {
     width: 100%;
     height: 99%;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.ecole-subsection:hover .section-image img { transform: translateX(-5px); }
+/* HOVER EFFECTS - Smooth transitions */
+.ecole-subsection:hover .section-header::before {
+      border-radius: var(--ec-radius-lg);
+}
+.ecole-subsection:hover .section-image {
+    transform: translateX(5px);
+    filter: grayscale(0%);
+}
+
+/* On hover: fade in the color background */
+.ecole-subsection:hover .section-header::after {
+    opacity: 1;
+}
+
+/* Optional: If you want the section header border to change on hover */
+.ecole-subsection:hover .section-header {
+    border-color: var(--ec-gold);
+}
 
 /* Card grid container */
 .ecole-section {
