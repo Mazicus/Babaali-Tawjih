@@ -32,7 +32,6 @@
                         <li><a href="#logo">Accueil</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#about">Pourquoi nous</a></li>
-                        <li><a href="#bureau">Notre Bureau</a></li>
                         <li><a href="#ecoles">Écoles Supérieures</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -92,7 +91,12 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="./img/Graduation_StudentsGroup_Smiling_Outdoor_GettyImages-907837926.jpg" alt="Étudiants BABAALI TAWJIH">
+                <img src="./img/Graduate.png" alt="Gradute Picture">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 649 578">
+                    <path fill="#FFF" d="M-225.5,154.7l358.45,456.96c7.71,9.83,21.92,11.54,31.75,3.84l456.96-358.45c9.83-7.71,11.54-21.92,3.84-31.75
+                        L267.05-231.66c-7.71-9.83-21.92-11.54-31.75-3.84l-456.96,358.45C-231.49,130.66-233.2,144.87-225.5,154.7z"></path>
+                    <path class="customLineAnim" fill="none" stroke="#1C5FA8" stroke-width="1.5" stroke-miterlimit="10" d="M416-21l202.27,292.91c5.42,7.85,3.63,18.59-4.05,24.25L198,603" style="animation-delay: 300ms; animation-duration: 5s;"></path>
+                </svg>
             </div>
         </section>
 
@@ -178,34 +182,6 @@
             </div>
         </section>
 
-        <!-- Bureau -->
-        <section id="bureau">
-            <div class="section-title">
-                <h2>Notre Bureau</h2>
-            </div>
-            <div class="contact-container">
-                <div class="info-row">
-                    <div class="info-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Agadir, Biougra</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-regular fa-clock"></i>
-                        <span>Lun-Ven: 10h30-18h30</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fa-regular fa-calendar"></i>
-                        <span>Sur rendez-vous</span>
-                    </div>
-                </div>
-            </div>
-            <div class="adresse-location">
-                <i class="fa-solid fa-location-dot"></i>
-                Rue Prince Moulay Rachid, Biougra, Morocco
-            </div>
-            <iframe class="localisation" src="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed" allowfullscreen loading="lazy"></iframe>
-        </section>
-        
         <!-- Les Ecoles sup -->
         <section class="ecoles" id="ecoles">
             <div class="section-title">
@@ -317,7 +293,17 @@
                     <div class="contact-location">
                         <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M536.5-503.5Q560-527 560-560t-23.5-56.5Q513-640 480-640t-56.5 23.5Q400-593 400-560t23.5 56.5Q447-480 480-480t56.5-23.5ZM480-186q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Z"/></svg> Bureau</p>
                         <div class="contact-address">
-                            <a href="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed">Agadir, Biougra</a>
+                            <a href="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed" target="_blank">Rue Prince Moulay Rachid, Biougra, Morocco</a>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-item">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>Lun-Ven: 10h30-18h30</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>Sur rendez-vous</span>
+                            </div>
                         </div>
                     </div>
                     <div class="button-whatsapp">
@@ -340,6 +326,7 @@
                     </button>
                 </div>
             </div>
+            <iframe class="localisation" src="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed" allowfullscreen loading="lazy" title="Localisation du bureau BABAALI TAWJIH"></iframe>
         </section>
         
         <!-- Footer -->
@@ -471,13 +458,13 @@
             const sectorConfig = {
                 sante: {
                     label: 'Sciences de la Santé et Médecine',
-                    icon: 'fa-solid fa-heart-pulse',
+                    icon: 'fa-solid fa-staff-snake',
                     color: 'primary',
                     image: 'https://png.pngtree.com/png-vector/20250524/ourmid/pngtree-smiling-female-doctor-with-stethoscope-isolated-on-transparent-background-png-image_16376010.png'
                 },
                 commerce: {
                     label: 'Commerce, Gestion et Économie',
-                    icon: 'fa-solid fa-chart-line',
+                    icon: 'fa-solid fa-sharp fa-chart-line',
                     color: 'secondary',
                     image: 'https://png.pngtree.com/png-vector/20240124/ourmid/pngtree-ceo-business-profile-png-image_11479711.png'
                 },
@@ -527,7 +514,7 @@
                     label: 'Université Mohammed VI Polytechnique (UM6P)',
                     icon: 'fa-solid fa-graduation-cap',
                     color: 'secondary',
-                    image: 'https://um6p.ma/images/logo-og.png'
+                    image: './img/um6p.png'
                 }
             };
 
@@ -618,7 +605,7 @@
                     const sectionClass = isPrimary ? 'section-primary' : 'section-secondary';
 
                     html += `
-                        <div class="ecole-subsection ${sectionClass}">
+                        <div class="ecole-subsection ${sectionClass}" data-sector-key="${key}">
                             <div class="section-header">
                                 <div class="section-header-content">
                                     <div class="section-icon">
@@ -629,25 +616,32 @@
                                         <span class="section-count">${items.length} établissements</span>
                                     </div>
                                 </div>
-                                <div class="section-image">
-                                    <img src="${config.image}" alt="${config.label}" loading="lazy">
+                                <button type="button" class="section-toggle" aria-expanded="true" aria-controls="ecole-collapse-${key}" aria-label="Réduire la section ${config.label}">
+                                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="section-image" aria-hidden="true">
+                                    <img src="${config.image}" alt="" loading="lazy">
                                 </div>
                             </div>
-                            <hr class="section-divider">
-                            <div class="ecole-section">
-                                <div class="section-grid">
-                                    ${items.map(ecole => `
+                            <div class="ecole-section-collapse" id="ecole-collapse-${key}">
+                                <div class="ecole-section-collapse-inner">
+                                    <hr class="section-divider">
+                                    <div class="ecole-section">
+                                        <div class="section-grid">
+                                            ${items.map(ecole => {
+                                        const sectorLabel = sectorConfig[ecole.sector]?.label || ecole.sector;
+                                        const sectorShort = sectorLabel.split(' ')[0].replaceAll(",", "");
+                                        const typeLabel = ecole.type === 'public' ? 'Public' : 'Privé';
+                                        const driveLink = ecole.drive || ecole.link;
+                                        return `
                                         <article class="ecole-card" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
-                                            <div class="card-image">
-                                                <img src="${getUniversityImage(ecole)}" alt="${ecole.name}" loading="lazy">
-                                                <div class="card-badge">
-                                                    <span class="sector-tag">${sectorConfig[ecole.sector]?.label.split(' ')[0].replaceAll(",","") || ecole.sector}</span>
-                                                    <span class="type-tag ${ecole.type}">${ecole.type === 'public' ? 'Public' : 'Privé'}</span>
-                                                </div>
-                                            </div>
-                                            <div class="card-content">
+                                            <button type="button" class="ecole-card-toggle" aria-expanded="false" aria-controls="ecole-panel-${ecole.id}" id="ecole-toggle-${ecole.id}">
+                                                <span class="ecole-card-badges">
+                                                    <span class="sector-tag">${sectorShort}</span>
+                                                    <span class="type-tag ${ecole.type}">${typeLabel}</span>
+                                                </span>
                                                 <h3 class="card-title">${ecole.name}</h3>
-                                                <ul class="card-details-list">
+                                                <ul class="card-summary-list">
                                                     <li class="detail-item">
                                                         <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                                                         <span>${ecole.diploma}</span>
@@ -660,18 +654,48 @@
                                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                                         <span>${ecole.location}</span>
                                                     </li>
-                                                    ${ecole.fees ? `
-                                                    <li class="detail-item">
-                                                        <i class="fas fa-coins" aria-hidden="true"></i>
-                                                        <span>${ecole.fees}</span>
-                                                    </li>` : ''}
                                                 </ul>
-                                                <a href="${ecole.link}" target="_blank" rel="noopener noreferrer" class="btn-card">
-                                                    En savoir plus <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                                </a>
+                                                <span class="ecole-card-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                                            </button>
+                                            <div class="ecole-card-panel" id="ecole-panel-${ecole.id}" role="region" aria-labelledby="ecole-toggle-${ecole.id}">
+                                                <div class="ecole-card-panel-inner">
+                                                    <ul class="card-full-list">
+                                                        <li class="detail-item">
+                                                            <i class="fas fa-layer-group" aria-hidden="true"></i>
+                                                            <span><strong>Secteur :</strong> ${sectorLabel}</span>
+                                                        </li>
+                                                        <li class="detail-item">
+                                                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                                                            <span><strong>Diplôme :</strong> ${ecole.diploma}</span>
+                                                        </li>
+                                                        <li class="detail-item">
+                                                            <i class="fas fa-clock" aria-hidden="true"></i>
+                                                            <span><strong>Durée :</strong> ${ecole.duration}</span>
+                                                        </li>
+                                                        <li class="detail-item">
+                                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                                            <span><strong>Ville :</strong> ${ecole.location}</span>
+                                                        </li>
+                                                        ${ecole.fees ? `
+                                                        <li class="detail-item">
+                                                            <i class="fas fa-coins" aria-hidden="true"></i>
+                                                            <span><strong>Frais :</strong> ${ecole.fees}</span>
+                                                        </li>` : ''}
+                                                    </ul>
+                                                    <a href="${ecole.link}" target="_blank" rel="noopener noreferrer" class="btn-card">
+                                                        En savoir plus <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
                                             </div>
+                                            <a href="${driveLink}" target="_blank" rel="noopener noreferrer" class="ecole-card-drive" aria-label="Accéder aux détails sur Drive - ${ecole.name}">
+                                                <i class="fa-brands fa-google-drive" aria-hidden="true"></i>
+                                                <span>Accéder aux détails sur Drive</span>
+                                            </a>
                                         </article>
-                                    `).join('')}
+                                    `;
+                                    }).join('')}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -753,6 +777,25 @@
                         document.getElementById('filterToggle')?.classList.remove('active');
                     }
                 }
+            });
+
+            // Ecole card - progressive disclosure (expand/collapse)
+            document.getElementById('ecolesSections')?.addEventListener('click', function (e) {
+                const sectionToggle = e.target.closest('.section-toggle');
+                if (sectionToggle) {
+                    const subsection = sectionToggle.closest('.ecole-subsection');
+                    if (!subsection) return;
+                    const isCollapsed = subsection.classList.toggle('is-collapsed');
+                    sectionToggle.setAttribute('aria-expanded', String(!isCollapsed));
+                    return;
+                }
+
+                const toggle = e.target.closest('.ecole-card-toggle');
+                if (!toggle) return;
+                const card = toggle.closest('.ecole-card');
+                if (!card) return;
+                const isExpanded = card.classList.toggle('is-expanded');
+                toggle.setAttribute('aria-expanded', String(isExpanded));
             });
 
             // Initialisation
