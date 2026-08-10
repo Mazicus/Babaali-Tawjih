@@ -246,6 +246,7 @@ body {
                 url('./img/Graduation_StudentsGroup_Smiling_Outdoor_GettyImages-907837926.jpg');
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 
 .hero-content { max-width: 650px; }
@@ -302,13 +303,89 @@ body {
     box-shadow: 0 8px 25px var(--shadow-medium);
 }
 
+/* FIXED: Hero image container with proper positioning */
+.hero-image {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* FIXED: Image positioned on top of SVG */
 .hero-image img {
-    width: 520px;
-    max-width: 100%;
+    position: absolute;
+    z-index: 2;
+    width: 130%;
+    max-width: 660px;
     height: auto;
-    border-radius: 80px;
-    box-shadow: 0 15px 35px var(--shadow-medium);
-    object-fit: cover;
+    object-fit: contain;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+}
+
+/* FIXED: SVG as background with inversion */
+.hero-image svg {
+    scale: 1.55;
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    /* Invert the SVG colors */
+    filter: invert(1) brightness(0.9);
+    transition: filter 0.6s ease;
+    rotate: 180deg;
+    transform: translateX(-10em);
+}
+
+/* FIXED: SVG path styling for inverted colors */
+.hero-image svg path:first-child {
+    fill: var(--secondary-switch);
+    opacity: 0.15;
+}
+
+.hero-image svg .customLineAnim {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s ease-in-out infinite;
+    stroke: var(--secondary-switch);
+}
+
+/* Remove the pseudo-element overlay as it's no longer needed */
+.hero-image::before {
+    display: none;
+}
+
+@keyframes dash {
+    0% { stroke-dashoffset: 1000; }
+    50% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 1000; }
+}
+
+@media screen and (max-width: 991px) {
+    .hero-image {
+        max-width: 100%;
+    }
+    
+    .hero-image img {
+        width: 70%;
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .hero-image svg {
+        min-height: 220px;
+    }
+    
+    .hero-image img {
+        width: 60%;
+        max-width: 250px;
+    }
 }
 
 /* ==========================================================================
@@ -454,56 +531,28 @@ section {
 }
 
 /* ==========================================================================
-   8. BUREAU
+   8. CONTACT
    ========================================================================== */
-#bureau { padding: 60px 8% 40px; }
-
-.contact-container { text-align: center; }
-
 .info-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 30px;
+    gap: 24px;
+    margin-top: 12px;
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 18px;
+    gap: 8px;
+    font-size: 0.9rem;
     color: var(--dark-blue-text);
     transition: color 0.3s;
 }
 
 .info-item i {
-    font-size: 24px;
+    font-size: 16px;
     color: var(--accent-blue);
-}
-
-.adresse-location {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    max-width: 700px;
-    margin: 25px auto;
-    padding: 18px 25px;
-    background: var(--light-blue-bg2);
-    border: 1px solid var(--border-blue-light);
-    border-radius: 20px;
-    font-size: 17px;
-    color: var(--text-dark-blue);
-    box-shadow: 0 5px 15px var(--shadow-subtle);
-    transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.adresse-location i {
-    font-size: 20px;
-    color: var(--bureau-blue);
 }
 
 .localisation {
@@ -515,9 +564,6 @@ section {
     border-radius: 25px;
 }
 
-/* ==========================================================================
-   9. CONTACT
-   ========================================================================== */
 .contact {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -682,7 +728,7 @@ section {
 }
 
 /* ==========================================================================
-   10. FOOTER
+   9. FOOTER
    ========================================================================== */
 footer {
     padding: 40px 20px;
@@ -711,7 +757,7 @@ footer h3 { color: var(--secondary); }
 .social-media svg { fill: #fff; }
 
 /* ==========================================================================
-   11. WHATSAPP FLOATING BUTTON
+   10. WHATSAPP FLOATING BUTTON
    ========================================================================== */
 .whatsapp {
     position: fixed;
@@ -738,7 +784,7 @@ footer h3 { color: var(--secondary); }
 }
 
 /* ==========================================================================
-   12. DARK MODE (base)
+   11. DARK MODE (base)
    ========================================================================== */
 .darkmode .card,
 .darkmode .step,
@@ -774,12 +820,6 @@ footer h3 { color: var(--secondary); }
     border-color: var(--primary-switch);
 }
 
-.darkmode .adresse-location {
-    background: var(--light-blue-bg2);
-    color: var(--text-dark-blue);
-    border-color: var(--border-blue-light);
-}
-
 .darkmode .info-item {
     color: var(--dark-blue-text);
 }
@@ -805,7 +845,7 @@ footer h3 { color: var(--secondary); }
     display: none;
 }
 /* ==========================================================================
-   13. RESPONSIVE (base)
+   12. RESPONSIVE (base)
    ========================================================================== */
 @media screen and (max-width: 991px) {
     .menu-btn { display: block; }
@@ -916,6 +956,7 @@ footer h3 { color: var(--secondary); }
     .hero h1 { font-size: 38px; }
 
     .hero-image img {
+        transform: translate(-205px, -195px);
         width: 100%;
         max-width: 500px;
         border-radius: 40px;
@@ -968,12 +1009,6 @@ footer h3 { color: var(--secondary); }
 
     .info-item { font-size: 15px; }
 
-    .adresse-location {
-        font-size: 14px;
-        padding: 14px 18px;
-        flex-wrap: wrap;
-    }
-
     .localisation { height: 300px; }
 
     .numbers { margin-left: 20px; }
@@ -1023,11 +1058,6 @@ footer h3 { color: var(--secondary); }
 
     .info-row { flex-direction: column; }
 
-    .adresse-location {
-        flex-direction: column;
-        text-align: center;
-    }
-
     #theme-switch {
         width: 34px;
         height: 34px;
@@ -1051,7 +1081,7 @@ footer h3 { color: var(--secondary); }
 }
 
 /* ==========================================================================
-   14. ECOLES SUPERIEURES — self-contained design module
+   13. ECOLES SUPERIEURES Ã¢â‚¬â€ self-contained design module
    ========================================================================== */
 
 .ecoles {
@@ -1087,8 +1117,9 @@ footer h3 { color: var(--secondary); }
 .search-container {
     display: flex;
     align-items: center;
+    width: stretch;
     gap: 15px;
-    max-width: 800px;
+    max-width: stretch;
     margin: 0 auto 20px;
     position: relative;
 }
@@ -1106,7 +1137,7 @@ footer h3 { color: var(--secondary); }
 
 .search-box:focus-within {
     border-color: var(--ec-navy);
-    box-shadow: 0 0 0 4px var(--ec-gold-soft);
+    box-shadow: 0 0 4px var(--ec-navy-soft);
 }
 
 .search-box .icon {
@@ -1381,15 +1412,17 @@ footer h3 { color: var(--secondary); }
 .section-header {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    max-height: 130px;
+    min-height: 130px;
     padding: 30px;
+    padding-right: 150px;
+    overflow: visible;
     border-radius: var(--ec-radius-lg);
     box-shadow: var(--ec-shadow-sm);
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-content: center;
     transition: border-color var(--ec-speed);
 }
@@ -1435,10 +1468,15 @@ footer h3 { color: var(--secondary); }
 
 /* CRITICAL: All content must be above the background */
 .section-header-content,
-.section-image,
+.section-toggle,
 .section-header > * {
     position: relative;
     z-index: 1;
+}
+
+/* The floating figure sits on its own top layer, above everything else in the header */
+.section-image {
+    z-index: 2;
 }
 
 /* Secondary section border color */
@@ -1451,6 +1489,8 @@ footer h3 { color: var(--secondary); }
     display: flex;
     align-items: center;
     gap: 16px;
+    flex: 1 1 auto;
+    min-width: 0;
     position: relative;
     z-index: 1;
 }
@@ -1481,28 +1521,91 @@ footer h3 { color: var(--secondary); }
 }
 
 .section-count {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: var(--ec-text-muted);
 }
 
-/* Section image with B&W to color transition */
-.section-image {
+/* Collapse / expand control for the whole sector section */
+.section-toggle {
     flex-shrink: 0;
-    width: 10rem;
-    height: 10rem;
-    margin-bottom: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    padding: 0;
+    background: var(--ec-surface-sunken);
+    border: 1px solid var(--ec-border);
+    border-radius: 50%;
+    color: var(--ec-navy);
+    font-size: 0.85rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background var(--ec-speed), color var(--ec-speed), border-color var(--ec-speed), transform var(--ec-speed);
+}
+
+.section-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.section-toggle:hover,
+.section-toggle:focus-visible {
+    background: var(--ec-navy);
+    border-color: var(--ec-navy);
+    color: #fff;
+}
+
+.section-toggle:focus-visible {
+    outline: 2px solid var(--ec-gold);
+    outline-offset: 2px;
+}
+
+.ecole-subsection.section-secondary .section-toggle:hover,
+.ecole-subsection.section-secondary .section-toggle:focus-visible {
+    background: var(--ec-gold);
+    border-color: var(--ec-gold);
+    color: var(--ec-navy-deep);
+}
+
+/* Rotate the chevron when the section is collapsed */
+.section-toggle[aria-expanded="false"] i {
+    transform: rotate(-180deg);
+}
+
+.ecole-subsection.is-collapsed .section-toggle {
+    background: var(--ec-navy);
+    color: #fff;
+}
+
+.ecole-subsection.section-secondary.is-collapsed .section-toggle {
+    background: var(--ec-gold);
+    color: var(--ec-navy-deep);
+}
+
+/* Section image: layered PNG-cutout figure that "floats" above the header,
+   slightly overlapping its upper border for a modern layered effect. */
+.section-image {
+    position: absolute;
+    top: -42px;
+    right: 30px;
+    flex-shrink: 0;
+    width: 180px;
+    height: 172px;
     filter: grayscale(100%);
-    overflow: hidden;
-    transition: all 1s ease;
-    position: relative;
-    z-index: 1;
+    overflow: visible;
+    transition: transform 0.5s ease, filter 1s ease;
+    pointer-events: none;
 }
 
 .section-image img {
+    display: block;
     width: 100%;
-    height: 99%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+    filter: drop-shadow(0 12px 16px var(--shadow-medium));
 }
 
 /* HOVER EFFECTS - Smooth transitions */
@@ -1510,7 +1613,7 @@ footer h3 { color: var(--secondary); }
       border-radius: var(--ec-radius-lg);
 }
 .ecole-subsection:hover .section-image {
-    transform: translateX(5px);
+    transform: translateX(10px);
     filter: grayscale(0%);
 }
 
@@ -1522,6 +1625,26 @@ footer h3 { color: var(--secondary); }
 /* Optional: If you want the section header border to change on hover */
 .ecole-subsection:hover .section-header {
     border-color: var(--ec-gold);
+}
+
+/* Collapsible wrapper around the divider + card grid.
+   Uses the same grid-template-rows technique as .ecole-card-panel: lightweight,
+   works with variable content height, and animates on the compositor. */
+.ecole-section-collapse {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.4s ease, opacity 0.35s ease;
+    opacity: 1;
+}
+
+.ecole-section-collapse-inner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+.ecole-subsection.is-collapsed .ecole-section-collapse {
+    grid-template-rows: 0fr;
+    opacity: 0;
 }
 
 /* Card grid container */
@@ -1539,13 +1662,38 @@ footer h3 { color: var(--secondary); }
 }
 
 /* ---------- 14.7 Card grid ---------- */
+/* Mobile-first: 1 card per row by default (covers Ã¢â€°Â¤480px and up to 767px) */
 .section-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
 }
 
-/* ---------- 14.8 Ecole card ---------- */
+/* Ã¢â€°Â¥768px: 2 cards per row */
+@media screen and (min-width: 768px) {
+    .section-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Ã¢â€°Â¥992px: 3 cards per row */
+@media screen and (min-width: 992px) {
+    .section-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+}
+
+/* Ã¢â€°Â¥1200px: 5 cards per row */
+@media screen and (min-width: 1200px) {
+    .section-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 24px;
+    }
+}
+
+/* ---------- 14.8 Ecole card (minimal, card-based navigation) ---------- */
 .ecole-card {
     display: flex;
     flex-direction: column;
@@ -1558,43 +1706,47 @@ footer h3 { color: var(--secondary); }
 }
 
 .ecole-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     border-color: var(--ec-navy);
     box-shadow: var(--ec-shadow-lg);
 }
 
-.ecole-subsection.section-secondary .ecole-card:hover {
+.ecole-card.is-expanded {
+    border-color: var(--ec-navy);
+    box-shadow: var(--ec-shadow-lg);
+}
+
+.ecole-subsection.section-secondary .ecole-card:hover,
+.ecole-subsection.section-secondary .ecole-card.is-expanded {
     border-color: var(--ec-gold);
 }
 
-/* Card image */
-.card-image {
+/* Minimized card = toggle button (progressive disclosure trigger) */
+.ecole-card-toggle {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
     width: 100%;
-    padding-top: 56%;
-    background: var(--ec-surface-sunken);
-    flex-shrink: 0;
-    overflow: hidden;
+    padding: 18px 40px 16px 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.card-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
+.ecole-card-toggle:focus-visible {
+    outline: 2px solid var(--ec-gold);
+    outline-offset: -3px;
+    border-radius: var(--ec-radius-sm);
 }
 
-.ecole-card:hover .card-image img { transform: scale(1.06); }
-
-/* Badges */
-.card-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    z-index: 2;
+/* Badges (no longer overlaid on a photo, sit inline at the top of the card) */
+.ecole-card-badges {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -1603,75 +1755,171 @@ footer h3 { color: var(--secondary); }
 .sector-tag,
 .type-tag {
     padding: 4px 12px;
-    font-size: 0.6rem;
+    font-size: 0.45rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.3px;
-    color: #fff;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
     border-radius: 50px;
+    line-height: 1.5;
 }
 
 .sector-tag {
-    background: rgba(11, 42, 91, 0.85);
+    color: #fff;
+    background: var(--ec-navy);
 }
 
 .ecole-subsection.section-secondary .sector-tag {
-    background: rgba(201, 147, 46, 0.9);
+    background: var(--ec-gold);
+    color: var(--ec-navy-deep);
 }
 
 .type-tag {
-    background: rgba(255, 255, 255, 0.18);
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    border: 1px solid var(--ec-border);
+    color: var(--ec-text-muted);
 }
 
 .type-tag.prive {
-    background: rgba(201, 147, 46, 0.85);
+    background: var(--ec-gold-soft);
     border-color: transparent;
+    color: var(--ec-navy);
 }
 
-/* Card content */
-.card-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 18px 20px 20px;
+.darkmode .type-tag.prive { color: var(--ec-navy-deep); }
+
+.darkmode .section-toggle {
+    background: var(--ec-surface-sunken);
+    border-color: var(--ec-border);
+    color: var(--ec-gold-light);
+}
+
+.darkmode .section-toggle:hover,
+.darkmode .section-toggle:focus-visible {
+    background: var(--ec-navy-soft);
+    border-color: var(--ec-navy-soft);
+    color: #fff;
+}
+
+.darkmode .ecole-subsection.section-secondary .section-toggle:hover,
+.darkmode .ecole-subsection.section-secondary .section-toggle:focus-visible {
+    background: var(--ec-gold);
+    border-color: var(--ec-gold);
+    color: var(--ec-navy-deep);
+}
+
+.darkmode .ecole-subsection.is-collapsed .section-toggle {
+    background: var(--ec-navy-soft);
+    color: #fff;
+}
+
+.darkmode .ecole-subsection.section-secondary.is-collapsed .section-toggle {
+    background: var(--ec-gold);
+    color: var(--ec-navy-deep);
+}
+
+.darkmode .section-image img {
+    filter: drop-shadow(0 12px 18px var(--shadow-medium)) brightness(1.05);
 }
 
 .card-title {
-    font-size: 1.05rem;
+    font-size: .8rem;
     font-weight: 700;
     color: var(--ec-text);
-    margin-bottom: 10px;
     line-height: 1.3;
+    margin: 0;
 }
 
-.card-details-list {
+/* Essential info shown while minimized (max 4-5 elements) */
+.card-summary-list {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    flex: 1;
-    margin: 0 0 14px;
+    margin: 2px 0 0;
     padding: 0;
     list-style: none;
+    width: 100%;
 }
 
 .detail-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 2px 0;
-    font-size: 0.82rem;
+    font-size: 0.62rem;
     color: var(--ec-text-muted);
 }
 
 .detail-item i {
-    width: 18px;
-    font-size: 0.82rem;
+    width: 16px;
+    font-size: 0.6rem;
     color: var(--ec-gold);
     flex-shrink: 0;
     text-align: center;
+}
+
+/* Expand/collapse indicator */
+.ecole-card-chevron {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--ec-surface-sunken);
+    color: var(--ec-navy);
+    font-size: 0.68rem;
+    transition: transform var(--ec-speed), background var(--ec-speed), color var(--ec-speed);
+}
+
+.ecole-card.is-expanded .ecole-card-chevron {
+    transform: rotate(180deg);
+    background: var(--ec-navy);
+    color: #fff;
+}
+
+.ecole-subsection.section-secondary .ecole-card.is-expanded .ecole-card-chevron {
+    background: var(--ec-gold);
+    color: var(--ec-navy-deep);
+}
+
+/* Expanded detail panel - progressive disclosure, GPU-friendly animation */
+.ecole-card-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.32s ease, opacity 0.28s ease;
+}
+
+.ecole-card.is-expanded .ecole-card-panel {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.ecole-card-panel-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 20px;
+}
+
+.ecole-card.is-expanded .ecole-card-panel-inner {
+    padding: 14px 20px 18px;
+    border-top: 1px solid var(--ec-border);
+}
+
+.card-full-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+}
+
+.card-full-list .detail-item span strong {
+    color: var(--ec-text);
+    font-weight: 600;
 }
 
 .btn-card {
@@ -1679,10 +1927,8 @@ footer h3 { color: var(--secondary); }
     align-items: center;
     justify-content: center;
     gap: 8px;
-    align-self: flex-start;
-    margin-top: 4px;
-    padding: 10px 20px;
-    font-size: 0.82rem;
+    padding: 9px 18px;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--ec-navy);
     background: transparent;
@@ -1709,6 +1955,79 @@ footer h3 { color: var(--secondary); }
     background: var(--ec-gold);
 }
 
+/* Google Drive access - always visible footer, minimized AND expanded states */
+.ecole-card-drive {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding: 11px 20px;
+    font-size: 0.59rem;
+    font-weight: 600;
+    color: var(--ec-navy);
+    background: var(--ec-surface-alt);
+    border-top: 1px solid var(--ec-border);
+    text-decoration: none;
+    transition: background var(--ec-speed), color var(--ec-speed);
+}
+
+.ecole-card-drive i {
+    font-size: 0.95rem;
+    color: var(--ec-gold);
+    flex-shrink: 0;
+    transition: color var(--ec-speed);
+}
+
+.ecole-card-drive:hover,
+.ecole-card-drive:focus-visible {
+    background: var(--ec-navy);
+    color: #fff;
+}
+
+.ecole-card-drive:hover i,
+.ecole-card-drive:focus-visible i {
+    color: var(--ec-gold-light);
+}
+
+.ecole-subsection.section-secondary .ecole-card-drive:hover,
+.ecole-subsection.section-secondary .ecole-card-drive:focus-visible {
+    background: var(--ec-gold);
+    color: var(--ec-navy-deep);
+}
+
+.darkmode .ecole-card-drive {
+    color: var(--ec-gold-light);
+    background: var(--ec-surface-sunken);
+    border-top-color: var(--ec-border);
+    font-size: .59rem;
+}
+
+.darkmode .ecole-card-drive:hover,
+.darkmode .ecole-card-drive:focus-visible {
+    background: var(--ec-gold);
+    color: var(--ec-navy-deep);
+}
+
+.darkmode .ecole-card-drive:hover i,
+.darkmode .ecole-card-drive:focus-visible i {
+    color: var(--ec-navy-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ecole-card,
+    .ecole-card-chevron,
+    .ecole-card-panel,
+    .btn-card,
+    .ecole-card-drive,
+    .section-toggle,
+    .section-toggle i,
+    .section-image,
+    .ecole-section-collapse {
+        transition: none !important;
+    }
+}
+
+
 /* No results */
 .no-results {
     grid-column: 1 / -1;
@@ -1731,7 +2050,8 @@ footer h3 { color: var(--secondary); }
         font-size: 15px;
     }
     
-    .logo-img {
+    .logo-img-light,
+    .logo-img-dark {
         width: 4.5pc;
         height: 4.5pc;
     }
@@ -1895,14 +2215,10 @@ footer h3 { color: var(--secondary); }
         padding-top: 120px;
         height: auto;
         min-height: auto;
+        gap: 0px;
     }
     .hero h1 {
         font-size: 38px;
-    }
-    .hero-image img {
-        width: 100%;
-        max-width: 500px;
-        border-radius: 40px;
     }
     .btns {
         justify-content: center;
@@ -1936,12 +2252,8 @@ footer h3 { color: var(--secondary); }
     }
     .filter-btn {
         justify-content: center;
+        width: 100%;
     }
-    .section-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
     .ecoles-header {
         flex-direction: column;
         align-items: flex-start;
@@ -1955,14 +2267,15 @@ footer h3 { color: var(--secondary); }
     .ecole-section { padding: 28px 20px; }
 
     .section-header {
-        flex-direction: column;
-        align-items: flex-start;
         padding: 20px;
+        padding-right: 118px;
     }
 
     .section-image {
-        width: 100%;
-        height: 120px;
+        top: -30px;
+        right: 22px;
+        width: 180px;
+        height: 160px;
     }
 
     .search-container { flex-direction: column; }
@@ -1993,7 +2306,8 @@ footer h3 { color: var(--secondary); }
     .logo-bottom {
         font-size: 14px;
     }
-    .logo-img {
+    .logo-img-light,
+    .logo-img-dark {
         width: 4pc;
         height: 4pc;
     }
@@ -2016,11 +2330,6 @@ footer h3 { color: var(--secondary); }
     }
     .info-item {
         font-size: 15px;
-    }
-    .adresse-location {
-        font-size: 14px;
-        padding: 14px 18px;
-        flex-wrap: wrap;
     }
     .localisation {
         height: 300px;
@@ -2055,6 +2364,7 @@ footer h3 { color: var(--secondary); }
 
     .ecoles-header {
         padding: 20px 16px;
+        border-radius: 14px;
     }
 
     .ecoles-header-left { gap: 14px; }
@@ -2062,6 +2372,7 @@ footer h3 { color: var(--secondary); }
     .ecoles-header-icon {
         width: 48px;
         height: 48px;
+        border-radius: 12px;
     }
 
     .ecoles-header-icon i { font-size: 20px; }
@@ -2078,12 +2389,13 @@ footer h3 { color: var(--secondary); }
 
     .section-header {
         padding: 16px;
+        padding-right: 96px;
         border-radius: 16px;
     }
 
     .ecole-subsection { gap: 18px; }
 
-    .section-title-wrapper h3 { font-size: 1.1rem; }
+    .section-title-wrapper h3 {font-size: .9rem;color: var(--ec-navy-deep);}
 
     .section-icon {
         width: 42px;
@@ -2091,9 +2403,24 @@ footer h3 { color: var(--secondary); }
         font-size: 18px;
     }
 
-    .section-image {height: 150px;}
+    .section-toggle {
+        width: 34px;
+        height: 34px;
+        font-size: 0.75rem;
+    }
 
-    .card-content { padding: 16px 18px 18px; }
+    .section-image {
+        top: -50px;
+        right: 16px;
+        width: 150px;
+        height: 180px;
+    }
+
+    .ecole-card-toggle { padding: 16px 36px 14px 18px; }
+
+    .ecole-card-panel-inner { padding: 0 18px; }
+
+    .ecole-card.is-expanded .ecole-card-panel-inner { padding: 12px 18px 16px; }
 
     .card-title { font-size: 1rem; }
 
@@ -2102,6 +2429,11 @@ footer h3 { color: var(--secondary); }
     .btn-card {
         padding: 8px 18px;
         font-size: 0.78rem;
+    }
+
+    .ecole-card-drive {
+        padding: 10px 18px;
+        font-size: 0.74rem;
     }
 
     .search-box input {
@@ -2144,7 +2476,10 @@ footer h3 { color: var(--secondary); }
 
     .section-header {
         padding: 14px 12px;
+        padding-right: 76px;
+        padding-top: 18px;
         border-radius: 12px;
+        min-height: 100px;
     }
 
     .ecole-subsection { gap: 14px; }
@@ -2161,21 +2496,35 @@ footer h3 { color: var(--secondary); }
     .section-title-wrapper h3 { font-size: 0.9rem; }
     .section-count { font-size: 0.75rem; }
 
+    .section-toggle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.68rem;
+    }
+
     .section-image {
-        height: 80px;
-        border-radius: 10px;
+        top: -14px;
+        right: 12px;
+        width: 62px;
+        height: 82px;
     }
 
     .section-grid { gap: 12px; }
 
-    .card-content { padding: 14px 14px 16px; }
+    .ecole-card-toggle { padding: 14px 32px 12px 14px; }
+
+    .ecole-card-panel-inner { padding: 0 14px; }
+
+    .ecole-card.is-expanded .ecole-card-panel-inner { padding: 10px 14px 14px; }
+
+    .ecole-card-chevron { top: 14px; right: 12px; }
 
     .card-title {
         font-size: 0.9rem;
-        margin-bottom: 8px;
     }
 
-    .card-details-list {
+    .card-summary-list,
+    .card-full-list {
         gap: 4px;
         margin-bottom: 10px;
     }
@@ -2196,17 +2545,19 @@ footer h3 { color: var(--secondary); }
         gap: 6px;
     }
 
+    .ecole-card-drive {
+        padding: 9px 14px;
+        font-size: 0.7rem;
+        gap: 6px;
+    }
+
     .sector-tag,
     .type-tag {
         padding: 3px 8px;
         font-size: 0.5rem;
     }
 
-    .card-badge {
-        top: 8px;
-        left: 8px;
-        gap: 4px;
-    }
+    .ecole-card-badges { gap: 4px; }
 
     .filter-dropdown {
         grid-template-columns: 1fr;
