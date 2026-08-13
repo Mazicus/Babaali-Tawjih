@@ -1,16 +1,14 @@
 <?php
-// session_start();
+session_start();
 
-// if (!isset($_SESSION['user_id'])) {
-//     header("Location: index.php");
-//     exit();
-// }
+if (!isset($_SESSION['user_id'])) {
+     header("Location: index.php");
+     exit();
+}
 
-// $userName = htmlspecialchars($_SESSION['user_name']);
-// $userEmail = htmlspecialchars($_SESSION['user_email']);
-// For demo, we set dummy data
-$userName = "Youssef Alaoui";
-$userEmail = "youssef@babaali.ma";
+$userName = htmlspecialchars($_SESSION['user_name']);
+$userEmail = htmlspecialchars($_SESSION['user_email']);
+
 ?>
 
 <!DOCTYPE html>

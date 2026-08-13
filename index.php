@@ -13,7 +13,7 @@
     </head>
     <body>
         <!-- Header -->
-        <header class="header">
+       <header class="header">
             <div class="container">
                 <div class="logo">
                     <img class="logo-img-dark" src="./img/white_icon_s.png" alt="BABAALI TAWJIH">
@@ -31,19 +31,18 @@
                     <ul>
                         <li><a href="#logo">Accueil</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#about">Pourquoi nous</a></li>
                         <li><a href="#ecoles">Écoles Supérieures</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <div class="mobile-login">
-                        <a href="login.html" class="login">
+                        <a href="login.php" class="login">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.00098 11.999L16.001 11.999M16.001 11.999L12.501 8.99902M16.001 11.999L12.501 14.999" stroke="#082a7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.2429 22 18.8286 22 16.0002 22H15.0002C12.1718 22 10.7576 22 9.87889 21.1213C9.11051 20.3529 9.01406 19.175 9.00195 17" stroke="#082a7a" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
                             Se connecter
                         </a>
-                        <a href="inscription.html" class="btn-inscr">S'inscrire</a>
+                        <a href="inscription.php" class="btn-inscr">S'inscrire</a>
                     </div>
                 </nav>
                 <div class="login-box">
@@ -73,6 +72,7 @@
                 </div>
             </div>
         </header>
+
 
         <!-- Hero -->
         <section class="hero" id="logo">
@@ -136,19 +136,6 @@
                     <i class="fa-solid fa-file-lines"></i>
                     <h3>Assistance Administrative</h3>
                     <p>Préparation et gestion des dossiers.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section id="about">
-            <div class="section-title">
-                <h2>Pourquoi choisir BABAALI TAWJIH ?</h2>
-            </div>
-            <div class="stats">
-                <div class="stat">
-                    <h3>90%</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quas nobis ipsum dolorum aliquid dolore enim</p>
                 </div>
             </div>
         </section>

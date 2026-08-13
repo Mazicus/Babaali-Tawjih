@@ -5,11 +5,7 @@ ini_set('display_errors', 1);
 
 session_start();
 
-// Database configuration
-// $db_host = 'localhost';
-// $db_name = 'your_database_name'; // khaseha t3mer !!!!!!!!!
-// $db_user = 'your_database_username'; // khaseha t3mer !!!!!!!!!
-// $db_pass = 'your_database_password'; // khaseha t3mer !!!!!!!!!
+require_once "config/database.php";
 
 //initisialisation des vars
 $error_message = '';
@@ -18,7 +14,7 @@ $email = '';
 
 //login deja?
 if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php');
+    header('Location: Dashboard.php');
     exit();
 }
 
@@ -56,7 +52,7 @@ if($user && password_verify($password,$user['mot_de_passe'])){
     $_SESSION['user_name']=$user['full_name'];
     $_SESSION['user_email']=$user['adress_email'];
 
-    header("Location: dashboard.php");
+    header("Location: Dashboard.php");
     exit();
 
 }else{
