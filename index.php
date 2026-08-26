@@ -233,24 +233,7 @@
             </div>
 
             <!-- ===== SECTION HEADER WITH IMAGE ===== -->
-            <div class="ecoles-header">
-                <div class="ecoles-header-left">
-                    <div class="ecoles-header-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="ecoles-header-info">
-                        <h3>Nos Établissements Partenaires</h3>
-                        <p>Découvrez les meilleures écoles et universités au Maroc</p>
-                    </div>
-                </div>
-                <div class="ecoles-svg-wrapper">
-                    <svg class="custom-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 649 578">
-                        <path fill="#FFF" d="M-225.5,154.7l358.45,456.96c7.71,9.83,21.92,11.54,31.75,3.84l456.96-358.45c9.83-7.71,11.54-21.92,3.84-31.75
-                            L267.05-231.66c-7.71-9.83-21.92-11.54-31.75-3.84l-456.96,358.45C-231.49,130.66-233.2,144.87-225.5,154.7z"></path>
-                        <path class="customLineAnim" fill="none" stroke="#1C5FA8" stroke-width="1.5" stroke-miterlimit="10" d="M416-21l202.27,292.91c5.42,7.85,3.63,18.59-4.05,24.25L198,603" style="animation-delay: 300ms; animation-duration: 5s;"></path>
-                    </svg>
-                </div>
-            </div>
+           
 
             <!-- ===== CARDS SECTION ===== -->
             <div class="ecoles-sections" id="ecolesSections">
@@ -280,26 +263,13 @@
                     <div class="contact-location">
                         <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M536.5-503.5Q560-527 560-560t-23.5-56.5Q513-640 480-640t-56.5 23.5Q400-593 400-560t23.5 56.5Q447-480 480-480t56.5-23.5ZM480-186q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Z"/></svg> Bureau</p>
                         <div class="contact-address">
-                            <a href="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed" target="_blank">Rue Prince Moulay Rachid, Biougra, Morocco</a>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-item">
-                                <i class="fa-regular fa-clock"></i>
-                                <span>Lun-Ven: 10h30-18h30</span>
-                            </div>
-                            <div class="info-item">
-                                <i class="fa-regular fa-calendar"></i>
-                                <span>Sur rendez-vous</span>
-                            </div>
+                        <iframe class="localisation" src="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed"   with="200px" allowfullscreen loading="lazy"></iframe>
+                            <br>
+                                <a href="#">Rue Prince Moulay Rachid, Biougra, Morocco</a>
                         </div>
                     </div>
-                    <div class="button-whatsapp">
-                        <a href="https://wa.me/212700059552" target="_blank">
-                            <p><span class="whatsapp-icon-p"><i class="fab fa-whatsapp"></i></span> Nous contacter sur WhatsApp</p>
-                        </a>
-                    </div>
+                    
                 </div>
-
                 <div class="contact-form">
                     <h2>Demande de contact</h2>
                     <input type="text" placeholder="Nom complet">
@@ -313,7 +283,7 @@
                     </button>
                 </div>
             </div>
-            <iframe class="localisation" src="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed" allowfullscreen loading="lazy" title="Localisation du bureau BABAALI TAWJIH"></iframe>
+           
         </section>
         
         <!-- Footer -->

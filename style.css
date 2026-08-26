@@ -534,37 +534,14 @@ section {
 /* ==========================================================================
    8. CONTACT
    ========================================================================== */
-.info-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 24px;
-    margin-top: 12px;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: var(--dark-blue-text);
-    transition: color 0.3s;
-}
-
-.info-item i {
-    font-size: 16px;
-    color: var(--accent-blue);
-}
-
-.localisation {
-    display: block;
+iframe.localisation {
     width: 100%;
-    height: 450px;
-    margin-top: 30px;
+    height: 200px!important;
     border: none;
     border-radius: 25px;
+    margin-top: 10px;
+    display: block;
 }
-
 .contact {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -573,6 +550,7 @@ section {
 
 .contact-info {
     padding: 40px;
+    width: 600px!important;
     background: var(--light);
     border-radius: 20px;
     box-shadow: 0 5px 25px var(--shadow-light);
@@ -684,7 +662,9 @@ section {
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s, border-radius 0.3s;
 }
-
+.message{
+    height: 250px!important;
+}
 .contact-form textarea {
     min-width: 100%;
     max-width: 100%;
@@ -697,7 +677,9 @@ section {
     border-radius: 25px;
     box-shadow: 0 0 5px var(--primary-switch);
 }
-
+.message{
+    height: 250px;
+}
 .send-botton {
     display: flex;
     align-items: center;
@@ -733,7 +715,7 @@ section {
    ========================================================================== */
 footer {
     padding: 40px 20px;
-    background: var(--filter-blue-dark);
+    background: var(--primary);
     color: #fff;
     text-align: center;
     transition: background 0.3s;
@@ -1009,8 +991,6 @@ footer h3 { color: var(--secondary); }
     .contact-form { padding: 25px; }
 
     .info-item { font-size: 15px; }
-
-    .localisation { height: 300px; }
 
     .numbers { margin-left: 20px; }
 
@@ -2332,9 +2312,7 @@ footer h3 { color: var(--secondary); }
     .info-item {
         font-size: 15px;
     }
-    .localisation {
-        height: 300px;
-    }
+    
     .numbers {
         margin-left: 20px;
     }
