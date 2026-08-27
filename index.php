@@ -242,7 +242,7 @@
         </section>
 
         <!-- Contact -->
-        <section id="contact">
+      <section id="contact">
             <div class="section-title">
                 <h2>Contactez-nous</h2>
                 <p>Une question ? Un besoin spécifique ? Notre équipe est là pour vous accompagner.</p>
@@ -263,27 +263,32 @@
                     <div class="contact-location">
                         <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M536.5-503.5Q560-527 560-560t-23.5-56.5Q513-640 480-640t-56.5 23.5Q400-593 400-560t23.5 56.5Q447-480 480-480t56.5-23.5ZM480-186q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Z"/></svg> Bureau</p>
                         <div class="contact-address">
-                        <iframe class="localisation" src="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed"   with="200px" allowfullscreen loading="lazy"></iframe>
+                        <iframe class="localisation" src="https://www.google.com/maps?q=Centre+Babaali+Biougra&output=embed" allowfullscreen loading="lazy"></iframe>
                             <br>
                                 <a href="#">Rue Prince Moulay Rachid, Biougra, Morocco</a>
+
+
                         </div>
                     </div>
                     
                 </div>
-                <form class="contact-form" action="contact.php" method="POST">
+
+                <div class="contact-form">
                     <h2>Demande de contact</h2>
-                    <input type="text" name="full_name" placeholder="Nom complet" required>
-                    <input type="email" name="adresse_email" placeholder="Adresse Email" required>
-                    <textarea rows="6" name="message_TEXT" placeholder="Votre message" required></textarea>
-                    <button class="send-botton" type="submit">
-                        Envoyer
+                <form action="contact.php" method="POST">
+                    <input type="text" name ="full_name" placeholder="Nom complet" required>
+                    <input type="email" name = "adresse_email" placeholder="Adresse Email" required>
+                    <textarea class="message" rows="5" name = "message_TEXT" placeholder="Votre message" required></textarea>
+                    <button class="send-botton" type = "submit">
+                        <p>Envoyer</p>
                         <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M9.93935 12.6464L7.69211 11.8973L7.69211 11.8973L7.6921 11.8973C5.3389 11.1129 4.16229 10.7207 4.16229 9.99997C4.16229 9.27921 5.3389 8.88701 7.69212 8.10261L16.2053 5.26488C17.8611 4.71295 18.689 4.43699 19.126 4.87401C19.563 5.31102 19.287 6.13892 18.7351 7.79471L15.8974 16.3079L15.8974 16.3079L15.8974 16.3079C15.113 18.6611 14.7208 19.8377 14 19.8377C13.2793 19.8377 12.8871 18.6611 12.1026 16.3079L11.3536 14.0606L15.7071 9.70708C16.0976 9.31656 16.0976 8.68339 15.7071 8.29287C15.3166 7.90234 14.6834 7.90234 14.2929 8.29287L9.93935 12.6464Z" fill="#082a7a"/>
                         </svg>
                     </button>
                 </form>
+                    
+                </div>
             </div>
-           
         </section>
         
         <!-- Footer -->

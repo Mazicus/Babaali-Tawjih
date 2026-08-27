@@ -534,14 +534,6 @@ section {
 /* ==========================================================================
    8. CONTACT
    ========================================================================== */
-iframe.localisation {
-    width: 100%;
-    height: 200px!important;
-    border: none;
-    border-radius: 25px;
-    margin-top: 10px;
-    display: block;
-}
 .contact {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -550,7 +542,6 @@ iframe.localisation {
 
 .contact-info {
     padding: 40px;
-    width: 600px!important;
     background: var(--light);
     border-radius: 20px;
     box-shadow: 0 5px 25px var(--shadow-light);
@@ -602,7 +593,7 @@ iframe.localisation {
 }
 
 .contact-address a {
-    margin-left: 50px;
+    margin-left: 36px;
     font-size: 1.1rem;
     font-weight: 400;
     color: var(--primary);
@@ -612,25 +603,14 @@ iframe.localisation {
 
 .contact-address a:hover { color: var(--accent-blue); }
 
-.button-whatsapp p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 15px;
-    margin-top: 30px;
-    background: var(--whatsapp-green);
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #fff;
-    text-align: center;
-    transition: background 0.3s;
+.localisation {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 25px;
+    margin-top: 10px;
+    display: block;
 }
-
-.button-whatsapp a { text-decoration: none; }
-.button-whatsapp p:hover { background: var(--whatsapp-green-dark); }
-
 .whatsapp-icon-p { font-size: 18pt; }
 
 .contact-form {
@@ -662,13 +642,14 @@ iframe.localisation {
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s, border-radius 0.3s;
 }
-.message{
-    height: 250px!important;
-}
+
 .contact-form textarea {
     min-width: 100%;
     max-width: 100%;
     resize: vertical;
+}
+.message{
+    height: 250px;
 }
 
 .contact-form input:focus,
@@ -677,9 +658,7 @@ iframe.localisation {
     border-radius: 25px;
     box-shadow: 0 0 5px var(--primary-switch);
 }
-.message{
-    height: 250px;
-}
+
 .send-botton {
     display: flex;
     align-items: center;

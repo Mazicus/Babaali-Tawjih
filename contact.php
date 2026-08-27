@@ -24,6 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ':message_TEXT' => $message_TEXT
     ]);
 
-    echo "Message envoyé avec succès !";
+   header('location:index.php');
 }
 ?>
