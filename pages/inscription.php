@@ -6,7 +6,7 @@ require_once __DIR__ . '/../config/session.php';
 
 // Check if already logged in
 if (isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: Dashboard.php');
     exit();
 }
 
@@ -83,9 +83,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     }
 }
 
-// Google OAuth
+// Consume OAuth errors once.
+if (isset($_SESSION['oauth_error'])) {
+    $error_message = $_SESSION['oauth_error'];
+    unset($_SESSION['oauth_error']);
+}
 if (isset($_GET['google_oauth'])) {
-    $error_message = 'L\'inscription avec Google sera bientôt disponible.';
+    header('Location: /google-oauth.php?from=inscription');
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -319,18 +324,11 @@ if (isset($_GET['google_oauth'])) {
             showMessage('Inscription en cours...', 'success');
         });
 
-        // ----- GOOGLE CONNECT (simulation) -----
-        const googleBtn = document.getElementById('googleBtn');
-        if (googleBtn) {
-            googleBtn.addEventListener('click', function() {
-                hideMessage();
-                showMessage('Inscription avec Google en cours ... (simulation)', 'success');
-                // In real life: OAuth redirect
-                // window.location.href = '?google_oauth=1';
-            });
-        }
+        document.getElementById('googleBtn').addEventListener('click', function() {
+        window.location.href = '/google-oauth.php?from=inscription&remember=' + (document.querySelector('[name="remember_me"]:checked') ? '1' : '0');
+      });
 
-        // ----- LIVE FEEDBACK -----
+      // ----- LIVE FEEDBACK -----
         emailInput.addEventListener('blur', function() {
             const val = this.value.trim();
             if (val && !validateEmail(val)) {

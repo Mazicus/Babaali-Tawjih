@@ -12,7 +12,7 @@ These flows were verified on Vercel: account registration, password login, authe
 
 - Administration of establishments, courses and users has no implemented administration interface or role system.
 - The report diagrams contain ECOLE, FORMATION and CANDIDATURE entities. The prototype uses a school catalogue embedded in JavaScript and does not persist courses or applications in these tables.
-- Google registration and login buttons are placeholders. No Google OAuth integration is configured.
+- Google registration and login now have an OAuth implementation. Activation requires a Google Cloud web client, Vercel environment variables, the Google account database migration, and a redeployment; live Google sign-in has not yet been verified.
 - The password recovery link has no recovery workflow or email delivery.
 - Dashboard shortcuts, favourites, calendar and several statistics are static prototype elements. They do not represent a complete personalised service.
 - Personalised follow-up and notifications mentioned in the registration description are not implemented.

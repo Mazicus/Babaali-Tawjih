@@ -12,6 +12,8 @@ $pages = [
     '/dashboard.php' => 'Dashboard.php',
     '/logout.php' => 'logout.php',
     '/contact.php' => 'contact.php',
+    '/google-oauth.php' => 'google-oauth.php',
+    '/google-callback.php' => 'google-callback.php',
 ];
 if ($path === '/index.php') {
     header('Location: /index.html', true, 302);
@@ -22,6 +24,7 @@ if (!isset($pages[$path])) {
     exit('Page introuvable.');
 }
 header('Cache-Control: private, no-store');
+header('Referrer-Policy: no-referrer');
 $_SERVER['PHP_SELF'] = $path;
 chdir($root);
 try {

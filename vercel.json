@@ -1,16 +1,36 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "regions": ["hnd1"],
+  "regions": [
+    "hnd1"
+  ],
   "buildCommand": "",
   "installCommand": "",
   "outputDirectory": ".",
-  "functions": { "api/index.php": { "runtime": "vercel-php@0.9.0" } },
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.9.0"
+    }
+  },
   "routes": [
-    { "src": "/(?:config|database|pages)(?:/.*)?", "status": 404 },
-    { "src": "/(?:\\..*|.*\\.(?:sql|md))", "status": 404 },
-    { "src": "/(?:index\\.php|login\\.php|inscription\\.php|Dashboard\\.php|dashboard\\.php|logout\\.php|contact\\.php)", "dest": "/api/index.php" },
-    { "handle": "filesystem" },
-    { "src": "/.*", "status": 404 }
+    {
+      "src": "/(?:config|database|pages|tests)(?:/.*)?",
+      "status": 404
+    },
+    {
+      "src": "/(?:\\..*|.*\\.(?:sql|md))",
+      "status": 404
+    },
+    {
+      "src": "/(?:index\\.php|login\\.php|inscription\\.php|Dashboard\\.php|dashboard\\.php|logout\\.php|contact\\.php|google-oauth\\.php|google-callback\\.php)",
+      "dest": "/api/index.php"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "status": 404
+    }
   ]
 }

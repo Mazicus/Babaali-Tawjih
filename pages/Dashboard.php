@@ -758,6 +758,10 @@ $userEmail = htmlspecialchars($_SESSION['user_email']);
         <!-- Welcome Banner -->
         <div class="welcome-banner">
             <h1>Bienvenue <span><?php echo $userName; ?></span> 👋</h1>
+            <p><a href="/google-oauth.php">Associer mon compte Google</a></p>
+            <?php if (isset($_SESSION['oauth_error'])): ?>
+                <p role="alert"><?php echo htmlspecialchars($_SESSION['oauth_error'], ENT_QUOTES, 'UTF-8'); unset($_SESSION['oauth_error']); ?></p>
+            <?php endif; ?>
             <p>Votre espace personnel BABAALI TAWJIH — suivez votre orientation académique en toute simplicité.</p>
         </div>
 

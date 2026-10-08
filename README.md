@@ -22,7 +22,18 @@ Your original XAMPP project has not been modified.
 
 After deployment, open the homepage, register a test account, log in, refresh the dashboard, log out, and submit a test contact message. Confirm that the message appears in the contact table and a logged-out visitor cannot access the dashboard.
 
-The Google sign-in buttons in the original project are placeholders. Google authentication still requires a separate implementation. The dashboard retains the original content and behavior.
+Google login and registration use a shared server-side authorization code flow with PKCE and a ten-minute, single-use session state. Google identity is retrieved from its UserInfo endpoint over verified TLS. Password accounts must sign in first and use **Associer mon compte Google** on the dashboard to link the same email. Google-only accounts receive a random, unknown password hash; no Google passwords or tokens are stored.
+
+## Enable Google sign-in
+
+1. Run `database/google-oauth.sql` against the existing database. New databases can use the updated `database/schema.sql` instead.
+2. In Google Cloud Console, configure Google Auth Platform branding, audience and consent for this website. During testing, add the Google accounts that will test sign-in as test users.
+3. Create an OAuth client with application type **Web application**. Add this exact authorized redirect URI: `https://babaali-tawjih.vercel.app/google-callback.php`. A different domain needs its own matching registered URI.
+4. Add `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` and `GOOGLE_REDIRECT_URI` to Vercel environment variables. Set the redirect variable to the exact URI above. Keep the secret out of source control. Redeploy after changing variables.
+5. Enable the PHP cURL extension if using another PHP host. For local testing, register `http://localhost:8000/google-callback.php` and set the redirect variable accordingly. Use a stable registered domain for previews.
+6. Test Google registration, repeat login, consent cancellation, logout, and linking an existing password account. Missing configuration shows a friendly message while email/password authentication remains available.
+
+Google setup reference: [Google OpenID Connect server flow](https://developers.google.com/identity/openid-connect/openid-connect).
 
 No package.json or npm build is needed. Do not publish a static-only copy of the PHP files.
 
