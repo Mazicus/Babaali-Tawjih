@@ -82,10 +82,13 @@ try { googleConfiguration(); $googleConfigured = true; } catch (RuntimeException
 <link rel="icon" href="/img/BABA_ALI_TAWJIH2.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="/palette.css">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/favorites.css">
 <link rel="stylesheet" href="/Dashboard.css">
 <script src="/DarkMode.js" defer></script>
 <script src="/Dashboard.js" defer></script>
+<script src="/Favorites.js" defer></script>
+<script src="/Schools.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Aller au contenu</a>
@@ -100,40 +103,82 @@ try { googleConfiguration(); $googleConfigured = true; } catch (RuntimeException
 <div class="workspace-layout">
     <aside class="workspace-sidebar">
         <p class="sidebar-label">MON ORIENTATION</p>
-        <nav aria-label="Navigation personnelle"><a class="sidebar-active" href="#favorites"><i class="far fa-heart" aria-hidden="true"></i> Mes écoles <span><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></span></a><a href="#profile"><i class="far fa-user" aria-hidden="true"></i> Mon profil</a><a href="/index.html#ecoles"><i class="fas fa-search" aria-hidden="true"></i> Explorer les écoles</a></nav>
-        <div class="sidebar-help"><span class="help-icon"><i class="far fa-comments" aria-hidden="true"></i></span><h2>Un choix à clarifier ?</h2><p>Notre équipe vous aide à trouver votre direction.</p><a href="/index.html#contact">Contacter un conseiller <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+        <nav aria-label="Navigation personnelle"><a class="sidebar-active" href="#favorites"><i class="far fa-heart" aria-hidden="true"></i> Mes écoles <span class="favorites-count"><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></span></a><a href="#profile"> Mon profil</a><a href="/index.html#ecoles"> Explorer les écoles</a></nav>
+        <div class="sidebar-help"><h2>Un choix à clarifier ?</h2><p>Notre équipe vous aide à trouver votre direction.</p><a href="/index.html#contact">Contacter un conseiller <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
         <a class="sidebar-logout" href="/logout.php"><i class="fas fa-arrow-right-from-bracket" aria-hidden="true"></i> Se déconnecter</a>
         <p class="sidebar-signature" lang="ar" dir="rtl">نوجهوك للطريق الصحيح</p>
     </aside>
     <main id="main-content" class="workspace-main">
-        <div class="workspace-heading"><div><p class="eyebrow">VOTRE PROJET, À VOTRE RYTHME</p><h1>Bonjour, <?php echo dashboardEscape($user['full_name']); ?>.</h1><p>Gardez vos écoles préférées à portée de main.</p></div><a class="primary-button" href="/index.html#ecoles"><i class="fas fa-plus" aria-hidden="true"></i> Découvrir une école</a></div>
+        <div class="workspace-heading"><div><p class="eyebrow">VOTRE PROJET, À VOTRE RYTHME</p><h1>Bonjour, <?php echo dashboardEscape($user['full_name']); ?>.</h1><p>Gardez vos écoles préférées à portée de main.</p></div><a class="primary-button" href="/index.html#ecoles"> Découvrir une école</a></div>
         <?php foreach ($errors as $message): ?><p class="workspace-message error" role="alert"><?php echo dashboardEscape($message); ?></p><?php endforeach; ?>
         <?php foreach ($successes as $message): ?><p class="workspace-message" role="status"><?php echo dashboardEscape($message); ?></p><?php endforeach; ?>
-        <div class="workspace-stats"><div><span class="stat-icon"><i class="far fa-heart" aria-hidden="true"></i></span><p><strong><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></strong><span>écoles enregistrées</span></p></div><div><span class="stat-icon gold"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span><p><strong><?php echo $favoritesAvailable ? $cities : '—'; ?></strong><span>villes à explorer</span></p></div><a href="#profile"><span class="stat-icon"><i class="far fa-user" aria-hidden="true"></i></span><p><strong>Mon profil</strong><span>Gérer mes informations</span></p><i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
         <div class="workspace-columns">
             <section class="favorites-section" id="favorites" aria-labelledby="favorites-title">
-                <div class="section-heading"><div><h2 id="favorites-title">Mes écoles favorites <span><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></span></h2><p>Votre sélection personnelle, enregistrée sur votre compte.</p></div></div>
+                <div class="section-heading"><div><h2 id="favorites-title">Mes écoles favorites <span class="favorites-count"><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></span></h2><p>Votre sélection personnelle, enregistrée sur votre compte.</p></div></div>
                 <?php if (!$favoritesAvailable): ?>
                     <div class="favorites-empty"><h3>Vos favoris sont momentanément indisponibles.</h3><p>Vous pouvez continuer à explorer les écoles et à gérer vos informations personnelles.</p><a class="primary-button" href="/index.html#ecoles">Explorer le catalogue</a></div>
-                <?php elseif (!$favorites): ?>
-                    <div class="favorites-empty"><span><i class="far fa-heart" aria-hidden="true"></i></span><h3>Votre sélection commence ici.</h3><p>Dans le catalogue, cliquez sur « Enregistrer » pour retrouver une école dans cet espace.</p><a class="primary-button" href="/index.html#ecoles">Explorer le catalogue <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
                 <?php else: ?>
-                    <label class="favorite-search"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Rechercher dans mes écoles favorites</span><input id="favorite-search" type="search" placeholder="Rechercher une école, une ville…" autocomplete="off"></label>
-                    <p id="favorite-search-status" class="sr-only" role="status" aria-live="polite"></p>
-                    <div class="saved-schools">
-                    <?php foreach ($favorites as $school): ?>
-                        <article class="saved-school" data-search="<?php echo dashboardEscape($school['name'] . ' ' . $school['location'] . ' ' . $school['diploma'] . ' ' . ($sectors[$school['sector']]['label'] ?? '')); ?>">
-                            <div class="saved-school-top"><span class="school-monogram"><?php echo dashboardEscape($school['acronym'] ?? 'École'); ?></span><form method="post" action="/Dashboard.php"><input type="hidden" name="csrf" value="<?php echo dashboardEscape($csrf); ?>"><input type="hidden" name="school_id" value="<?php echo (int) $school['id']; ?>"><input type="hidden" name="action" value="remove"><button class="remove-favorite" type="submit" aria-label="Retirer <?php echo dashboardEscape($school['name']); ?> des favoris" title="Retirer des favoris"><i class="fas fa-heart" aria-hidden="true"></i></button></form></div>
-                            <span class="school-sector"><?php echo dashboardEscape($sectors[$school['sector']]['label'] ?? $school['sector']); ?></span><h3><?php echo dashboardEscape($school['name']); ?></h3><p class="school-location"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <?php echo dashboardEscape($school['location']); ?><span><?php echo $school['type'] === 'public' ? 'Public' : 'Privé'; ?></span></p>
-                            <dl class="school-details"><div><dt><i class="fas fa-graduation-cap" aria-hidden="true"></i> Diplôme</dt><dd><?php echo dashboardEscape($school['diploma']); ?></dd></div><div><dt><i class="far fa-clock" aria-hidden="true"></i> Durée</dt><dd><?php echo dashboardEscape($school['duration']); ?></dd></div></dl>
-                            <a class="school-visit" href="<?php echo dashboardEscape($school['link']); ?>" target="_blank" rel="noopener noreferrer">Site de l’établissement <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i><span class="sr-only"> (nouvel onglet)</span></a>
-                        </article>
-                    <?php endforeach; ?>
-                    </div><p id="favorite-no-results" class="search-empty" hidden>Aucune école enregistrée ne correspond à cette recherche.</p>
+                    <!-- Search & Filter -->
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="icon">
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#dedede" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <input type="text" id="searchEcoles" aria-label="Rechercher une école, une ville ou un secteur" placeholder="Rechercher une école, une ville, un secteur...">
+                </div>
+                <button class="filter-btn" id="filterToggle" type="button" aria-expanded="false" aria-controls="filterDropdown">
+                    <span class="filter-icon">⏷</span>
+                    Filtrer
+                </button>
+            </div>
+
+            <!-- Filter Dropdown -->
+            <div class="filter-dropdown" id="filterDropdown">
+                <div class="filter-group">
+                    <h4>Secteur</h4>
+                    <label><input type="checkbox" value="sante"> Sciences de la Santé</label>
+                    <label><input type="checkbox" value="commerce"> Commerce & Gestion</label>
+                    <label><input type="checkbox" value="architecture"> Architecture</label>
+                    <label><input type="checkbox" value="ingenierie"> Ingénierie & Technologies</label>
+                    <label><input type="checkbox" value="agriculture"> Agriculture & Environnement</label>
+                    <label><input type="checkbox" value="militaire"> Formation Militaire</label>
+                    <label><input type="checkbox" value="tourisme"> Tourisme & Hôtellerie</label>
+                    <label><input type="checkbox" value="prive"> Universités Privées</label>
+                    <label><input type="checkbox" value="preparatoire"> Filières Préparatoires</label>
+                    <label><input type="checkbox" value="um6p"> UM6P Benguerir</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Durée</h4>
+                    <label><input type="checkbox" value="2ans"> 2 ans</label>
+                    <label><input type="checkbox" value="3ans"> 3 ans</label>
+                    <label><input type="checkbox" value="4ans"> 4 ans</label>
+                    <label><input type="checkbox" value="5ans"> 5 ans</label>
+                    <label><input type="checkbox" value="6ans"> 6 ans</label>
+                    <label><input type="checkbox" value="7ans"> 7 ans</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Type</h4>
+                    <label><input type="checkbox" value="public"> Public</label>
+                    <label><input type="checkbox" value="prive"> Privé</label>
+                </div>
+                <div class="filter-actions">
+                    <button class="btn-filter-apply">Appliquer</button>
+                    <button class="btn-filter-reset">Réinitialiser</button>
+                </div>
+            </div>
+
+
+                    <p class="results-count"><span id="resultCount"><?php echo count($favorites); ?></span> établissements enregistrés</p>
+                    <p id="favorite-status" role="status" aria-live="polite"></p>
+                    <script id="saved-school-data" type="application/json"><?php echo json_encode($favorites, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE); ?></script>
+                    <div class="ecoles-sections" id="ecolesSections"></div>
+                    <noscript><p>Activez JavaScript pour afficher les cartes interactives.</p><ul><?php foreach ($favorites as $school): ?><li><a href="<?php echo dashboardEscape($school['link']); ?>"><?php echo dashboardEscape($school['name']); ?></a></li><?php endforeach; ?></ul></noscript>
                 <?php endif; ?>
             </section>
             <section class="profile-section" id="profile" aria-labelledby="profile-title">
-                <div class="section-heading"><h2 id="profile-title">Mon profil</h2><i class="fas fa-user-shield" aria-hidden="true"></i></div>
+                <div class="section-heading"><h2 id="profile-title">Mon profil</h2></div>
                 <form class="profile-form" method="post" action="/profile.php" enctype="multipart/form-data">
                     <input type="hidden" name="csrf" value="<?php echo dashboardEscape($csrf); ?>"><input type="hidden" name="MAX_FILE_SIZE" value="1048576">
                     <div class="profile-photo"><div class="avatar profile-avatar"><?php if ($avatarVersion): ?><img src="/avatar.php?v=<?php echo urlencode($avatarVersion); ?>" alt="Votre photo de profil"><?php else: ?><span><?php echo dashboardEscape($initials); ?></span><?php endif; ?></div><div><?php if ($photosAvailable): ?><label class="photo-picker" for="avatar"><i class="fas fa-camera" aria-hidden="true"></i> Changer la photo</label><input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-help photo-selection"><p id="photo-help">JPG, PNG, WebP · 1 Mo max.</p><p id="photo-selection" role="status"></p><?php else: ?><p class="field-help">La modification de photo est momentanément indisponible.</p><?php endif; ?></div></div>

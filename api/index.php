@@ -12,6 +12,9 @@ $pages = [
     '/dashboard.php' => 'Dashboard.php',
     '/logout.php' => 'logout.php',
     '/contact.php' => 'contact.php',
+    '/auth-status.php' => 'auth-status.php',
+    '/forgot-password.php' => 'forgot-password.php',
+    '/reset-password.php' => 'reset-password.php',
     '/favorites.php' => 'favorites.php',
     '/profile.php' => 'profile.php',
     '/avatar.php' => 'avatar.php',
@@ -35,7 +38,7 @@ try {
 } catch (Throwable $error) {
     error_log('Application error: ' . $error->getMessage());
     http_response_code(503);
-    if ($path === '/favorites.php') {
+    if (in_array($path, ['/favorites.php', '/auth-status.php'], true)) {
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode(['error' => 'Les favoris sont momentanément indisponibles. Veuillez réessayer.'], JSON_UNESCAPED_UNICODE);
         exit;

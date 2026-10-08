@@ -3,6 +3,10 @@
     let ready = false;
     let failed = false;
     const busy = new Set();
+    const seed = document.getElementById('saved-school-data');
+    if (seed?.textContent) {
+        state = { authenticated: true, ids: JSON.parse(seed.textContent).map(school => school.id), csrf: '' };
+    }
     const buttons = () => document.querySelectorAll('.school-favorite');
     const message = (text, login = false, dashboard = false) => {
         const area = document.getElementById('favorite-status');
@@ -83,6 +87,7 @@
             state.ids = state.ids.filter(value => value !== id);
             if (data.ids.includes(id)) state.ids.push(id);
             state.csrf = data.csrf;
+            window.dispatchEvent(new CustomEvent('favorites:changed', { detail: { ids: [...state.ids] } }));
             message(saved ? 'École retirée de vos favoris.' : 'École enregistrée dans votre espace personnel.', false, !saved);
         } catch (error) {
             message(error.message === 'load' ? 'Les favoris sont momentanément indisponibles. Réessayez.' : error.message);

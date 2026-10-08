@@ -120,7 +120,7 @@ if (isset($_GET['google_oauth'])) {
         <div class="register-left">
             <!-- logo -->
             <div id="logo">
-                <a href="./page principale.php">
+                <a href="/index.html">
                     <img src="./img/BABA_ALI_TAWJIH2.png" >   
                     <img src="./img/white_icon.png" >
                 </a>

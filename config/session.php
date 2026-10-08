@@ -54,3 +54,8 @@ session_set_cookie_params([
 ]);
 session_set_save_handler(new DatabaseSessions($pdo), true);
 session_start();
+require_once __DIR__ . '/auth.php';
+if (isset($_SESSION['user_id']) && (int) ($_SESSION['auth_version'] ?? 0) !== accountAuthVersion($pdo, (int) $_SESSION['user_id'])) {
+    $_SESSION = [];
+    session_regenerate_id(true);
+}

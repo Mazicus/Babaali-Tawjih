@@ -22,7 +22,7 @@
       "status": 404
     },
     {
-      "src": "/(?:index\\.php|login\\.php|inscription\\.php|Dashboard\\.php|dashboard\\.php|logout\\.php|contact\\.php|google-oauth\\.php|google-callback\\.php|favorites\\.php|profile\\.php|avatar\\.php)",
+      "src": "/(?:index\\.php|login\\.php|inscription\\.php|Dashboard\\.php|dashboard\\.php|logout\\.php|contact\\.php|google-oauth\\.php|google-callback\\.php|favorites\\.php|profile\\.php|avatar\\.php|auth-status\\.php|forgot-password\\.php|reset-password\\.php)",
       "dest": "/api/index.php"
     },
     {

@@ -13,7 +13,7 @@ These flows were verified on Vercel: account registration, password login, authe
 - Administration of establishments, courses and users has no implemented administration interface or role system.
 - The report diagrams contain ECOLE, FORMATION and CANDIDATURE entities. The school catalogue is shared through JSON files; courses and applications are not persisted in those proposed tables.
 - Google registration and login now have an OAuth implementation. Activation requires a Google Cloud web client, Vercel environment variables, the Google account database migration, and a redeployment; live Google sign-in has not yet been verified.
-- The password recovery link has no recovery workflow or email delivery.
+- Password recovery now has expiring, single-use tokens and a Resend delivery adapter. Activation requires the recovery migration, a Resend API key and verified sender; live email delivery has not been verified.
 - Favorites and profile edits now have per-account persistence in MySQL, including private profile photos. Activation requires the personal-dashboard database migration and deployment. Application tracking and calendars are omitted; displayed school and city counts are calculated from the user's actual favorites.
 - Personalised follow-up and notifications mentioned in the registration description are not implemented.
 

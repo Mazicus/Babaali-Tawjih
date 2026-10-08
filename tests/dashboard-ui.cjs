@@ -14,12 +14,10 @@ test('public directory renders the shared catalog and favorites after filtering'
         return elements.get(id);
     };
     let refreshes = 0;
-    const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
-    assert.equal(scripts.length, 1);
-    await vm.runInNewContext(scripts[0][1], {
-        document: { getElementById: get, querySelector: () => null, querySelectorAll: () => [], addEventListener() {} },
+    await vm.runInNewContext(fs.readFileSync('Schools.js', 'utf8'), {
+        document: { getElementById: id => id === 'saved-school-data' ? null : get(id), querySelector: () => null, querySelectorAll: () => [], addEventListener() {} },
         fetch: async url => ({ ok: true, json: async () => url.includes('sectors') ? sectors : schools }),
-        window: { schoolFavorites: { refresh: () => refreshes++ } },
+        window: { schoolFavorites: { refresh: () => refreshes++ }, addEventListener() {} },
     });
     assert.equal(get('resultCount').textContent, schools.length);
     assert.equal((get('ecolesSections').innerHTML.match(/class="school-favorite"/g) || []).length, schools.length);
@@ -29,6 +27,30 @@ test('public directory renders the shared catalog and favorites after filtering'
     assert.equal(get('resultCount').textContent, 1);
     assert.equal((get('ecolesSections').innerHTML.match(/class="school-favorite"/g) || []).length, 1);
     assert.equal(refreshes, 2);
+});
+
+test('dashboard renders only saved schools and removes a card after a confirmed favorite change', async () => {
+    const elements = new Map();
+    const ids = [schools[0].id, schools[1].id];
+    const get = id => {
+        if (id === 'saved-school-data') return { textContent: JSON.stringify(schools.slice(0, 2)) };
+        if (!elements.has(id)) elements.set(id, { value: '', listeners: {}, addEventListener(event, fn) { this.listeners[event] = fn; } });
+        return elements.get(id);
+    };
+    let changed;
+    await vm.runInNewContext(fs.readFileSync('Schools.js', 'utf8'), {
+        document: { getElementById: get, querySelector: () => null, querySelectorAll: () => [], addEventListener() {} },
+        fetch: async url => ({ ok: true, json: async () => url.includes('sectors') ? sectors : schools }),
+        window: { schoolFavorites: { refresh() {} }, addEventListener: (event, fn) => { changed = fn; } },
+    });
+    assert.equal(get('resultCount').textContent, 2);
+    assert.equal((get('ecolesSections').innerHTML.match(/class="ecole-card-image"/g) || []).length, 2);
+    assert(get('ecolesSections').innerHTML.includes('section-image'));
+    changed({ detail: { ids: [ids[1]] } });
+    assert.equal(get('resultCount').textContent, 1);
+    assert(!get('ecolesSections').innerHTML.includes(`data-school-id="${ids[0]}"`));
+    changed({ detail: { ids: [] } });
+    assert(get('ecolesSections').innerHTML.includes('Votre sélection commence ici.'));
 });
 
 function favoritesUI(fetch) {
@@ -47,7 +69,7 @@ function favoritesUI(fetch) {
             createTextNode: text => ({ textContent: text }), createElement: () => ({ setAttribute() {}, addEventListener() {} }),
             addEventListener: (event, fn) => { onClick = fn; },
         },
-        window: {}, fetch,
+        window: { dispatchEvent() {} }, CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } }, fetch,
     });
     return { buttons, area, click: id => onClick({ target: { closest: () => buttons[id - 1] } }) };
 }
@@ -105,4 +127,16 @@ test('failed persistence leaves the favorite unsaved and shows the server error'
     await ui.click(2);
     assert.equal(ui.buttons[1].attrs['aria-pressed'], 'false');
     assert(ui.area.children.some(child => child.textContent.includes('Rechargez')));
+});
+
+test('account navigation shows only actions matching the current session', async () => {
+    for (const authenticated of [false, true]) {
+        const elements = ['guest', 'member', 'guest'].map(auth => ({ dataset: { auth }, hidden: true }));
+        vm.runInNewContext(fs.readFileSync('AuthNavigation.js', 'utf8'), {
+            document: { querySelectorAll: () => elements }, window: { addEventListener() {} },
+            fetch: async () => ({ ok: true, json: async () => ({ authenticated }) }),
+        });
+        await tick();
+        for (const element of elements) assert.equal(element.hidden, (element.dataset.auth === 'member') !== authenticated);
+    }
 });

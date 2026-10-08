@@ -114,7 +114,7 @@ if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
       <div class="login-left">
         <!-- logo -->
         <div id="logo">
-            <a href="./page principale.html">
+            <a href="/index.html">
                 <img src="./img/BABA_ALI_TAWJIH2.png" >   
                 <img src="./img/white_icon.png" >
             </a>
@@ -152,7 +152,7 @@ if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
             <label>
               <input type="checkbox" id="rememberCheck" name="remember_me"> Se souvenir de moi
             </label>
-            <a href="#">Mot de passe oublié ?</a>
+            <a href="/forgot-password.php">Mot de passe oublié ?</a>
           </div>
 
           <button type="submit" name="login">Connexion</button>

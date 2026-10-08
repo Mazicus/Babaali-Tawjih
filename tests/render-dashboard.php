@@ -27,16 +27,16 @@ foreach ([false, true] as $populated) {
     $document = new DOMDocument();
     @$document->loadHTML('<?xml encoding="UTF-8">' . $output);
     $xpath = new DOMXPath($document);
-    $count = $xpath->query('//article[contains(@class, "saved-school")]')->length;
-    if ($count !== ($populated ? 4 : 0)) { throw new RuntimeException('Favorite markup count mismatch.'); }
-    if ($xpath->query('//input[@name="csrf"]')->length !== ($populated ? 5 : 1)) { throw new RuntimeException('Missing CSRF form fields.'); }
+    $seed = json_decode($xpath->query('//script[@id="saved-school-data"]')->item(0)->textContent, true);
+    if (count($seed) !== ($populated ? 4 : 0)) { throw new RuntimeException('Favorite seed count mismatch.'); }
+    if ($xpath->query('//input[@name="csrf"]')->length !== 1) { throw new RuntimeException('Missing CSRF form fields.'); }
     if ($xpath->query('//input[@id="email" and @readonly]')->length !== 1) { throw new RuntimeException('Login email must be read-only.'); }
     if ($xpath->query('//input[@type="file" and @name="avatar"]')->length !== 1) { throw new RuntimeException('Photo upload missing.'); }
     file_put_contents(__DIR__ . '/preview-' . ($populated ? 'saved' : 'empty') . '.html', $output);
 }
 echo "Empty/populated dashboard markup and forms verified; synthetic previews generated under tests/.\n";
 $unavailable = renderDashboardFixture($template, false, false);
-if (!str_contains($unavailable, 'Vos favoris sont momentanément indisponibles.') || str_contains($unavailable, 'Votre sélection commence ici.')) {
+if (!str_contains($unavailable, 'Vos favoris sont momentanément indisponibles.') || str_contains($unavailable, 'id="saved-school-data"')) {
     throw new RuntimeException('Missing migration must show unavailable favorites, not a false empty list.');
 }
 if (str_contains($unavailable, 'type="file"') || !str_contains($unavailable, 'Enregistrer les modifications')) {

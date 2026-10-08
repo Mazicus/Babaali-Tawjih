@@ -52,3 +52,13 @@ No package.json or npm build is needed. Do not publish a static-only copy of the
 Status: Published at https://babaali-tawjih.vercel.app/ on 8 October 2026. PHP syntax, homepage assets, registration, login, persistent sessions, logout, contact submission, and blocking of private source paths passed checks. Public homepage, login, and registration pages were checked without Vercel authentication.
 
 The GitHub repository has not yet been updated. Commit this prepared copy before making another GitHub-triggered deployment. Otherwise the repository's old version may replace the tested deployment.
+
+## Session-aware navigation and shared school cards
+
+`AuthNavigation.js` reads the private `auth-status.php` endpoint. Login/signup appear only for signed-out visitors; Mon espace/logout appear only for signed-in users, including after navigating back from logout. Both the directory and dashboard use `Schools.js` for the same category pictures, school illustrations, filters and expandable detail cards. Removing a saved school updates the dashboard list immediately after the database confirms the change. Official website links are labelled accurately; a Drive label appears only for an actual Drive URL.
+
+## Activate password recovery
+
+Run `database/password-recovery.sql` once in the hosted database. Add `RESEND_API_KEY`, `RECOVERY_EMAIL_FROM` (a sender on a verified Resend domain) and `SITE_URL=https://babaali-tawjih.vercel.app` in Vercel, then redeploy. The integration follows [Resend's send-email API](https://resend.com/docs/api-reference/emails/send-email). The application never logs raw reset tokens or provider keys.
+
+Reset links expire after 30 minutes and can be used once. Only token hashes are stored. Reset requests are throttled by email and client IP; known and unknown email addresses receive the same response. Successful resets invalidate previous authenticated sessions for that account. The reset URL is cleared from the browser address before showing the password form. Without the email configuration or migration, recovery displays an availability message; live delivery must be checked with the configured provider.
