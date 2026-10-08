@@ -1,0 +1,62 @@
+{
+  "sante": {
+    "label": "Sciences de la Santé et Médecine",
+    "icon": "fa-solid fa-staff-snake",
+    "color": "primary",
+    "image": "https://png.pngtree.com/png-vector/20250524/ourmid/pngtree-smiling-female-doctor-with-stethoscope-isolated-on-transparent-background-png-image_16376010.png"
+  },
+  "commerce": {
+    "label": "Commerce, Gestion et Économie",
+    "icon": "fa-solid fa-sharp fa-chart-line",
+    "color": "secondary",
+    "image": "https://png.pngtree.com/png-vector/20240124/ourmid/pngtree-ceo-business-profile-png-image_11479711.png"
+  },
+  "architecture": {
+    "label": "Architecture, Urbanisme et Aménagement",
+    "icon": "fa-solid fa-building",
+    "color": "primary",
+    "image": "https://png.pngtree.com/png-vector/20241213/ourmid/pngtree-female-architect-holding-a-construction-blueprint-and-planning-designs-png-image_14724359.png"
+  },
+  "ingenierie": {
+    "label": "Ingénierie, Technologies et Sciences Exactes",
+    "icon": "fa-solid fa-microchip",
+    "color": "secondary",
+    "image": "https://png.pngtree.com/png-vector/20240309/ourmid/pngtree-construction-worker-engineer-png-image_11917231.png"
+  },
+  "agriculture": {
+    "label": "Agriculture, Sciences Vétérinaires et Environnement",
+    "icon": "fa-solid fa-seedling",
+    "color": "primary",
+    "image": "https://png.pngtree.com/png-clipart/20230131/ourmid/pngtree-agricultural-research-scientific-experiment-png-image_6197918.png"
+  },
+  "preparatoire": {
+    "label": "Filières Préparatoires",
+    "icon": "fa-solid fa-book-open",
+    "color": "secondary",
+    "image": "https://png.pngtree.com/png-vector/20240317/ourmid/pngtree-university-or-college-student-study-online-at-home-png-image_11996657.png"
+  },
+  "militaire": {
+    "label": "Formation Militaire",
+    "icon": "fa-solid fa-shield-halved",
+    "color": "primary",
+    "image": "https://png.pngtree.com/png-vector/20250928/ourmid/pngtree-army-officer-png-image_17577498.webp"
+  },
+  "tourisme": {
+    "label": "Tourisme et Hôtellerie",
+    "icon": "fa-solid fa-umbrella-beach",
+    "color": "secondary",
+    "image": "https://png.pngtree.com/png-vector/20241001/ourmid/pngtree-male-waiter-manager-png-image_13986198.png"
+  },
+  "prive": {
+    "label": "Universités Privées",
+    "icon": "fa-solid fa-building-columns",
+    "color": "primary",
+    "image": "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=200&fit=crop&auto=format"
+  },
+  "um6p": {
+    "label": "Université Mohammed VI Polytechnique (UM6P)",
+    "icon": "fa-solid fa-graduation-cap",
+    "color": "secondary",
+    "image": "./img/um6p.png"
+  }
+}

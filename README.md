@@ -35,6 +35,18 @@ Google login and registration use a shared server-side authorization code flow w
 
 Google setup reference: [Google OpenID Connect server flow](https://developers.google.com/identity/openid-connect/openid-connect).
 
+## Personal dashboard and saved schools
+
+Run `database/personal-dashboard.sql` once against the existing hosted MySQL database before deploying this update. New databases use the updated `database/schema.sql`. Deploy the new PHP routes, `Dashboard.js`, `Favorites.js`, both stylesheets and the `data/` folder together with the rest of this project.
+
+The public directory and dashboard share the 72 existing schools in `data/schools.json`, with sector information in `data/sectors.json`. Keep school IDs stable when updating the catalog: favorites reference those IDs. Signed-in users can save schools in the directory, search/remove them in their dashboard, and update their name, phone and photo. The login email is read-only. Favorites and photos are stored in MySQL per user, so they persist across sessions and devices. No application tracking, deadline or notification placeholders are included.
+
+Photos accept JPEG, PNG or WebP up to 1 MiB and 4096 pixels per side (12 million pixels total). They are stored as database blobs rather than Vercel filesystem uploads; the private avatar route serves only the current user's photo. Initials appear until a photo is saved. PHP requires `fileinfo` and `mbstring` as well as PDO MySQL. Google linking is shown in the dashboard only when its environment variables are configured.
+
+Validation: `php tests/personal.php` uses an ephemeral SQLite database with MySQL upsert syntax translated for the test driver. It checks idempotent saves, isolation between accounts, CSRF validation, profile persistence, photo validation/replacement/removal, and transaction rollback. The live MySQL migration and browser upload flow still need deployment verification: use two accounts, save the same school in each, remove it from one account, update a photo, log out and back in, and confirm the other account's data is unaffected.
+
+`node --test tests/dashboard-ui.cjs` checks directory rendering/filtering and the favorite client flow, including signed-out/error states and concurrent saves. `php tests/render-dashboard.php` creates synthetic empty/populated previews under `tests/`; these previews are excluded from deployment. The previews were checked in a browser at desktop and mobile widths, in light and dark themes, including saved-school search.
+
 No package.json or npm build is needed. Do not publish a static-only copy of the PHP files.
 
 Status: Published at https://babaali-tawjih.vercel.app/ on 8 October 2026. PHP syntax, homepage assets, registration, login, persistent sessions, logout, contact submission, and blocking of private source paths passed checks. Public homepage, login, and registration pages were checked without Vercel authentication.

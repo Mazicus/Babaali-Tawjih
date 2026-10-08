@@ -4,17 +4,17 @@ Reference: RAPPORT_STAGE_IAGI_PROTOTYPE.docx, supplied by the user on 8 October 
 
 ## Existing prototype
 
-The website retains the original homepage, services, process, school search, contact section, registration and login pages, and personal dashboard appearance. Registration stores a full name, email, phone and hashed password. Login creates an authenticated session. Contact submissions are stored in a database.
+The website retains the original homepage, services, process, school search, contact section, registration and login pages. The personal dashboard has been rebuilt around saved schools and editable profile information. Registration stores a full name, email, phone and hashed password. Login creates an authenticated session. Contact submissions are stored in a database.
 
 These flows were verified on Vercel: account registration, password login, authenticated dashboard refresh, logout, and contact submission. Homepage assets and blocked private source paths were also checked. The public production link is https://babaali-tawjih.vercel.app/ and works without a Vercel account.
 
 ## Features described in the report that are incomplete
 
 - Administration of establishments, courses and users has no implemented administration interface or role system.
-- The report diagrams contain ECOLE, FORMATION and CANDIDATURE entities. The prototype uses a school catalogue embedded in JavaScript and does not persist courses or applications in these tables.
+- The report diagrams contain ECOLE, FORMATION and CANDIDATURE entities. The school catalogue is shared through JSON files; courses and applications are not persisted in those proposed tables.
 - Google registration and login now have an OAuth implementation. Activation requires a Google Cloud web client, Vercel environment variables, the Google account database migration, and a redeployment; live Google sign-in has not yet been verified.
 - The password recovery link has no recovery workflow or email delivery.
-- Dashboard shortcuts, favourites, calendar and several statistics are static prototype elements. They do not represent a complete personalised service.
+- Favorites and profile edits now have per-account persistence in MySQL, including private profile photos. Activation requires the personal-dashboard database migration and deployment. Application tracking and calendars are omitted; displayed school and city counts are calculated from the user's actual favorites.
 - Personalised follow-up and notifications mentioned in the registration description are not implemented.
 
 ## Differences in the implemented data model

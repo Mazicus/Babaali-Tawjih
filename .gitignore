@@ -6,3 +6,4 @@
 
 .vercel
 .env*
+tests/preview-*.html

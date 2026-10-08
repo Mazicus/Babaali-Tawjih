@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="./style.css">
         <script src="./DarkMode.js" defer></script>
+        <script src="/Favorites.js" defer></script>
+        <link rel="stylesheet" href="/favorites.css">
     </head>
     <body>
         <!-- Header -->
@@ -33,6 +35,7 @@
                         <li><a href="#services">Services</a></li>
                         <li><a href="#ecoles">Écoles Supérieures</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="/Dashboard.php">Mon espace</a></li>
                     </ul>
                     <div class="mobile-login">
                         <a href="login.php" class="login">
@@ -236,6 +239,7 @@
            
 
             <!-- ===== CARDS SECTION ===== -->
+            <p id="favorite-status" role="status" aria-live="polite"></p>
             <div class="ecoles-sections" id="ecolesSections">
                 <!-- Cards will be dynamically rendered here -->
             </div>
@@ -321,164 +325,16 @@
         </a>
 
         <script>
-            // Ecole data - FIXED: removed duplicates, fixed sector values
-            const ecolesData = [
-                // Sciences de la Santé et Médecine
-                { id: 1, name: "FMP Agadir", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Agadir", sector: "sante", type: "public", acronym: "FMP", link: "https://fmpa.uiz.ac.ma/" },
-                { id: 2, name: "FMP Marrakech", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Marrakech", sector: "sante", type: "public", acronym: "FMP", link: "https://fmpm.uca.ma/" },
-                { id: 3, name: "FMP Casablanca", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Casablanca", sector: "sante", type: "public", acronym: "FMP", link: "https://www.fmpc.ac.ma/" },
-                { id: 4, name: "FMP Rabat", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Rabat", sector: "sante", type: "public", acronym: "FMP", link: "https://fmp.um5.ac.ma/" },
-                { id: 5, name: "FMP Oujda", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Oujda", sector: "sante", type: "public", acronym: "FMP", link: "http://fmpo.ump.ma/" },
-                { id: 6, name: "FMP Tanger", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Tanger", sector: "sante", type: "public", acronym: "FMP", link: "https://fmpt.ac.ma/" },
-                { id: 7, name: "FMP Laâyoune", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Laâyoune", sector: "sante", type: "public", acronym: "FMP", link: "http://fmpl.uiz.ac.ma/" },
-                { id: 8, name: "FMP Errachidia", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Errachidia", sector: "sante", type: "public", acronym: "FMP", link: "https://www.fmpe.umi.ac.ma/" },
-                { id: 9, name: "FMP Béni Mellal", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Béni Mellal", sector: "sante", type: "public", acronym: "FMP", link: "https://fmpbm.usms.ac.ma/" },
-                { id: 10, name: "FMP Guelmim", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Guelmim", sector: "sante", type: "public", acronym: "FMP", link: "https://www.fmpg.uiz.ac.ma/" },
-                { id: 11, name: "FMP Fès", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Fès", sector: "sante", type: "public", acronym: "FMP", link: "https://www.fmp-usmba.ac.ma/" },
-                { id: 12, name: "FMD Casablanca", diploma: "Chirurgien Dentiste", duration: "6 ans", durationValue: "6ans", location: "Casablanca", sector: "sante", type: "public", acronym: "FMD", link: "https://www.fmd-uh2c.ac.ma/" },
-                { id: 13, name: "FMD Rabat", diploma: "Chirurgien Dentiste", duration: "6 ans", durationValue: "6ans", location: "Rabat", sector: "sante", type: "public", acronym: "FMD", link: "https://fmd.um5.ac.ma/" },
-                { id: 14, name: "FMD Fès", diploma: "Chirurgien Dentiste", duration: "6 ans", durationValue: "6ans", location: "Fès", sector: "sante", type: "public", acronym: "FMD", link: "https://www.fmp-usmba.ac.ma/" },
-                { id: 15, name: "PH Agadir", diploma: "Pharmacien", duration: "6 ans", durationValue: "6ans", location: "Agadir", sector: "sante", type: "public", acronym: "PH", link: "https://fmpa.uiz.ac.ma/" },
-                { id: 16, name: "PH Marrakech", diploma: "Pharmacien", duration: "6 ans", durationValue: "6ans", location: "Marrakech", sector: "sante", type: "public", acronym: "PH", link: "https://fmpm.uca.ma/" },
-                { id: 17, name: "PH Casablanca", diploma: "Pharmacien", duration: "6 ans", durationValue: "6ans", location: "Casablanca", sector: "sante", type: "public", acronym: "PH", link: "https://www.fmpc.ac.ma/" },
-                { id: 18, name: "PH Rabat", diploma: "Pharmacien", duration: "6 ans", durationValue: "6ans", location: "Rabat", sector: "sante", type: "public", acronym: "PH", link: "https://fmp.um5.ac.ma/" },
-                { id: 19, name: "PH Oujda", diploma: "Pharmacien", duration: "6 ans", durationValue: "6ans", location: "Oujda", sector: "sante", type: "public", acronym: "PH", link: "http://fmpo.ump.ma/" },
-                { id: 20, name: "PH Tanger", diploma: "Pharmacien", duration: "6 ans", durationValue: "6ans", location: "Tanger", sector: "sante", type: "public", acronym: "PH", link: "https://fmpt.ac.ma/" },
-                { id: 21, name: "ISPITS", diploma: "L.M.D", duration: "3-5-7 ans", durationValue: "3ans,5ans,7ans", location: "Plusieurs Villes", sector: "sante", type: "public", acronym: "ISPITS", link: "https://ispits.sante.gov.ma/" },
-
-                // Commerce, Gestion et Économie
-                { id: 22, name: "ENCG Casablanca", diploma: "Diplôme d'ENCG", duration: "5 ans", durationValue: "5ans", location: "Casablanca", sector: "commerce", type: "public", acronym: "ENCG", link: "https://www.encgcasa.ma/" },
-                { id: 23, name: "ISCAE Casablanca", diploma: "Licence", duration: "3 ans", durationValue: "3ans", location: "Casablanca", sector: "commerce", type: "public", acronym: "ISCAE", link: "https://www.groupeiscae.ma/" },
-                { id: 24, name: "ISCAE Rabat", diploma: "Licence", duration: "3 ans", durationValue: "3ans", location: "Rabat", sector: "commerce", type: "public", acronym: "ISCAE", link: "https://www.groupeiscae.ma/" },
-
-                // Architecture, Urbanisme et Aménagement
-                { id: 25, name: "ENA Rabat", diploma: "Architecte", duration: "6 ans", durationValue: "6ans", location: "Rabat", sector: "architecture", type: "public", acronym: "ENA", link: "https://www.enarabat.ac.ma/" },
-                { id: 26, name: "ENA Fès", diploma: "Architecte", duration: "6 ans", durationValue: "6ans", location: "Fès", sector: "architecture", type: "public", acronym: "ENA", link: "https://www.archi.ac.ma/" },
-                { id: 27, name: "ENA Marrakech", diploma: "Architecte", duration: "6 ans", durationValue: "6ans", location: "Marrakech", sector: "architecture", type: "public", acronym: "ENA", link: "https://www.archi.ac.ma/" },
-                { id: 28, name: "ENA Tétouan", diploma: "Architecte", duration: "6 ans", durationValue: "6ans", location: "Tétouan", sector: "architecture", type: "public", acronym: "ENA", link: "https://www.archi.ac.ma/" },
-                { id: 29, name: "ENA Agadir", diploma: "Architecte", duration: "6 ans", durationValue: "6ans", location: "Agadir", sector: "architecture", type: "public", acronym: "ENA", link: "https://www.archi.ac.ma/" },
-                { id: 30, name: "ENA Oujda", diploma: "Architecte", duration: "6 ans", durationValue: "6ans", location: "Oujda", sector: "architecture", type: "public", acronym: "ENA", link: "https://www.archi.ac.ma/" },
-                { id: 31, name: "INAU Rabat", diploma: "Diplôme d'INAU", duration: "5 ans", durationValue: "5ans", location: "Rabat", sector: "architecture", type: "public", acronym: "INAU", link: "https://www.inau.ac.ma/" },
-
-                // Ingénierie, Technologies et Sciences Exactes
-                { id: 32, name: "ENSA Agadir", diploma: "Ingénieur d'État", duration: "5 ans", durationValue: "5ans", location: "Agadir", sector: "ingenierie", type: "public", acronym: "ENSA", link: "https://www.ensa-agadir.ac.ma/" },
-                { id: 33, name: "ENSAM Meknès", diploma: "Ingénieur d'État", duration: "5 ans", durationValue: "5ans", location: "Meknès", sector: "ingenierie", type: "public", acronym: "ENSAM", link: "https://www.ensam.ac.ma/" },
-                { id: 34, name: "ENSAM Casablanca", diploma: "Ingénieur d'État", duration: "5 ans", durationValue: "5ans", location: "Casablanca", sector: "ingenierie", type: "public", acronym: "ENSAM", link: "https://www.ensam-casa.ma/" },
-                { id: 35, name: "ENSAM Rabat", diploma: "Ingénieur d'État", duration: "5 ans", durationValue: "5ans", location: "Rabat", sector: "ingenierie", type: "public", acronym: "ENSAM", link: "https://www.ensam-rabat.ma/" },
-                { id: 36, name: "ENIAD Berkane", diploma: "Ingénieur", duration: "5 ans", durationValue: "5ans", location: "Berkane", sector: "ingenierie", type: "public", acronym: "ENIAD", link: "https://www.eniad.ump.ma/" },
-                { id: 37, name: "ENSCK Kénitra", diploma: "Ingénieur", duration: "5 ans", durationValue: "5ans", location: "Kénitra", sector: "ingenierie", type: "public", acronym: "ENSCK", link: "https://www.ensck.uit.ac.ma/" },
-                { id: 38, name: "FST Marrakech", diploma: "L.M.D", duration: "3-5-7 ans", durationValue: "3ans,5ans,7ans", location: "Marrakech", sector: "ingenierie", type: "public", acronym: "FST", link: "https://www.fst.uca.ma/" },
-                { id: 39, name: "FST Settat", diploma: "L.M.D", duration: "3-5-7 ans", durationValue: "3ans,5ans,7ans", location: "Settat", sector: "ingenierie", type: "public", acronym: "FST", link: "https://www.fsts.ac.ma/" },
-                { id: 40, name: "FST Mohammédia", diploma: "L.M.D", duration: "3-5-7 ans", durationValue: "3ans,5ans,7ans", location: "Mohammédia", sector: "ingenierie", type: "public", acronym: "FST", link: "https://www.fstm.ac.ma/" },
-                { id: 41, name: "EST Casablanca", diploma: "DUT", duration: "2 ans", durationValue: "2ans", location: "Casablanca", sector: "ingenierie", type: "public", acronym: "EST", link: "https://www.estc.ac.ma/" },
-                { id: 42, name: "ESITH Casablanca", diploma: "Technicien / Licence / Master / Ingénieur", duration: "2/3/5 ans", durationValue: "2ans,3ans,5ans", location: "Casablanca", sector: "ingenierie", type: "public", acronym: "ESITH", link: "https://www.esith.ac.ma/" },
-                { id: 43, name: "BTS", diploma: "Technicien Spécialisé", duration: "2 ans", durationValue: "2ans", location: "Plusieurs Villes", sector: "ingenierie", type: "public", acronym: "BTS", link: "https://www.men.gov.ma/" },
-
-                // Agriculture, Sciences Vétérinaires et Environnement
-                { id: 44, name: "ENAM Meknès", diploma: "Ingénieur Agronome", duration: "5 ans", durationValue: "5ans", location: "Meknès", sector: "agriculture", type: "public", acronym: "ENAM", link: "http://www.enameknes.ma/" },
-                { id: 45, name: "IAV Hassan II Rabat", diploma: "Ingénieur / Docteur Vétérinaire", duration: "5-6 ans", durationValue: "5ans,6ans", location: "Rabat", sector: "agriculture", type: "public", acronym: "IAV", link: "https://iav.ac.ma/" },
-
-                // Filières Préparatoires
-                { id: 46, name: "CPGE", diploma: "Accès aux Grandes Écoles d'Ingénieur", duration: "2 ans", durationValue: "2ans", location: "Plusieurs Villes", sector: "preparatoire", type: "public", acronym: "CPGE", link: "https://www.men.gov.ma/" },
-                { id: 47, name: "LYDEX Benguerir", diploma: "Accès aux Grandes Écoles d'Ingénieur", duration: "2 ans", durationValue: "2ans", location: "Benguerir", sector: "preparatoire", type: "public", acronym: "LYDEX", link: "https://www.lyceedexcellence.ma/" },
-                { id: 48, name: "LYDEX Rabat", diploma: "Accès aux Grandes Écoles d'Ingénieur", duration: "2 ans", durationValue: "2ans", location: "Rabat", sector: "preparatoire", type: "public", acronym: "LYDEX", link: "https://www.lyceedexcellence.ma/" },
-                { id: 49, name: "LYDEX Casablanca", diploma: "Accès aux Grandes Écoles d'Ingénieur", duration: "2 ans", durationValue: "2ans", location: "Casablanca", sector: "preparatoire", type: "public", acronym: "LYDEX", link: "https://www.lyceedexcellence.ma/" },
-                { id: 50, name: "LYDEX Martil", diploma: "Accès aux Grandes Écoles d'Ingénieur", duration: "2 ans", durationValue: "2ans", location: "Martil", sector: "preparatoire", type: "public", acronym: "LYDEX", link: "https://www.lyceedexcellence.ma/" },
-
-                // Formation Militaire
-                { id: 51, name: "ERA Marrakech", diploma: "Ingénieur Officier / Licence", duration: "4-5 ans", durationValue: "4ans,5ans", location: "Marrakech", sector: "militaire", type: "public", acronym: "ERA", link: "https://www.far.ma/" },
-                { id: 52, name: "ERN Casablanca", diploma: "Ingénieur / Licence", duration: "4-5 ans", durationValue: "4ans,5ans", location: "Casablanca", sector: "militaire", type: "public", acronym: "ERN", link: "https://www.far.ma/" },
-                { id: 53, name: "ARM Meknès", diploma: "Officier", duration: "4 ans", durationValue: "4ans", location: "Meknès", sector: "militaire", type: "public", acronym: "ARM", link: "https://www.far.ma/" },
-                { id: 54, name: "ERSSM Rabat", diploma: "Médecin / Pharmacien / Chirurgien Dentiste", duration: "6 ans", durationValue: "6ans", location: "Rabat", sector: "militaire", type: "public", acronym: "ERSSM", link: "https://www.far.ma/" },
-
-                // Tourisme et Hôtellerie
-                { id: 55, name: "ISITT Tanger", diploma: "Licence / Master", duration: "3/5 ans", durationValue: "3ans,5ans", location: "Tanger", sector: "tourisme", type: "public", acronym: "ISITT", link: "https://www.isitt.ma/" },
-
-                // Universités Privées - FIXED: all sectors are "prive", types are "prive"
-                { id: 56, name: "UIASS Rabat", diploma: "L.M.D", duration: "3-5-6 ans", durationValue: "3ans,5ans,6ans", location: "Rabat", sector: "prive", type: "prive", acronym: "UIASS", fees: "1500 DH", link: "https://www.uiass.ma/" },
-                { id: 57, name: "UM6SS Casablanca", diploma: "L.M.D", duration: "3-5-6 ans", durationValue: "3ans,5ans,6ans", location: "Casablanca", sector: "prive", type: "prive", acronym: "UM6SS", fees: "1500 DH", link: "https://www.um6ss.ma/campus-casablanca" },
-                { id: 58, name: "UM6SS Rabat", diploma: "L.M.D", duration: "3-5-6 ans", durationValue: "3ans,5ans,6ans", location: "Rabat", sector: "prive", type: "prive", acronym: "UM6SS", fees: "1500 DH", link: "https://www.um6ss.ma/" },
-                { id: 59, name: "UPSSA Agadir", diploma: "L.M.D", duration: "3-5-6 ans", durationValue: "3ans,5ans,6ans", location: "Agadir", sector: "prive", type: "prive", acronym: "UPSSA", fees: "800 DH", link: "https://www.upssa.ma/" },
-                { id: 60, name: "UPM Marrakech", diploma: "L.M.D", duration: "3-5-6 ans", durationValue: "3ans,5ans,6ans", location: "Marrakech", sector: "prive", type: "prive", acronym: "UPM", fees: "1500 DH", link: "https://www.upm.ac.ma/" },
-                { id: 61, name: "UIR Rabat", diploma: "L.M.D", duration: "3-5-6 ans", durationValue: "3ans,5ans,6ans", location: "Rabat", sector: "prive", type: "prive", acronym: "UIR", fees: "750 DH", link: "https://www.uir.ac.ma/" },
-
-                // UM6P Benguerir - FIXED: all sectors are "um6p"
-                { id: 62, name: "FMS Benguerir", diploma: "Médecin", duration: "6 ans", durationValue: "6ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "FMS", link: "https://www.um6p.ma/fr/college/faculte-de-medecine-et-de-pharmacie" },
-                { id: 63, name: "SASE Benguerir", diploma: "Bachelor", duration: "4 ans", durationValue: "4ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "SASE", link: "https://www.um6p.ma/fr/college/sase" },
-                { id: 64, name: "EMINES Benguerir", diploma: "Ingénieur", duration: "5 ans", durationValue: "5ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "EMINES", link: "https://www.emines-ingenieur.org/" },
-                { id: 65, name: "CS Benguerir", diploma: "Ingénieur", duration: "5 ans", durationValue: "5ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "CS", link: "https://www.um6p.ma/fr/college/college-of-computing" },
-                { id: 66, name: "GUP Benguerir", diploma: "Ingénieur", duration: "5 ans", durationValue: "5ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "GUP", link: "https://www.um6p.ma/fr/college/college-of-green-process-engineering" },
-                { id: 67, name: "SHBM Benguerir", diploma: "Bachelor", duration: "4 ans", durationValue: "4ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "SHBM", link: "https://www.um6p.ma/fr/college/shbm" },
-                { id: 68, name: "FGSES Benguerir", diploma: "Licence", duration: "3 ans", durationValue: "3ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "FGSES", link: "https://www.um6p.ma/fr/college/fgses" },
-                { id: 69, name: "FGSES Rabat", diploma: "Licence", duration: "3 ans", durationValue: "3ans", location: "Rabat", sector: "um6p", type: "prive", acronym: "FGSES", link: "https://www.um6p.ma/fr/college/fgses" },
-                { id: 70, name: "ESAFE Benguerir", diploma: "Ingénieur", duration: "5 ans", durationValue: "5ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "ESAFE", link: "https://www.um6p.ma/fr/college/esafe" },
-                { id: 71, name: "ISSB-P Benguerir", diploma: "Licence", duration: "3 ans", durationValue: "3ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "ISSB-P", link: "https://www.um6p.ma/fr/college/issb-p" },
-                { id: 72, name: "SAP+D Benguerir", diploma: "Architecte", duration: "6 ans", durationValue: "6ans", location: "Benguerir", sector: "um6p", type: "prive", acronym: "SAP+D", link: "https://www.um6p.ma/fr/college/sap-d" }
-            ];
+            (async () => {
+            // Shared catalog used by the public directory and personal favorites.
+            const response = await fetch('/data/schools.json');
+            if (!response.ok) throw new Error('Catalogue indisponible.');
+            const ecolesData = await response.json();
 
             // Secteur data
-            const sectorConfig = {
-                sante: {
-                    label: 'Sciences de la Santé et Médecine',
-                    icon: 'fa-solid fa-staff-snake',
-                    color: 'primary',
-                    image: 'https://png.pngtree.com/png-vector/20250524/ourmid/pngtree-smiling-female-doctor-with-stethoscope-isolated-on-transparent-background-png-image_16376010.png'
-                },
-                commerce: {
-                    label: 'Commerce, Gestion et Économie',
-                    icon: 'fa-solid fa-sharp fa-chart-line',
-                    color: 'secondary',
-                    image: 'https://png.pngtree.com/png-vector/20240124/ourmid/pngtree-ceo-business-profile-png-image_11479711.png'
-                },
-                architecture: {
-                    label: 'Architecture, Urbanisme et Aménagement',
-                    icon: 'fa-solid fa-building',
-                    color: 'primary',
-                    image: 'https://png.pngtree.com/png-vector/20241213/ourmid/pngtree-female-architect-holding-a-construction-blueprint-and-planning-designs-png-image_14724359.png'
-                },
-                ingenierie: {
-                    label: 'Ingénierie, Technologies et Sciences Exactes',
-                    icon: 'fa-solid fa-microchip',
-                    color: 'secondary',
-                    image: 'https://png.pngtree.com/png-vector/20240309/ourmid/pngtree-construction-worker-engineer-png-image_11917231.png'
-                },
-                agriculture: {
-                    label: 'Agriculture, Sciences Vétérinaires et Environnement',
-                    icon: 'fa-solid fa-seedling',
-                    color: 'primary',
-                    image: 'https://png.pngtree.com/png-clipart/20230131/ourmid/pngtree-agricultural-research-scientific-experiment-png-image_6197918.png'
-                },
-                preparatoire: {
-                    label: 'Filières Préparatoires',
-                    icon: 'fa-solid fa-book-open',
-                    color: 'secondary',
-                    image: 'https://png.pngtree.com/png-vector/20240317/ourmid/pngtree-university-or-college-student-study-online-at-home-png-image_11996657.png'
-                },
-                militaire: {
-                    label: 'Formation Militaire',
-                    icon: 'fa-solid fa-shield-halved',
-                    color: 'primary',
-                    image: 'https://png.pngtree.com/png-vector/20250928/ourmid/pngtree-army-officer-png-image_17577498.webp'
-                },
-                tourisme: {
-                    label: 'Tourisme et Hôtellerie',
-                    icon: 'fa-solid fa-umbrella-beach',
-                    color: 'secondary',
-                    image: 'https://png.pngtree.com/png-vector/20241001/ourmid/pngtree-male-waiter-manager-png-image_13986198.png'
-                },
-                prive: {
-                    label: 'Universités Privées',
-                    icon: 'fa-solid fa-building-columns',
-                    color: 'primary',
-                    image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=200&fit=crop&auto=format'
-                },
-                um6p: {
-                    label: 'Université Mohammed VI Polytechnique (UM6P)',
-                    icon: 'fa-solid fa-graduation-cap',
-                    color: 'secondary',
-                    image: './img/um6p.png'
-                }
-            };
+            const sectorsResponse = await fetch('/data/sectors.json');
+            if (!sectorsResponse.ok) throw new Error('Secteurs indisponibles.');
+            const sectorConfig = await sectorsResponse.json();
 
             // Group by sector
             function groupBySector(data) {
@@ -596,7 +452,7 @@
                                         const typeLabel = ecole.type === 'public' ? 'Public' : 'Privé';
                                         const driveLink = ecole.drive || ecole.link;
                                         return `
-                                        <article class="ecole-card" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
+                                        <article class="ecole-card" data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
                                             <button type="button" class="ecole-card-toggle" aria-expanded="false" aria-controls="ecole-panel-${ecole.id}" id="ecole-toggle-${ecole.id}">
                                                 <span class="ecole-card-badges">
                                                     <span class="sector-tag">${sectorShort}</span>
@@ -649,6 +505,7 @@
                                                     </a>
                                                 </div>
                                             </div>
+                                            <button type="button" class="school-favorite" data-school-id="${ecole.id}" aria-pressed="false" aria-label="Enregistrer ${ecole.name}" disabled><i class="far fa-heart" aria-hidden="true"></i><span>Enregistrer</span></button>
                                             <a href="${driveLink}" target="_blank" rel="noopener noreferrer" class="ecole-card-drive" aria-label="Accéder aux détails sur Drive - ${ecole.name}">
                                                 <i class="fa-brands fa-google-drive" aria-hidden="true"></i>
                                                 <span>Accéder aux détails sur Drive</span>
@@ -666,6 +523,7 @@
 
                 document.getElementById('resultCount').textContent = totalItems;
                 container.innerHTML = html;
+                window.schoolFavorites?.refresh();
             }
 
             // Filter
@@ -762,6 +620,9 @@
 
             // Initialisation
             renderSections(ecolesData);
+            })().catch(() => {
+                document.getElementById('ecolesSections').textContent = 'Le catalogue est momentanément indisponible. Veuillez réessayer.';
+            });
         </script>
     </body>
 </html>
