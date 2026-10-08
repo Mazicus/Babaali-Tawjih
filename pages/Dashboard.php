@@ -39,13 +39,28 @@ $_SESSION['user_name'] = $user['full_name'];
 $_SESSION['user_email'] = $user['adress_email'];
 $catalog = schoolCatalog();
 $favorites = [];
-foreach (savedSchoolIds($pdo, $userId) as $id) {
-    if (isset($catalog[$id])) { $favorites[] = $catalog[$id]; }
+$favoritesAvailable = true;
+try {
+    foreach (savedSchoolIds($pdo, $userId) as $id) {
+        if (isset($catalog[$id])) { $favorites[] = $catalog[$id]; }
+    }
+} catch (PDOException $error) {
+    if (!personalTableMissing($error)) { throw $error; }
+    error_log('Personal dashboard migration required: user_favorites is missing.');
+    $favoritesAvailable = false;
 }
 $sectors = json_decode(file_get_contents(__DIR__ . '/../data/sectors.json'), true, 512, JSON_THROW_ON_ERROR);
-$query = $pdo->prepare('SELECT updated_at FROM user_avatars WHERE user_id = ?');
-$query->execute([$userId]);
-$avatarVersion = $query->fetchColumn();
+$photosAvailable = true;
+$avatarVersion = false;
+try {
+    $query = $pdo->prepare('SELECT updated_at FROM user_avatars WHERE user_id = ?');
+    $query->execute([$userId]);
+    $avatarVersion = $query->fetchColumn();
+} catch (PDOException $error) {
+    if (!personalTableMissing($error)) { throw $error; }
+    error_log('Personal dashboard migration required: user_avatars is missing.');
+    $photosAvailable = false;
+}
 $csrf = personalCsrfToken();
 $parts = preg_split('/\s+/u', trim($user['full_name']), -1, PREG_SPLIT_NO_EMPTY);
 $initials = mb_strtoupper(mb_substr($parts[0] ?? '', 0, 1) . (count($parts) > 1 ? mb_substr($parts[count($parts) - 1], 0, 1) : ''));
@@ -85,7 +100,7 @@ try { googleConfiguration(); $googleConfigured = true; } catch (RuntimeException
 <div class="workspace-layout">
     <aside class="workspace-sidebar">
         <p class="sidebar-label">MON ORIENTATION</p>
-        <nav aria-label="Navigation personnelle"><a class="sidebar-active" href="#favorites"><i class="far fa-heart" aria-hidden="true"></i> Mes écoles <span><?php echo count($favorites); ?></span></a><a href="#profile"><i class="far fa-user" aria-hidden="true"></i> Mon profil</a><a href="/index.html#ecoles"><i class="fas fa-search" aria-hidden="true"></i> Explorer les écoles</a></nav>
+        <nav aria-label="Navigation personnelle"><a class="sidebar-active" href="#favorites"><i class="far fa-heart" aria-hidden="true"></i> Mes écoles <span><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></span></a><a href="#profile"><i class="far fa-user" aria-hidden="true"></i> Mon profil</a><a href="/index.html#ecoles"><i class="fas fa-search" aria-hidden="true"></i> Explorer les écoles</a></nav>
         <div class="sidebar-help"><span class="help-icon"><i class="far fa-comments" aria-hidden="true"></i></span><h2>Un choix à clarifier ?</h2><p>Notre équipe vous aide à trouver votre direction.</p><a href="/index.html#contact">Contacter un conseiller <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
         <a class="sidebar-logout" href="/logout.php"><i class="fas fa-arrow-right-from-bracket" aria-hidden="true"></i> Se déconnecter</a>
         <p class="sidebar-signature" lang="ar" dir="rtl">نوجهوك للطريق الصحيح</p>
@@ -94,11 +109,13 @@ try { googleConfiguration(); $googleConfigured = true; } catch (RuntimeException
         <div class="workspace-heading"><div><p class="eyebrow">VOTRE PROJET, À VOTRE RYTHME</p><h1>Bonjour, <?php echo dashboardEscape($user['full_name']); ?>.</h1><p>Gardez vos écoles préférées à portée de main.</p></div><a class="primary-button" href="/index.html#ecoles"><i class="fas fa-plus" aria-hidden="true"></i> Découvrir une école</a></div>
         <?php foreach ($errors as $message): ?><p class="workspace-message error" role="alert"><?php echo dashboardEscape($message); ?></p><?php endforeach; ?>
         <?php foreach ($successes as $message): ?><p class="workspace-message" role="status"><?php echo dashboardEscape($message); ?></p><?php endforeach; ?>
-        <div class="workspace-stats"><div><span class="stat-icon"><i class="far fa-heart" aria-hidden="true"></i></span><p><strong><?php echo count($favorites); ?></strong><span>écoles enregistrées</span></p></div><div><span class="stat-icon gold"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span><p><strong><?php echo $cities; ?></strong><span>villes à explorer</span></p></div><a href="#profile"><span class="stat-icon"><i class="far fa-user" aria-hidden="true"></i></span><p><strong>Mon profil</strong><span>Gérer mes informations</span></p><i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+        <div class="workspace-stats"><div><span class="stat-icon"><i class="far fa-heart" aria-hidden="true"></i></span><p><strong><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></strong><span>écoles enregistrées</span></p></div><div><span class="stat-icon gold"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span><p><strong><?php echo $favoritesAvailable ? $cities : '—'; ?></strong><span>villes à explorer</span></p></div><a href="#profile"><span class="stat-icon"><i class="far fa-user" aria-hidden="true"></i></span><p><strong>Mon profil</strong><span>Gérer mes informations</span></p><i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
         <div class="workspace-columns">
             <section class="favorites-section" id="favorites" aria-labelledby="favorites-title">
-                <div class="section-heading"><div><h2 id="favorites-title">Mes écoles favorites <span><?php echo count($favorites); ?></span></h2><p>Votre sélection personnelle, enregistrée sur votre compte.</p></div></div>
-                <?php if (!$favorites): ?>
+                <div class="section-heading"><div><h2 id="favorites-title">Mes écoles favorites <span><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></span></h2><p>Votre sélection personnelle, enregistrée sur votre compte.</p></div></div>
+                <?php if (!$favoritesAvailable): ?>
+                    <div class="favorites-empty"><h3>Vos favoris sont momentanément indisponibles.</h3><p>Vous pouvez continuer à explorer les écoles et à gérer vos informations personnelles.</p><a class="primary-button" href="/index.html#ecoles">Explorer le catalogue</a></div>
+                <?php elseif (!$favorites): ?>
                     <div class="favorites-empty"><span><i class="far fa-heart" aria-hidden="true"></i></span><h3>Votre sélection commence ici.</h3><p>Dans le catalogue, cliquez sur « Enregistrer » pour retrouver une école dans cet espace.</p><a class="primary-button" href="/index.html#ecoles">Explorer le catalogue <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
                 <?php else: ?>
                     <label class="favorite-search"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Rechercher dans mes écoles favorites</span><input id="favorite-search" type="search" placeholder="Rechercher une école, une ville…" autocomplete="off"></label>
@@ -119,7 +136,7 @@ try { googleConfiguration(); $googleConfigured = true; } catch (RuntimeException
                 <div class="section-heading"><h2 id="profile-title">Mon profil</h2><i class="fas fa-user-shield" aria-hidden="true"></i></div>
                 <form class="profile-form" method="post" action="/profile.php" enctype="multipart/form-data">
                     <input type="hidden" name="csrf" value="<?php echo dashboardEscape($csrf); ?>"><input type="hidden" name="MAX_FILE_SIZE" value="1048576">
-                    <div class="profile-photo"><div class="avatar profile-avatar"><?php if ($avatarVersion): ?><img src="/avatar.php?v=<?php echo urlencode($avatarVersion); ?>" alt="Votre photo de profil"><?php else: ?><span><?php echo dashboardEscape($initials); ?></span><?php endif; ?></div><div><label class="photo-picker" for="avatar"><i class="fas fa-camera" aria-hidden="true"></i> Changer la photo</label><input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-help photo-selection"><p id="photo-help">JPG, PNG, WebP · 1 Mo max.</p><p id="photo-selection" role="status"></p></div></div>
+                    <div class="profile-photo"><div class="avatar profile-avatar"><?php if ($avatarVersion): ?><img src="/avatar.php?v=<?php echo urlencode($avatarVersion); ?>" alt="Votre photo de profil"><?php else: ?><span><?php echo dashboardEscape($initials); ?></span><?php endif; ?></div><div><?php if ($photosAvailable): ?><label class="photo-picker" for="avatar"><i class="fas fa-camera" aria-hidden="true"></i> Changer la photo</label><input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/webp" aria-describedby="photo-help photo-selection"><p id="photo-help">JPG, PNG, WebP · 1 Mo max.</p><p id="photo-selection" role="status"></p><?php else: ?><p class="field-help">La modification de photo est momentanément indisponible.</p><?php endif; ?></div></div>
                     <?php if ($avatarVersion): ?><label class="remove-photo"><input type="checkbox" name="remove_avatar" value="1"> Supprimer ma photo</label><?php endif; ?>
                     <label for="full-name">Nom complet</label><input id="full-name" name="full_name" type="text" value="<?php echo dashboardEscape($profileInput['name']); ?>" minlength="2" maxlength="255" autocomplete="name" required>
                     <label for="email">Adresse email</label><input id="email" type="email" value="<?php echo dashboardEscape($user['adress_email']); ?>" readonly aria-describedby="email-help"><p class="field-help" id="email-help">Votre adresse de connexion.</p>

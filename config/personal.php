@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
+function personalTableMissing(PDOException $error): bool
+{
+    return $error->getCode() === '42S02' || ($error->errorInfo[1] ?? null) === 1146;
+}
+
 function schoolCatalog(): array
 {
     static $catalog;

@@ -5,7 +5,7 @@ function dashboardEscape(mixed $value): string { return htmlspecialchars((string
 $source = file_get_contents(__DIR__ . '/../pages/Dashboard.php');
 $template = substr($source, strpos($source, '?>') + 2);
 
-function renderDashboardFixture(string $template, bool $populated): string
+function renderDashboardFixture(string $template, bool $populated, bool $available = true): string
 {
     $user = ['full_name' => 'Sara Benali', 'adress_email' => 'sara@example.com', 'phonenumber' => '+212600123456'];
     $favorites = $populated ? array_slice(array_values(schoolCatalog()), 0, 4) : [];
@@ -15,6 +15,7 @@ function renderDashboardFixture(string $template, bool $populated): string
     $profileInput = ['name' => $user['full_name'], 'phone' => $user['phonenumber']];
     $errors = $successes = [];
     $avatarVersion = false;
+    $favoritesAvailable = $photosAvailable = $available;
     $cities = count(array_unique(array_column($favorites, 'location')));
     $googleConfigured = false;
     ob_start();
@@ -34,3 +35,11 @@ foreach ([false, true] as $populated) {
     file_put_contents(__DIR__ . '/preview-' . ($populated ? 'saved' : 'empty') . '.html', $output);
 }
 echo "Empty/populated dashboard markup and forms verified; synthetic previews generated under tests/.\n";
+$unavailable = renderDashboardFixture($template, false, false);
+if (!str_contains($unavailable, 'Vos favoris sont momentanément indisponibles.') || str_contains($unavailable, 'Votre sélection commence ici.')) {
+    throw new RuntimeException('Missing migration must show unavailable favorites, not a false empty list.');
+}
+if (str_contains($unavailable, 'type="file"') || !str_contains($unavailable, 'Enregistrer les modifications')) {
+    throw new RuntimeException('Missing photo table must disable only photo uploads while preserving profile edits.');
+}
+echo "Missing optional tables preserve dashboard/profile access with honest unavailable states.\n";

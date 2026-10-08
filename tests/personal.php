@@ -23,6 +23,12 @@ final class PersonalTestDatabase extends PDO
     }
 }
 $pdo = new PersonalTestDatabase('sqlite::memory:');
+$missingTable = new PDOException('Table missing');
+$missingTable->errorInfo = ['42S02', 1146];
+check(personalTableMissing($missingTable), 'Missing MySQL tables should be classified for graceful fallback.');
+$connectionError = new PDOException('Connection failed');
+$connectionError->errorInfo = ['08006', 2006];
+check(!personalTableMissing($connectionError), 'Connection failures must not be mistaken for missing optional tables.');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->exec('PRAGMA foreign_keys = ON');
 $pdo->exec('CREATE TABLE users (id INTEGER PRIMARY KEY, full_name TEXT, phonenumber TEXT)');
