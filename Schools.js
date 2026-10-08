@@ -77,7 +77,6 @@
                                         const sectorLabel = sectorConfig[ecole.sector]?.label || ecole.sector;
                                         const sectorShort = sectorLabel.split(' ')[0].replaceAll(",", "");
                                         const typeLabel = ecole.type === 'public' ? 'Public' : 'Privé';
-                                        const driveLink = ecole.drive || ecole.link;
                                         const hasDrive = Boolean(ecole.drive);
                                         return `
                                         <article class="ecole-card" data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
@@ -130,15 +129,15 @@
                                                         </li>` : ''}
                                                     </ul>
                                                     <a href="${ecole.link}" target="_blank" rel="noopener noreferrer" class="btn-card">
-                                                        En savoir plus <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                                        En savoir plus <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <button type="button" class="school-favorite" data-school-id="${ecole.id}" aria-pressed="false" aria-label="Enregistrer ${ecole.name}" disabled><i class="far fa-heart" aria-hidden="true"></i><span>Enregistrer</span></button>
-                                            <a href="${driveLink}" target="_blank" rel="noopener noreferrer" class="ecole-card-drive" aria-label="${hasDrive ? 'Documents Drive' : 'Site officiel'} - ${ecole.name}">
-                                                <i class="${hasDrive ? 'fa-brands fa-google-drive' : 'fas fa-arrow-up-right-from-square'}" aria-hidden="true"></i>
-                                                <span>${hasDrive ? 'Documents sur Drive' : 'Site officiel de l’établissement'}</span>
-                                            </a>
+                                            ${hasDrive ? `<a href="${escapeAttribute(ecole.drive)}" target="_blank" rel="noopener noreferrer" class="ecole-card-drive" aria-label="Documents Drive - ${escapeAttribute(ecole.name)}">` : '<span class="ecole-card-drive" aria-disabled="true">'}
+                                                <i class="fa-brands fa-google-drive" aria-hidden="true"></i>
+                                                <span>${hasDrive ? 'Documents sur Drive' : 'Documents Drive indisponibles'}</span>
+                                            ${hasDrive ? '</a>' : '</span>'}
                                         </article>
                                     `;
                                     }).join('')}
