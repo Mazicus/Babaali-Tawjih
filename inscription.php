@@ -74,14 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
         // Get the new user ID
         $user_id = $pdo->lastInsertId();
 
-        // Auto-login after registration
-        $_SESSION['user_id'] = $user_id;
-        $_SESSION['user_name'] = $full_name;
-        $_SESSION['user_email'] = $email;
-        $_SESSION['login_time'] = time();
-
         // Redirect to dashboard
-        header("Location login.php");
+        header("Location: login.php");
         exit();
 
     } catch (Exception $e) {

@@ -534,37 +534,6 @@ section {
 /* ==========================================================================
    8. CONTACT
    ========================================================================== */
-.info-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 24px;
-    margin-top: 12px;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: var(--dark-blue-text);
-    transition: color 0.3s;
-}
-
-.info-item i {
-    font-size: 16px;
-    color: var(--accent-blue);
-}
-
-.localisation {
-    display: block;
-    width: 100%;
-    height: 450px;
-    margin-top: 30px;
-    border: none;
-    border-radius: 25px;
-}
-
 .contact {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -624,7 +593,7 @@ section {
 }
 
 .contact-address a {
-    margin-left: 50px;
+    margin-left: 36px;
     font-size: 1.1rem;
     font-weight: 400;
     color: var(--primary);
@@ -634,25 +603,14 @@ section {
 
 .contact-address a:hover { color: var(--accent-blue); }
 
-.button-whatsapp p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 15px;
-    margin-top: 30px;
-    background: var(--whatsapp-green);
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #fff;
-    text-align: center;
-    transition: background 0.3s;
+.localisation {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 25px;
+    margin-top: 10px;
+    display: block;
 }
-
-.button-whatsapp a { text-decoration: none; }
-.button-whatsapp p:hover { background: var(--whatsapp-green-dark); }
-
 .whatsapp-icon-p { font-size: 18pt; }
 
 .contact-form {
@@ -689,6 +647,9 @@ section {
     min-width: 100%;
     max-width: 100%;
     resize: vertical;
+}
+.message{
+    height: 250px;
 }
 
 .contact-form input:focus,
@@ -733,7 +694,7 @@ section {
    ========================================================================== */
 footer {
     padding: 40px 20px;
-    background: var(--filter-blue-dark);
+    background: var(--primary);
     color: #fff;
     text-align: center;
     transition: background 0.3s;
@@ -1009,8 +970,6 @@ footer h3 { color: var(--secondary); }
     .contact-form { padding: 25px; }
 
     .info-item { font-size: 15px; }
-
-    .localisation { height: 300px; }
 
     .numbers { margin-left: 20px; }
 
@@ -2332,9 +2291,7 @@ footer h3 { color: var(--secondary); }
     .info-item {
         font-size: 15px;
     }
-    .localisation {
-        height: 300px;
-    }
+    
     .numbers {
         margin-left: 20px;
     }
