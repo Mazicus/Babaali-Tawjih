@@ -53,6 +53,7 @@ $sectors = json_decode(file_get_contents(__DIR__ . '/../data/sectors.json'), tru
 $photosAvailable = true;
 $avatarVersion = false;
 try {
+    ensurePersonalTable($pdo, 'user_avatars');
     $query = $pdo->prepare('SELECT updated_at FROM user_avatars WHERE user_id = ?');
     $query->execute([$userId]);
     $avatarVersion = $query->fetchColumn();

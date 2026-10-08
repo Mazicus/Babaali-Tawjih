@@ -26,68 +26,8 @@
                 return groups;
             }
 
-            // Function images
-            function getUniversityImage(ecole) {
-                const localImages = {
-                    'FMP Agadir': '/img/assets/Eco-Sup/FMPA.jpg',
-                    'FMP Marrakech': '/img/assets/Eco-Sup/FMPM.jpg',
-                    'FMP Casablanca': '/img/assets/Eco-Sup/FMPC.jpeg',
-                    'FMP Rabat': '/img/assets/Eco-Sup/FMPR.jpg',
-                    'FMP Oujda': '/img/assets/Eco-Sup/FMPO.jpg',
-                    'FMP Errachidia': '/img/assets/Eco-Sup/FMPE.png'
-                };
-                if (localImages[ecole.name]) return localImages[ecole.name];
-                const imageMap = {
-                    'FMP Agadir': 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=400&h=300&fit=crop&auto=format',
-                    'FMP Marrakech': 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&h=300&fit=crop&auto=format',
-                    'FMP Casablanca': 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=400&h=300&fit=crop&auto=format',
-                    'FMP Rabat': 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=400&h=300&fit=crop&auto=format',
-                    'FMP Oujda': 'https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=400&h=300&fit=crop&auto=format',
-                    'FMP Tanger': 'https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?w=400&h=300&fit=crop&auto=format',
-                    'FMP Fès': 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=300&fit=crop&auto=format',
-                    'FMD Casablanca': 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=300&fit=crop&auto=format',
-                    'FMD Rabat': 'https://images.unsplash.com/photo-1609840114035-3c981b782dcf?w=400&h=300&fit=crop&auto=format',
-                    'PH Casablanca': 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop&auto=format',
-                    'PH Rabat': 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop&auto=format',
-                    'ENCG Casablanca': 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop&auto=format',
-                    'ISCAE Casablanca': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop&auto=format',
-                    'ISCAE Rabat': 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop&auto=format',
-                    'ENA Rabat': 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=300&fit=crop&auto=format',
-                    'ENA Fès': 'https://images.unsplash.com/photo-1503387837-b154d5074bd2?w=400&h=300&fit=crop&auto=format',
-                    'INAU Rabat': 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop&auto=format',
-                    'ENSA Agadir': 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&h=300&fit=crop&auto=format',
-                    'ENSAM Meknès': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop&auto=format',
-                    'FST Marrakech': 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&fit=crop&auto=format',
-                    'EST Casablanca': 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=300&fit=crop&auto=format',
-                    'ENAM Meknès': 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&h=300&fit=crop&auto=format',
-                    'IAV Hassan II Rabat': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop&auto=format',
-                    'CPGE': 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop&auto=format',
-                    'LYDEX Benguerir': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop&auto=format',
-                    'ERA Marrakech': 'https://images.unsplash.com/photo-1541844053589-346841d0b34c?w=400&h=300&fit=crop&auto=format',
-                    'ARM Meknès': 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=300&fit=crop&auto=format',
-                    'ISITT Tanger': 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&h=300&fit=crop&auto=format',
-                    'UIASS Rabat': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=300&fit=crop&auto=format',
-                    'UM6SS Casablanca': 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop&auto=format',
-                    'UIR Rabat': 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&h=300&fit=crop&auto=format',
-                    'FMS Benguerir': 'https://images.unsplash.com/photo-1666887360610-84e3bd985971?w=400&h=300&fit=crop&auto=format',
-                    'SASE Benguerir': 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=300&fit=crop&auto=format',
-                    'EMINES Benguerir': 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop&auto=format',
-                    'CS Benguerir': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop&auto=format',
-                };
-                const fallbacks = {
-                    sante: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&h=300&fit=crop&auto=format',
-                    commerce: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&auto=format',
-                    architecture: 'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=400&h=300&fit=crop&auto=format',
-                    ingenierie: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop&auto=format',
-                    agriculture: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop&auto=format',
-                    preparatoire: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop&auto=format',
-                    militaire: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=300&fit=crop&auto=format',
-                    tourisme: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&h=300&fit=crop&auto=format',
-                    prive: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=300&fit=crop&auto=format',
-                    um6p: 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=300&fit=crop&auto=format'
-                };
-                return imageMap[ecole.name] || fallbacks[ecole.sector] || 'https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=400&h=300&fit=crop&auto=format';
-            }
+            // Campus photos and provenance live in the shared school catalog.
+            const escapeAttribute = value => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
             // Rendering
             function renderSections(data) {
@@ -141,7 +81,7 @@
                                         const hasDrive = Boolean(ecole.drive);
                                         return `
                                         <article class="ecole-card" data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
-                                            <div class="ecole-card-image"><img src="${getUniversityImage(ecole)}" data-fallback="/img/Graduate.png" alt="Illustration du domaine de formation" loading="lazy"></div>
+                                            <figure class="ecole-card-image"><img src="${escapeAttribute(ecole.image)}" alt="${escapeAttribute(ecole.imageAlt)}" loading="lazy" decoding="async" width="1200" height="800"><figcaption>${escapeAttribute(ecole.imageCaption)}</figcaption></figure>
                                             <button type="button" class="ecole-card-toggle" aria-expanded="false" aria-controls="ecole-panel-${ecole.id}" id="ecole-toggle-${ecole.id}">
                                                 <span class="ecole-card-badges">
                                                     <span class="sector-tag">${sectorShort}</span>
@@ -266,6 +206,16 @@
 
             document.addEventListener('error', event => {
                 const image = event.target;
+                if (image.tagName === 'IMG' && image.closest('.ecole-card-image')) {
+                    image.hidden = true;
+                    image.closest('.ecole-card-image').classList.add('photo-unavailable');
+                    return;
+                }
+                if (image.tagName === 'IMG' && image.closest('.ecole-card-image')) {
+                    image.hidden = true;
+                    image.closest('.ecole-card-image').classList.add('photo-unavailable');
+                    return;
+                }
                 if (image.tagName === 'IMG' && image.dataset.fallback) {
                     const fallback = image.dataset.fallback;
                     delete image.dataset.fallback;

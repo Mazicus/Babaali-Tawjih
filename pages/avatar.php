@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__ . '/../config/session.php';
+require_once __DIR__ . '/../config/personal.php';
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
     header('Allow: GET');
     http_response_code(405);
@@ -10,6 +11,7 @@ if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
     exit;
 }
+ensurePersonalTable($pdo, 'user_avatars');
 $query = $pdo->prepare('SELECT mime_type, image_data FROM user_avatars WHERE user_id = ?');
 $query->execute([(int) $_SESSION['user_id']]);
 $avatar = $query->fetch();

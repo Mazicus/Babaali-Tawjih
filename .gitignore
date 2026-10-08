@@ -7,3 +7,5 @@
 .vercel
 .env*
 tests/preview-*.html
+tests/campus-contact-sheet.jpg
+img/schools/*.original

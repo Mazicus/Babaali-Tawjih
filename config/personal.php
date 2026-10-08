@@ -6,6 +6,29 @@ function personalTableMissing(PDOException $error): bool
     return $error->getCode() === '42S02' || ($error->errorInfo[1] ?? null) === 1146;
 }
 
+// Existing deployments may predate personal-dashboard.sql. Create only missing
+// tables, before profile transactions (MySQL DDL implicitly commits).
+function ensurePersonalTable(PDO $pdo, string $table): void
+{
+    static $checked;
+    $checked ??= new WeakMap();
+    $tables = $checked[$pdo] ?? [];
+    if (isset($tables[$table])) { return; }
+    $definitions = [
+        'user_favorites' => 'user_id BIGINT UNSIGNED NOT NULL, school_id INT UNSIGNED NOT NULL, saved_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (user_id, school_id), CONSTRAINT user_favorites_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE',
+        'user_avatars' => 'user_id BIGINT UNSIGNED NOT NULL PRIMARY KEY, mime_type VARCHAR(32) NOT NULL, image_data MEDIUMBLOB NOT NULL, updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, CONSTRAINT user_avatars_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE',
+    ];
+    if (!isset($definitions[$table])) { throw new InvalidArgumentException('Unknown personal table.'); }
+    try {
+        $pdo->query("SELECT 1 FROM $table LIMIT 0");
+    } catch (PDOException $error) {
+        if (!personalTableMissing($error)) { throw $error; }
+        $pdo->exec("CREATE TABLE IF NOT EXISTS $table ({$definitions[$table]}) ENGINE=InnoDB");
+    }
+    $tables[$table] = true;
+    $checked[$pdo] = $tables;
+}
+
 function schoolCatalog(): array
 {
     static $catalog;
@@ -34,6 +57,7 @@ function validPersonalCsrf(mixed $value): bool
 
 function savedSchoolIds(PDO $pdo, int $userId): array
 {
+    ensurePersonalTable($pdo, 'user_favorites');
     $query = $pdo->prepare('SELECT school_id FROM user_favorites WHERE user_id = ? ORDER BY saved_at DESC, school_id');
     $query->execute([$userId]);
     return array_map('intval', $query->fetchAll(PDO::FETCH_COLUMN));
@@ -44,6 +68,7 @@ function setSchoolFavorite(PDO $pdo, int $userId, int $schoolId, bool $save): vo
     if ($save && !isset(schoolCatalog()[$schoolId])) {
         throw new InvalidArgumentException('Cet établissement ne figure pas dans le catalogue.');
     }
+    ensurePersonalTable($pdo, 'user_favorites');
     $sql = $save
         ? 'INSERT INTO user_favorites (user_id, school_id) VALUES (?, ?) ON DUPLICATE KEY UPDATE school_id = VALUES(school_id)'
         : 'DELETE FROM user_favorites WHERE user_id = ? AND school_id = ?';
@@ -83,6 +108,7 @@ function validateAvatarBytes(string $bytes): string
 
 function savePersonalProfile(PDO $pdo, int $userId, array $details, ?string $bytes, ?string $mime, bool $removeAvatar): void
 {
+    if ($bytes !== null || $removeAvatar) { ensurePersonalTable($pdo, 'user_avatars'); }
     $pdo->beginTransaction();
     try {
         $pdo->prepare('UPDATE users SET full_name = ?, phonenumber = ? WHERE id = ?')

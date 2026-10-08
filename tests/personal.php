@@ -23,6 +23,39 @@ final class PersonalTestDatabase extends PDO
     }
 }
 $pdo = new PersonalTestDatabase('sqlite::memory:');
+// Exercise old deployments without touching a real database. Only a missing
+// table may trigger DDL; repeated calls must not run it again.
+final class MissingPersonalDatabase extends PDO
+{
+    public array $statements = [];
+    public function __construct(private bool $missing = true) {}
+    public function query(string $query, ?int $fetchMode = null, mixed ...$fetchModeArgs): PDOStatement|false
+    {
+        $this->statements[] = $query;
+        $error = new PDOException('Storage unavailable');
+        $error->errorInfo = $this->missing ? ['42S02', 1146] : ['08006', 2006];
+        throw $error;
+    }
+    public function exec(string $statement): int|false
+    {
+        $this->statements[] = $statement;
+        return 0;
+    }
+}
+$legacy = new MissingPersonalDatabase();
+ensurePersonalTable($legacy, 'user_favorites');
+ensurePersonalTable($legacy, 'user_favorites');
+ensurePersonalTable($legacy, 'user_avatars');
+check(count($legacy->statements) === 4, 'Missing tables should each initialize once per connection.');
+check(str_contains($legacy->statements[1], 'CREATE TABLE IF NOT EXISTS user_favorites'), 'Old deployments must initialize persistent favorites.');
+check(str_contains($legacy->statements[3], 'CREATE TABLE IF NOT EXISTS user_avatars'), 'Old deployments must initialize profile photos.');
+$offline = new MissingPersonalDatabase(false);
+try {
+    ensurePersonalTable($offline, 'user_favorites');
+    throw new RuntimeException('Connection errors must propagate.');
+} catch (PDOException $error) {
+    check(count($offline->statements) === 1, 'Connection errors must not trigger schema changes.');
+}
 $missingTable = new PDOException('Table missing');
 $missingTable->errorInfo = ['42S02', 1146];
 check(personalTableMissing($missingTable), 'Missing MySQL tables should be classified for graceful fallback.');

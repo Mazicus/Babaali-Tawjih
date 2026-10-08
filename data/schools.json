@@ -9,7 +9,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://fmpa.uiz.ac.ma/"
+    "link": "https://fmpa.uiz.ac.ma/",
+    "image": "/img/assets/Eco-Sup/FMPA.jpg",
+    "imageSource": "https://fmpa.uiz.ac.ma/",
+    "imageCaption": "FMP Agadir",
+    "imageAlt": "Vue de l’établissement · FMP Agadir"
   },
   {
     "id": 2,
@@ -21,7 +25,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://fmpm.uca.ma/"
+    "link": "https://fmpm.uca.ma/",
+    "image": "/img/assets/Eco-Sup/FMPM.jpg",
+    "imageSource": "https://fmpm.uca.ma/",
+    "imageCaption": "FMP Marrakech",
+    "imageAlt": "Vue de l’établissement · FMP Marrakech"
   },
   {
     "id": 3,
@@ -33,7 +41,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://www.fmpc.ac.ma/"
+    "link": "https://www.fmpc.ac.ma/",
+    "image": "/img/assets/Eco-Sup/FMPC.jpeg",
+    "imageSource": "https://www.fmpc.ac.ma/",
+    "imageCaption": "FMP Casablanca",
+    "imageAlt": "Vue de l’établissement · FMP Casablanca"
   },
   {
     "id": 4,
@@ -45,7 +57,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://fmp.um5.ac.ma/"
+    "link": "https://fmp.um5.ac.ma/",
+    "image": "/img/assets/Eco-Sup/FMPR.jpg",
+    "imageSource": "https://fmp.um5.ac.ma/",
+    "imageCaption": "FMP Rabat",
+    "imageAlt": "Vue de l’établissement · FMP Rabat"
   },
   {
     "id": 5,
@@ -57,7 +73,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "http://fmpo.ump.ma/"
+    "link": "http://fmpo.ump.ma/",
+    "image": "/img/assets/Eco-Sup/FMPO.jpg",
+    "imageSource": "http://fmpo.ump.ma/",
+    "imageCaption": "FMP Oujda",
+    "imageAlt": "Vue de l’établissement · FMP Oujda"
   },
   {
     "id": 6,
@@ -69,7 +89,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://fmpt.ac.ma/"
+    "link": "https://fmpt.ac.ma/",
+    "image": "/img/schools/6.webp",
+    "imageSource": "https://lematin.ma/nation/faculte-de-medecine-de-tanger-le-cri-de-detresse-des-etudiants/284111",
+    "imageCaption": "FMP Tanger",
+    "imageAlt": "Vue de l’établissement · FMP Tanger"
   },
   {
     "id": 7,
@@ -81,7 +105,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "http://fmpl.uiz.ac.ma/"
+    "link": "http://fmpl.uiz.ac.ma/",
+    "image": "/img/schools/7.webp",
+    "imageSource": "https://fr.le360.ma/societe/laayoune-flambant-neuve-la-faculte-de-medecine-et-de-pharmacie-est-operationnelle-voici-a-quoi-elle_ER5AFZTZDVHUJITM5FSUNBPDWI/",
+    "imageCaption": "FMP Laâyoune",
+    "imageAlt": "Vue de l’établissement · FMP Laâyoune"
   },
   {
     "id": 8,
@@ -93,7 +121,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://www.fmpe.umi.ac.ma/"
+    "link": "https://www.fmpe.umi.ac.ma/",
+    "image": "/img/assets/Eco-Sup/FMPE.png",
+    "imageSource": "https://www.fmpe.umi.ac.ma/",
+    "imageCaption": "FMP Errachidia",
+    "imageAlt": "Vue de l’établissement · FMP Errachidia"
   },
   {
     "id": 9,
@@ -105,7 +137,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://fmpbm.usms.ac.ma/"
+    "link": "https://fmpbm.usms.ac.ma/",
+    "image": "/img/schools/9.webp",
+    "imageSource": "https://fmpbm.usms.ac.ma/about/",
+    "imageCaption": "FMP Béni Mellal",
+    "imageAlt": "Vue de l’établissement · FMP Béni Mellal"
   },
   {
     "id": 10,
@@ -117,7 +153,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://www.fmpg.uiz.ac.ma/"
+    "link": "https://www.fmpg.uiz.ac.ma/",
+    "image": "/img/schools/10.webp",
+    "imageSource": "https://ar.le360.ma/societe/B5O6VO34FNEIJHJW72PZ7E6HPA/",
+    "imageCaption": "FMP Guelmim",
+    "imageAlt": "Vue de l’établissement · FMP Guelmim"
   },
   {
     "id": 11,
@@ -129,7 +169,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMP",
-    "link": "https://www.fmp-usmba.ac.ma/"
+    "link": "https://www.fmp-usmba.ac.ma/",
+    "image": "/img/schools/11.webp",
+    "imageSource": "https://www.moroccodemia.com/en/Pharmacy-studies-in-morocco/",
+    "imageCaption": "FMP Fès",
+    "imageAlt": "Vue de l’établissement · FMP Fès"
   },
   {
     "id": 12,
@@ -141,7 +185,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMD",
-    "link": "https://www.fmd-uh2c.ac.ma/"
+    "link": "https://www.fmd-uh2c.ac.ma/",
+    "image": "/img/schools/12.webp",
+    "imageSource": "https://www.maroc24.com/121570-%D8%AC%D8%A7%D9%85%D8%B9%D8%A9-%D8%A7%D9%84%D8%AD%D8%B3%D9%86-%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A-%D8%A8%D8%A7%D9%84%D8%AF%D8%A7%D8%B1-%D8%A7%D9%84%D8%A8%D9%8A%D8%B6%D8%A7%D8%A1-%D9%88%D8%AC%D8%A7/",
+    "imageCaption": "FMD Casablanca",
+    "imageAlt": "Vue de l’établissement · FMD Casablanca"
   },
   {
     "id": 13,
@@ -153,7 +201,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMD",
-    "link": "https://fmd.um5.ac.ma/"
+    "link": "https://fmd.um5.ac.ma/",
+    "image": "/img/schools/13.webp",
+    "imageSource": "https://www.9rayti.com/actualite/candidats-preselectionnes-dut-assistants-dentaires-fmd-rabat-2017",
+    "imageCaption": "FMD Rabat",
+    "imageAlt": "Vue de l’établissement · FMD Rabat"
   },
   {
     "id": 14,
@@ -165,7 +217,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "FMD",
-    "link": "https://www.fmp-usmba.ac.ma/"
+    "link": "https://www.fmp-usmba.ac.ma/",
+    "image": "/img/schools/11.webp",
+    "imageSource": "https://www.moroccodemia.com/en/Pharmacy-studies-in-morocco/",
+    "imageCaption": "Campus FMP Fès",
+    "imageAlt": "Vue de l’établissement · Campus FMP Fès"
   },
   {
     "id": 15,
@@ -177,7 +233,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "PH",
-    "link": "https://fmpa.uiz.ac.ma/"
+    "link": "https://fmpa.uiz.ac.ma/",
+    "image": "/img/assets/Eco-Sup/FMPA.jpg",
+    "imageSource": "https://fmpa.uiz.ac.ma/",
+    "imageCaption": "Campus FMP Agadir",
+    "imageAlt": "Vue de l’établissement · Campus FMP Agadir"
   },
   {
     "id": 16,
@@ -189,7 +249,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "PH",
-    "link": "https://fmpm.uca.ma/"
+    "link": "https://fmpm.uca.ma/",
+    "image": "/img/assets/Eco-Sup/FMPM.jpg",
+    "imageSource": "https://fmpm.uca.ma/",
+    "imageCaption": "Campus FMP Marrakech",
+    "imageAlt": "Vue de l’établissement · Campus FMP Marrakech"
   },
   {
     "id": 17,
@@ -201,7 +265,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "PH",
-    "link": "https://www.fmpc.ac.ma/"
+    "link": "https://www.fmpc.ac.ma/",
+    "image": "/img/assets/Eco-Sup/FMPC.jpeg",
+    "imageSource": "https://www.fmpc.ac.ma/",
+    "imageCaption": "Campus FMP Casablanca",
+    "imageAlt": "Vue de l’établissement · Campus FMP Casablanca"
   },
   {
     "id": 18,
@@ -213,7 +281,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "PH",
-    "link": "https://fmp.um5.ac.ma/"
+    "link": "https://fmp.um5.ac.ma/",
+    "image": "/img/assets/Eco-Sup/FMPR.jpg",
+    "imageSource": "https://fmp.um5.ac.ma/",
+    "imageCaption": "Campus FMP Rabat",
+    "imageAlt": "Vue de l’établissement · Campus FMP Rabat"
   },
   {
     "id": 19,
@@ -225,7 +297,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "PH",
-    "link": "http://fmpo.ump.ma/"
+    "link": "http://fmpo.ump.ma/",
+    "image": "/img/assets/Eco-Sup/FMPO.jpg",
+    "imageSource": "http://fmpo.ump.ma/",
+    "imageCaption": "Campus FMP Oujda",
+    "imageAlt": "Vue de l’établissement · Campus FMP Oujda"
   },
   {
     "id": 20,
@@ -237,7 +313,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "PH",
-    "link": "https://fmpt.ac.ma/"
+    "link": "https://fmpt.ac.ma/",
+    "image": "/img/schools/6.webp",
+    "imageSource": "https://lematin.ma/nation/faculte-de-medecine-de-tanger-le-cri-de-detresse-des-etudiants/284111",
+    "imageCaption": "Campus FMP Tanger",
+    "imageAlt": "Vue de l’établissement · Campus FMP Tanger"
   },
   {
     "id": 21,
@@ -249,7 +329,11 @@
     "sector": "sante",
     "type": "public",
     "acronym": "ISPITS",
-    "link": "https://ispits.sante.gov.ma/"
+    "link": "https://ispits.sante.gov.ma/",
+    "image": "/img/schools/21.webp",
+    "imageSource": "https://www.marocetude.com/adresse/annuaire/institut-superieur-des-professions-infirmieres-et-de-techniques-de-sante-agadir/",
+    "imageCaption": "ISPITS Agadir · un des établissements du réseau",
+    "imageAlt": "Vue de l’établissement · ISPITS Agadir · un des établissements du réseau"
   },
   {
     "id": 22,
@@ -261,7 +345,11 @@
     "sector": "commerce",
     "type": "public",
     "acronym": "ENCG",
-    "link": "https://www.encgcasa.ma/"
+    "link": "https://www.encgcasa.ma/",
+    "image": "/img/schools/22.webp",
+    "imageSource": "https://encgcasa.ma/",
+    "imageCaption": "ENCG Casablanca",
+    "imageAlt": "Vue de l’établissement · ENCG Casablanca"
   },
   {
     "id": 23,
@@ -273,7 +361,11 @@
     "sector": "commerce",
     "type": "public",
     "acronym": "ISCAE",
-    "link": "https://www.groupeiscae.ma/"
+    "link": "https://www.groupeiscae.ma/",
+    "image": "/img/schools/23.webp",
+    "imageSource": "https://www.groupeiscae.ma/blog/2025/09/11/avis-aux-etudiants-sollicitant-une-place-a-la-residence-de-liscae-casablanca/",
+    "imageCaption": "ISCAE Casablanca",
+    "imageAlt": "Vue de l’établissement · ISCAE Casablanca"
   },
   {
     "id": 24,
@@ -285,7 +377,11 @@
     "sector": "commerce",
     "type": "public",
     "acronym": "ISCAE",
-    "link": "https://www.groupeiscae.ma/"
+    "link": "https://www.groupeiscae.ma/",
+    "image": "/img/schools/24.webp",
+    "imageSource": "https://www.topschoolinmorocco.com/post/nominationduprofesseurfouadmachrouh%C3%A0ladirectiondel-iscae-rabat",
+    "imageCaption": "ISCAE Rabat",
+    "imageAlt": "Vue de l’établissement · ISCAE Rabat"
   },
   {
     "id": 25,
@@ -297,7 +393,11 @@
     "sector": "architecture",
     "type": "public",
     "acronym": "ENA",
-    "link": "https://www.enarabat.ac.ma/"
+    "link": "https://www.enarabat.ac.ma/",
+    "image": "/img/schools/25.webp",
+    "imageSource": "https://www.archnet.org/sites/4573?media_content_id=18227",
+    "imageCaption": "ENA Rabat",
+    "imageAlt": "Vue de l’établissement · ENA Rabat"
   },
   {
     "id": 26,
@@ -309,7 +409,11 @@
     "sector": "architecture",
     "type": "public",
     "acronym": "ENA",
-    "link": "https://www.archi.ac.ma/"
+    "link": "https://www.archi.ac.ma/",
+    "image": "/img/schools/26.webp",
+    "imageSource": "https://www.enafes.ma/indexGalery",
+    "imageCaption": "ENA Fès",
+    "imageAlt": "Vue de l’établissement · ENA Fès"
   },
   {
     "id": 27,
@@ -321,7 +425,11 @@
     "sector": "architecture",
     "type": "public",
     "acronym": "ENA",
-    "link": "https://www.archi.ac.ma/"
+    "link": "https://www.archi.ac.ma/",
+    "image": "/img/schools/27.webp",
+    "imageSource": "https://www.epuriumarchitecture.com/projets/ecole-nationale-d-architecture-de-marrakech",
+    "imageCaption": "ENA Marrakech",
+    "imageAlt": "Vue de l’établissement · ENA Marrakech"
   },
   {
     "id": 28,
@@ -333,7 +441,11 @@
     "sector": "architecture",
     "type": "public",
     "acronym": "ENA",
-    "link": "https://www.archi.ac.ma/"
+    "link": "https://www.archi.ac.ma/",
+    "image": "/img/schools/28.webp",
+    "imageSource": "https://www.strugal.ma/fr/projets/ecole-nationale-d-architecture-de-tetouan",
+    "imageCaption": "ENA Tétouan",
+    "imageAlt": "Vue de l’établissement · ENA Tétouan"
   },
   {
     "id": 29,
@@ -345,7 +457,11 @@
     "sector": "architecture",
     "type": "public",
     "acronym": "ENA",
-    "link": "https://www.archi.ac.ma/"
+    "link": "https://www.archi.ac.ma/",
+    "image": "/img/schools/29.webp",
+    "imageSource": "https://enaagadir.ac.ma/",
+    "imageCaption": "ENA Agadir",
+    "imageAlt": "Vue de l’établissement · ENA Agadir"
   },
   {
     "id": 30,
@@ -357,7 +473,11 @@
     "sector": "architecture",
     "type": "public",
     "acronym": "ENA",
-    "link": "https://www.archi.ac.ma/"
+    "link": "https://www.archi.ac.ma/",
+    "image": "/img/schools/30.webp",
+    "imageSource": "https://enaaccess.wixsite.com/website/post/pr%C3%A9sentation-de-l-ena",
+    "imageCaption": "ENA Oujda",
+    "imageAlt": "Vue de l’établissement · ENA Oujda"
   },
   {
     "id": 31,
@@ -369,7 +489,11 @@
     "sector": "architecture",
     "type": "public",
     "acronym": "INAU",
-    "link": "https://www.inau.ac.ma/"
+    "link": "https://www.inau.ac.ma/",
+    "image": "/img/schools/31.webp",
+    "imageSource": "https://www.9rayti.com/concoursa/concours-dacces-au-cycle-du-diplome-de-linstitut-national-damenagement-et-durbanisme-dinau-bac5-2025-2026",
+    "imageCaption": "INAU Rabat",
+    "imageAlt": "Vue de l’établissement · INAU Rabat"
   },
   {
     "id": 32,
@@ -381,7 +505,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "ENSA",
-    "link": "https://www.ensa-agadir.ac.ma/"
+    "link": "https://www.ensa-agadir.ac.ma/",
+    "image": "/img/schools/32.webp",
+    "imageSource": "https://www.uiz.ac.ma/ecole-nationale-des-sciences-appliquees-agadir",
+    "imageCaption": "ENSA Agadir",
+    "imageAlt": "Vue de l’établissement · ENSA Agadir"
   },
   {
     "id": 33,
@@ -393,7 +521,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "ENSAM",
-    "link": "https://www.ensam.ac.ma/"
+    "link": "https://www.ensam.ac.ma/",
+    "image": "/img/schools/33.webp",
+    "imageSource": "https://www.9rayti.com/concoursa/candidats-admis-au-concours-dacces-en-3eme-4eme-annee-ensam-meknes-2017",
+    "imageCaption": "ENSAM Meknès",
+    "imageAlt": "Vue de l’établissement · ENSAM Meknès"
   },
   {
     "id": 34,
@@ -405,7 +537,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "ENSAM",
-    "link": "https://www.ensam-casa.ma/"
+    "link": "https://www.ensam-casa.ma/",
+    "image": "/img/schools/34.webp",
+    "imageSource": "https://ensam-casa.ma/presentation",
+    "imageCaption": "ENSAM Casablanca",
+    "imageAlt": "Vue de l’établissement · ENSAM Casablanca"
   },
   {
     "id": 35,
@@ -417,7 +553,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "ENSAM",
-    "link": "https://www.ensam-rabat.ma/"
+    "link": "https://www.ensam-rabat.ma/",
+    "image": "/img/schools/35.webp",
+    "imageSource": "https://fr.linkedin.com/posts/mouad-el-maghraoui-10b3911a1_ensam-2024-une-ann%C3%A9e-dexcellence-et-dinnovation-activity-7279864974313754625-sybo",
+    "imageCaption": "ENSAM Rabat",
+    "imageAlt": "Vue de l’établissement · ENSAM Rabat"
   },
   {
     "id": 36,
@@ -429,7 +569,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "ENIAD",
-    "link": "https://www.eniad.ump.ma/"
+    "link": "https://www.eniad.ump.ma/",
+    "image": "/img/schools/36.webp",
+    "imageSource": "https://eniad.ump.ma/",
+    "imageCaption": "ENIAD Berkane",
+    "imageAlt": "Vue de l’établissement · ENIAD Berkane"
   },
   {
     "id": 37,
@@ -441,7 +585,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "ENSCK",
-    "link": "https://www.ensck.uit.ac.ma/"
+    "link": "https://www.ensck.uit.ac.ma/",
+    "image": "/img/schools/37.webp",
+    "imageSource": "https://tawjih.info/ensck.php",
+    "imageCaption": "ENSCK Kénitra",
+    "imageAlt": "Vue de l’établissement · ENSCK Kénitra"
   },
   {
     "id": 38,
@@ -453,7 +601,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "FST",
-    "link": "https://www.fst.uca.ma/"
+    "link": "https://www.fst.uca.ma/",
+    "image": "/img/schools/38.webp",
+    "imageSource": "https://www.communesmaroc.com/en/commune/marrakech/place/view/faculty-of-sciences-and-technologies-marrakech",
+    "imageCaption": "FST Marrakech",
+    "imageAlt": "Vue de l’établissement · FST Marrakech"
   },
   {
     "id": 39,
@@ -465,7 +617,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "FST",
-    "link": "https://www.fsts.ac.ma/"
+    "link": "https://www.fsts.ac.ma/",
+    "image": "/img/schools/39.webp",
+    "imageSource": "https://www.marefa.org/%D8%A5%D9%82%D9%84%D9%8A%D9%85_%D8%B3%D8%B7%D8%A7%D8%AA",
+    "imageCaption": "FST Settat",
+    "imageAlt": "Vue de l’établissement · FST Settat"
   },
   {
     "id": 40,
@@ -477,7 +633,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "FST",
-    "link": "https://www.fstm.ac.ma/"
+    "link": "https://www.fstm.ac.ma/",
+    "image": "/img/schools/40.webp",
+    "imageSource": "https://indabaxmorocco.github.io/pages/venue.html",
+    "imageCaption": "FST Mohammédia",
+    "imageAlt": "Vue de l’établissement · FST Mohammédia"
   },
   {
     "id": 41,
@@ -489,7 +649,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "EST",
-    "link": "https://www.estc.ac.ma/"
+    "link": "https://www.estc.ac.ma/",
+    "image": "/img/schools/41.webp",
+    "imageSource": "https://www.9rayti.com/actualite/ouverture-de-licence-professionnelle-a-lest-casa",
+    "imageCaption": "EST Casablanca",
+    "imageAlt": "Vue de l’établissement · EST Casablanca"
   },
   {
     "id": 42,
@@ -501,7 +665,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "ESITH",
-    "link": "https://www.esith.ac.ma/"
+    "link": "https://www.esith.ac.ma/",
+    "image": "/img/schools/42.webp",
+    "imageSource": "https://www.esith.ac.ma/",
+    "imageCaption": "ESITH Casablanca",
+    "imageAlt": "Vue de l’établissement · ESITH Casablanca"
   },
   {
     "id": 43,
@@ -513,7 +681,11 @@
     "sector": "ingenierie",
     "type": "public",
     "acronym": "BTS",
-    "link": "https://www.men.gov.ma/"
+    "link": "https://www.men.gov.ma/",
+    "image": "/img/schools/43.webp",
+    "imageSource": "https://albab.ma/%D9%86%D9%88%D8%B3%D8%AA%D8%A7%D9%84%D8%AC%D9%8A%D8%A7-%D9%85%D8%AF%D8%B1%D8%A7%D8%B3-%D8%A7%D9%84%D8%AF%D8%A7%D8%B1-%D8%A7%D9%84%D8%A8%D9%8A%D8%B6%D8%A7%D8%A1-%D9%86%D9%85%D9%88%D8%B0%D8%AC-%D8%AB/",
+    "imageCaption": "Centre BTS du lycée Al Khawarizmi · Casablanca",
+    "imageAlt": "Vue de l’établissement · Centre BTS du lycée Al Khawarizmi · Casablanca"
   },
   {
     "id": 44,
@@ -525,7 +697,11 @@
     "sector": "agriculture",
     "type": "public",
     "acronym": "ENAM",
-    "link": "http://www.enameknes.ma/"
+    "link": "http://www.enameknes.ma/",
+    "image": "/img/schools/44.webp",
+    "imageSource": "https://www.9rayti.com/actualite/concours-dadmission-a-lenam-meknes-2017-2018",
+    "imageCaption": "ENAM Meknès",
+    "imageAlt": "Vue de l’établissement · ENAM Meknès"
   },
   {
     "id": 45,
@@ -537,7 +713,11 @@
     "sector": "agriculture",
     "type": "public",
     "acronym": "IAV",
-    "link": "https://iav.ac.ma/"
+    "link": "https://iav.ac.ma/",
+    "image": "/img/schools/45.webp",
+    "imageSource": "https://reseau.iaa.ma/",
+    "imageCaption": "IAV Hassan II Rabat",
+    "imageAlt": "Vue de l’établissement · IAV Hassan II Rabat"
   },
   {
     "id": 46,
@@ -549,7 +729,11 @@
     "sector": "preparatoire",
     "type": "public",
     "acronym": "CPGE",
-    "link": "https://www.men.gov.ma/"
+    "link": "https://www.men.gov.ma/",
+    "image": "/img/schools/46.webp",
+    "imageSource": "https://www.toutrabat.com/lycee-moulay-youssef-rabat.php",
+    "imageCaption": "Centre CPGE du lycée Moulay Youssef · Rabat",
+    "imageAlt": "Vue de l’établissement · Centre CPGE du lycée Moulay Youssef · Rabat"
   },
   {
     "id": 47,
@@ -561,7 +745,11 @@
     "sector": "preparatoire",
     "type": "public",
     "acronym": "LYDEX",
-    "link": "https://www.lyceedexcellence.ma/"
+    "link": "https://www.lyceedexcellence.ma/",
+    "image": "/img/schools/47.webp",
+    "imageSource": "https://emb-maroc.com/realisations/construction-du-lycee-dexellence-de-ben-guerir/",
+    "imageCaption": "LYDEX Benguerir",
+    "imageAlt": "Vue de l’établissement · LYDEX Benguerir"
   },
   {
     "id": 48,
@@ -573,7 +761,11 @@
     "sector": "preparatoire",
     "type": "public",
     "acronym": "LYDEX",
-    "link": "https://www.lyceedexcellence.ma/"
+    "link": "https://www.lyceedexcellence.ma/",
+    "image": "/img/schools/48.webp",
+    "imageSource": "https://fr.linkedin.com/posts/michel-gonin-%E3%83%9F%E3%83%83%E3%82%B7%E3%82%A7%E3%83%AB-%E3%82%B4%E3%83%8B%E3%83%B3-4108b054_tr%C3%A8s-belle-visite-au-lydex-de-rabat-des-activity-7247634814239961090-eFWi",
+    "imageCaption": "LYDEX Rabat",
+    "imageAlt": "Vue de l’établissement · LYDEX Rabat"
   },
   {
     "id": 49,
@@ -585,7 +777,11 @@
     "sector": "preparatoire",
     "type": "public",
     "acronym": "LYDEX",
-    "link": "https://www.lyceedexcellence.ma/"
+    "link": "https://www.lyceedexcellence.ma/",
+    "image": "/img/schools/49.webp",
+    "imageSource": "https://fm6ss.ma/fr/formations-fm6ss",
+    "imageCaption": "LYDEX Casablanca",
+    "imageAlt": "Vue de l’établissement · LYDEX Casablanca"
   },
   {
     "id": 50,
@@ -597,7 +793,11 @@
     "sector": "preparatoire",
     "type": "public",
     "acronym": "LYDEX",
-    "link": "https://www.lyceedexcellence.ma/"
+    "link": "https://www.lyceedexcellence.ma/",
+    "image": "/img/schools/50.webp",
+    "imageSource": "https://fr.linkedin.com/posts/mostafa-stitou-a60b1745_27102021-%D8%B2%D9%8A%D8%A7%D8%B1%D8%A9-%D8%A5%D9%84%D9%89-%D9%85%D8%B9%D9%87%D8%AF-%D8%A7%D9%84%D8%A3%D9%82%D8%B3%D8%A7%D9%85-%D8%A7%D9%84%D8%AA%D8%AD%D8%B6%D9%8A%D8%B1%D9%8A%D8%A9-activity-6859200192831344641-_Mq1",
+    "imageCaption": "LYDEX Martil",
+    "imageAlt": "Vue de l’établissement · LYDEX Martil"
   },
   {
     "id": 51,
@@ -609,7 +809,11 @@
     "sector": "militaire",
     "type": "public",
     "acronym": "ERA",
-    "link": "https://www.far.ma/"
+    "link": "https://www.far.ma/",
+    "image": "/img/schools/51.webp",
+    "imageSource": "https://fr.le360.ma/societe/de-la-theorie-a-la-qualification-comment-lecole-royale-de-lair-de-marrakech-forme-les-pilotes-de_AYKKUUNPMBET5IOC62SQDAXE2Y/",
+    "imageCaption": "ERA Marrakech",
+    "imageAlt": "Vue de l’établissement · ERA Marrakech"
   },
   {
     "id": 52,
@@ -621,7 +825,11 @@
     "sector": "militaire",
     "type": "public",
     "acronym": "ERN",
-    "link": "https://www.far.ma/"
+    "link": "https://www.far.ma/",
+    "image": "/img/schools/52.webp",
+    "imageSource": "https://www.moroccodemia.com/en/higher-education-institutions-in-morocco/",
+    "imageCaption": "ERN Casablanca",
+    "imageAlt": "Vue de l’établissement · ERN Casablanca"
   },
   {
     "id": 53,
@@ -633,7 +841,11 @@
     "sector": "militaire",
     "type": "public",
     "acronym": "ARM",
-    "link": "https://www.far.ma/"
+    "link": "https://www.far.ma/",
+    "image": "/img/schools/53.webp",
+    "imageSource": "https://www.alwadifa365.com/2021/06/arm-meknes.html",
+    "imageCaption": "ARM Meknès",
+    "imageAlt": "Vue de l’établissement · ARM Meknès"
   },
   {
     "id": 54,
@@ -645,7 +857,11 @@
     "sector": "militaire",
     "type": "public",
     "acronym": "ERSSM",
-    "link": "https://www.far.ma/"
+    "link": "https://www.far.ma/",
+    "image": "/img/schools/54.webp",
+    "imageSource": "https://www.tawjih.info/erssm.php",
+    "imageCaption": "ERSSM · formation des élèves officiers",
+    "imageAlt": "Élèves officiers de l’École Royale du Service de Santé Militaire"
   },
   {
     "id": 55,
@@ -657,7 +873,11 @@
     "sector": "tourisme",
     "type": "public",
     "acronym": "ISITT",
-    "link": "https://www.isitt.ma/"
+    "link": "https://www.isitt.ma/",
+    "image": "/img/schools/55.webp",
+    "imageSource": "https://isitiens.blogspot.com/2014/03/photos-de-linstitut-superieur.html",
+    "imageCaption": "ISITT Tanger",
+    "imageAlt": "Vue de l’établissement · ISITT Tanger"
   },
   {
     "id": 56,
@@ -670,7 +890,11 @@
     "type": "prive",
     "acronym": "UIASS",
     "fees": "1500 DH",
-    "link": "https://www.uiass.ma/"
+    "link": "https://www.uiass.ma/",
+    "image": "/img/schools/56.webp",
+    "imageSource": "https://www.marocetude.com/adresse/annuaire/universite-internationale-abulcasis-des-sciences-de-la-sante-uiass-rabat/",
+    "imageCaption": "UIASS Rabat",
+    "imageAlt": "Vue de l’établissement · UIASS Rabat"
   },
   {
     "id": 57,
@@ -683,7 +907,11 @@
     "type": "prive",
     "acronym": "UM6SS",
     "fees": "1500 DH",
-    "link": "https://www.um6ss.ma/campus-casablanca"
+    "link": "https://www.um6ss.ma/campus-casablanca",
+    "image": "/img/schools/57.webp",
+    "imageSource": "https://fm6ss.ma/fr/um6ss/campus-casa",
+    "imageCaption": "UM6SS Casablanca",
+    "imageAlt": "Vue de l’établissement · UM6SS Casablanca"
   },
   {
     "id": 58,
@@ -696,7 +924,11 @@
     "type": "prive",
     "acronym": "UM6SS",
     "fees": "1500 DH",
-    "link": "https://www.um6ss.ma/"
+    "link": "https://www.um6ss.ma/",
+    "image": "/img/schools/58.webp",
+    "imageSource": "https://fm6ss.ma/fr/um6ss/campus-rabat",
+    "imageCaption": "UM6SS Rabat",
+    "imageAlt": "Vue de l’établissement · UM6SS Rabat"
   },
   {
     "id": 59,
@@ -709,7 +941,11 @@
     "type": "prive",
     "acronym": "UPSSA",
     "fees": "800 DH",
-    "link": "https://www.upssa.ma/"
+    "link": "https://www.upssa.ma/",
+    "image": "/img/schools/59.webp",
+    "imageSource": "https://fr.le360.ma/societe/agadir-lancien-ministre-de-la-sante-el-houssaine-louardi-ouvre-sa-propre-fac-de-medecine_EQZBMB5PC5DW5DY3I632L3SELI/",
+    "imageCaption": "UPSSA Agadir",
+    "imageAlt": "Vue de l’établissement · UPSSA Agadir"
   },
   {
     "id": 60,
@@ -722,7 +958,11 @@
     "type": "prive",
     "acronym": "UPM",
     "fees": "1500 DH",
-    "link": "https://www.upm.ac.ma/"
+    "link": "https://www.upm.ac.ma/",
+    "image": "/img/schools/60.webp",
+    "imageSource": "https://upm.ac.ma/galerie/",
+    "imageCaption": "UPM Marrakech",
+    "imageAlt": "Vue de l’établissement · UPM Marrakech"
   },
   {
     "id": 61,
@@ -735,7 +975,11 @@
     "type": "prive",
     "acronym": "UIR",
     "fees": "750 DH",
-    "link": "https://www.uir.ac.ma/"
+    "link": "https://www.uir.ac.ma/",
+    "image": "/img/schools/61.webp",
+    "imageSource": "https://emb-maroc.com/en/realisations/international-university-of-rabat-uir-unit-1-sale/",
+    "imageCaption": "UIR Rabat",
+    "imageAlt": "Vue de l’établissement · UIR Rabat"
   },
   {
     "id": 62,
@@ -747,7 +991,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "FMS",
-    "link": "https://www.um6p.ma/fr/college/faculte-de-medecine-et-de-pharmacie"
+    "link": "https://www.um6p.ma/fr/college/faculte-de-medecine-et-de-pharmacie",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 63,
@@ -759,7 +1007,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "SASE",
-    "link": "https://www.um6p.ma/fr/college/sase"
+    "link": "https://www.um6p.ma/fr/college/sase",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 64,
@@ -771,7 +1023,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "EMINES",
-    "link": "https://www.emines-ingenieur.org/"
+    "link": "https://www.emines-ingenieur.org/",
+    "image": "/img/schools/64.webp",
+    "imageSource": "https://www.bofill.com/projects/ecole-des-mines/",
+    "imageCaption": "EMINES Benguerir",
+    "imageAlt": "Vue de l’établissement · EMINES Benguerir"
   },
   {
     "id": 65,
@@ -783,7 +1039,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "CS",
-    "link": "https://www.um6p.ma/fr/college/college-of-computing"
+    "link": "https://www.um6p.ma/fr/college/college-of-computing",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 66,
@@ -795,7 +1055,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "GUP",
-    "link": "https://www.um6p.ma/fr/college/college-of-green-process-engineering"
+    "link": "https://www.um6p.ma/fr/college/college-of-green-process-engineering",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 67,
@@ -807,7 +1071,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "SHBM",
-    "link": "https://www.um6p.ma/fr/college/shbm"
+    "link": "https://www.um6p.ma/fr/college/shbm",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 68,
@@ -819,7 +1087,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "FGSES",
-    "link": "https://www.um6p.ma/fr/college/fgses"
+    "link": "https://www.um6p.ma/fr/college/fgses",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 69,
@@ -831,7 +1103,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "FGSES",
-    "link": "https://www.um6p.ma/fr/college/fgses"
+    "link": "https://www.um6p.ma/fr/college/fgses",
+    "image": "/img/schools/69.webp",
+    "imageSource": "https://www.fgses-um6p.ma/campus-facilities",
+    "imageCaption": "Campus UM6P · Rabat",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Rabat"
   },
   {
     "id": 70,
@@ -843,7 +1119,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "ESAFE",
-    "link": "https://www.um6p.ma/fr/college/esafe"
+    "link": "https://www.um6p.ma/fr/college/esafe",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 71,
@@ -855,7 +1135,11 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "ISSB-P",
-    "link": "https://www.um6p.ma/fr/college/issb-p"
+    "link": "https://www.um6p.ma/fr/college/issb-p",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   },
   {
     "id": 72,
@@ -867,6 +1151,10 @@
     "sector": "um6p",
     "type": "prive",
     "acronym": "SAP+D",
-    "link": "https://www.um6p.ma/fr/college/sap-d"
+    "link": "https://www.um6p.ma/fr/college/sap-d",
+    "image": "/img/schools/62.webp",
+    "imageSource": "https://www.shbm-um6p.ma/en/contact-us",
+    "imageCaption": "Campus UM6P · Benguerir",
+    "imageAlt": "Vue de l’établissement · Campus UM6P · Benguerir"
   }
 ]

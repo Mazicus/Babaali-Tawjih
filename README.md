@@ -37,7 +37,7 @@ Google setup reference: [Google OpenID Connect server flow](https://developers.g
 
 ## Personal dashboard and saved schools
 
-Run `database/personal-dashboard.sql` once against the existing hosted MySQL database before deploying this update. New databases use the updated `database/schema.sql`. Deploy the new PHP routes, `Dashboard.js`, `Favorites.js`, both stylesheets and the `data/` folder together with the rest of this project.
+Personal storage initializes missing `user_favorites` and `user_avatars` tables automatically on first authenticated use. Existing rows are preserved; connection errors do not trigger migrations. The database account needs CREATE permission for this initialization. If it has restricted permissions, run `database/personal-dashboard.sql` once with a database administrator account. New databases use `database/schema.sql`. Deploy the PHP routes, scripts, stylesheets, `data/` and `img/schools/` together.
 
 The public directory and dashboard share the 72 existing schools in `data/schools.json`, with sector information in `data/sectors.json`. Keep school IDs stable when updating the catalog: favorites reference those IDs. Signed-in users can save schools in the directory, search/remove them in their dashboard, and update their name, phone and photo. The login email is read-only. Favorites and photos are stored in MySQL per user, so they persist across sessions and devices. No application tracking, deadline or notification placeholders are included.
 
@@ -55,7 +55,9 @@ The GitHub repository has not yet been updated. Commit this prepared copy before
 
 ## Session-aware navigation and shared school cards
 
-`AuthNavigation.js` reads the private `auth-status.php` endpoint. Login/signup appear only for signed-out visitors; Mon espace/logout appear only for signed-in users, including after navigating back from logout. Both the directory and dashboard use `Schools.js` for the same category pictures, school illustrations, filters and expandable detail cards. Removing a saved school updates the dashboard list immediately after the database confirms the change. Official website links are labelled accurately; a Drive label appears only for an actual Drive URL.
+`AuthNavigation.js` reads the private `auth-status.php` endpoint. Login/signup appear only for signed-out visitors; Mon espace/logout appear only for signed-in users, including after navigating back from logout. Both the directory and dashboard use `Schools.js` for campus photographs, filters and expandable detail cards. Removing a saved school updates the dashboard list immediately after the database confirms the change. Official website links are labelled accurately; a Drive label appears only for an actual Drive URL.
+
+School photos are local optimized WebP files, with image paths, descriptive alt text, campus captions and source links in `data/schools.json`. `img/schools/sources.json` records original photo URLs. Programs at the same campus share its photograph. ISPITS, BTS and CPGE identify their representative school in the caption. ERSSM uses a photograph of its officer training because an identifiable campus photograph could not be verified. Failed school images show the institution name instead of substituting an unrelated stock photo. Sector header illustrations remain separate from school photos.
 
 ## Activate password recovery
 

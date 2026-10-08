@@ -16,3 +16,9 @@
 .school-favorite[aria-pressed="true"] i { color: var(--ec-gold); }
 
 .ecole-card .detail-item i, .ecole-card-drive i, .school-favorite[aria-pressed="true"] i { color: var(--primary-switch); }
+/* Keep the photo's campus identifiable, including shared and network entries. */
+.ecole-card-image { margin: 0; position: relative; }
+.ecole-card-image figcaption { position: absolute; left: 10px; right: 10px; bottom: 10px; width: fit-content; max-width: calc(100% - 20px); padding: 5px 9px; border-radius: 7px; background: rgba(5, 22, 59, .82); color: white; font-size: 10px; line-height: 1.5; }
+.ecole-card-image.photo-unavailable { background: var(--gray); }
+.ecole-card-image.photo-unavailable figcaption { bottom: auto; top: 50%; transform: translateY(-50%); }
+.ecole-card[data-school-id="54"] .ecole-card-image img { width: 183%; max-width: none; transform: translateX(-45%); }
