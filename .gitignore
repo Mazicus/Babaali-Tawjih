@@ -1,0 +1,8 @@
+.env
+.env.*
+.vercel/
+.vscode/
+*.pem
+
+.vercel
+.env*

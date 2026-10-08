@@ -1,6 +1,6 @@
 <?php
 
-require_once "config/database.php";
+require_once __DIR__ . '/../config/database.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -24,6 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ':message_TEXT' => $message_TEXT
     ]);
 
-   header('location:index.php');
+   header('location:/index.html');
 }
 ?>
