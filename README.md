@@ -1,66 +1,66 @@
-# Babaali Tawjih on Vercel
+# Babaali Tawjih — Laravel backend
 
-See REPORT-GAPS.md for the prototype scope and differences from the supplied internship report. The user chose to publish this existing prototype with gaps documented.
+The existing website now runs on Laravel 13. Its homepage, login, registration, dashboard, school photographs and shared school renderer are retained. Account authentication, favorites, profile photos, contact submissions, Google OAuth and password recovery use Laravel routes, controllers and Eloquent models.
 
-This copy is prepared for Vercel using the community vercel-php 0.9.0 runtime.
-The prepared database instance is in Tokyo; the function region is set to hnd1. A public ISRG Root X1 CA certificate is bundled under config/ for verified TLS to TiDB. DB_SSL_CA can override it for another provider.
-The homepage is index.html. PHP pages are served through api/index.php.
-Login sessions use MySQL rather than temporary server files.
-Your original XAMPP project has not been modified.
+## Local setup
 
-## Before deploying
+Requires PHP 8.3+ with PDO, mbstring, OpenSSL, cURL and fileinfo, plus Composer. Use pdo_mysql for the hosted database or pdo_sqlite for a local database. PHP 8.0 from the previous XAMPP installation cannot run this application.
 
-1. Create a hosted MySQL database reachable from Vercel. XAMPP on your computer is not an online database.
-2. Run database/schema.sql in the hosted database SQL editor. This initializes a new database; it does not migrate existing users or contact messages.
-3. In Vercel Project Settings > Environment Variables, add DB_HOST, DB_PORT, DB_NAME, DB_USER and DB_PASSWORD from your database provider. If the provider supplies a CA certificate, add its full PEM text as DB_SSL_CA. Never commit credentials to GitHub.
-4. Add variables to Production and Preview if you want both deployments to work. Use a separate database for preview when real users begin using the site.
-5. Replace the repository website files with this folder's contents, including the dotfiles. Remove the old root login.php, inscription.php, Dashboard.php, logout.php and contact.php; those files now live in pages/.
-6. In Vercel, choose Framework Preset Other. Disable old npm Build/Install overrides and any old Output Directory override. The vercel.json configuration sets these for this project.
-7. Commit and push to the connected GitHub repository, then check Vercel's deployment status. Alternatively run `vercel` inside this folder for a preview and `vercel --prod` after verification.
+```powershell
+composer install
+Copy-Item .env.example .env
+php artisan key:generate
+# Set database credentials in .env before the next command.
+php artisan migrate
+php artisan serve
+```
 
-## Verification
+This workspace also has an ignored portable PHP runtime under `.tools/php/` and Composer under `.tools/composer.phar`; they are local conveniences and are not deployed. The current local `.env` uses an isolated SQLite database. For a fresh SQLite setup, create `database/database.sqlite`, set `DB_CONNECTION=sqlite` and `DB_DATABASE` to its absolute path, then migrate.
 
-After deployment, open the homepage, register a test account, log in, refresh the dashboard, log out, and submit a test contact message. Confirm that the message appears in the contact table and a logged-out visitor cannot access the dashboard.
+The web server document root must be `public/`. Frontend files moved there, and templates now live in `resources/views/`. Existing links such as `/index.html`, `/login.php` and `/Dashboard.php` are Laravel routes, not separate executable scripts. Logout uses a protected POST form; a GET to the old logout address returns to the dashboard.
 
-Google login and registration use a shared server-side authorization code flow with PKCE and a ten-minute, single-use session state. Google identity is retrieved from its UserInfo endpoint over verified TLS. Password accounts must sign in first and use **Associer mon compte Google** on the dashboard to link the same email. Google-only accounts receive a random, unknown password hash; no Google passwords or tokens are stored.
+## Database and existing accounts
 
-## Enable Google sign-in
+The adoption migration creates missing tables and adds `users.remember_token` and `users.auth_version`. It preserves existing users, password hashes, favorites, avatar images, Google associations and contact messages. Existing authentication versions are copied when available. Existing sessions and old password-reset links are not imported; users sign in again and request fresh recovery links.
 
-1. Run `database/google-oauth.sql` against the existing database. New databases can use the updated `database/schema.sql` instead.
-2. In Google Cloud Console, configure Google Auth Platform branding, audience and consent for this website. During testing, add the Google accounts that will test sign-in as test users.
-3. Create an OAuth client with application type **Web application**. Add this exact authorized redirect URI: `https://babaali-tawjih.vercel.app/google-callback.php`. A different domain needs its own matching registered URI.
-4. Add `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` and `GOOGLE_REDIRECT_URI` to Vercel environment variables. Set the redirect variable to the exact URI above. Keep the secret out of source control. Redeploy after changing variables.
-5. Enable the PHP cURL extension if using another PHP host. For local testing, register `http://localhost:8000/google-callback.php` and set the redirect variable accordingly. Use a stable registered domain for previews.
-6. Test Google registration, repeat login, consent cancellation, logout, and linking an existing password account. Missing configuration shows a friendly message while email/password authentication remains available.
+Use `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` for the existing hosted setup. Laravel's `DB_DATABASE` and `DB_USERNAME` aliases are also supported. A bundled CA certificate is used for TiDB Cloud; another provider can supply its full CA PEM in `DB_SSL_CA` or a readable certificate path in `MYSQL_ATTR_SSL_CA`.
 
-Google setup reference: [Google OpenID Connect server flow](https://developers.google.com/identity/openid-connect/openid-connect).
+Back up the hosted database before running `php artisan migrate --force` with its credentials. Run migrations once from a trusted PHP environment before serving the new deployment. Do not use `migrate:fresh`, which deletes tables. This adoption migration intentionally cannot be rolled back destructively; restore a verified backup when reverting. Old SQL files are historical references, not the installation procedure for this Laravel version.
 
-## Personal dashboard and saved schools
+## Vercel deployment
 
-Personal storage initializes missing `user_favorites` and `user_avatars` tables automatically on first authenticated use. Existing rows are preserved; connection errors do not trigger migrations. The database account needs CREATE permission for this initialization. If it has restricted permissions, run `database/personal-dashboard.sql` once with a database administrator account. New databases use `database/schema.sql`. Deploy the PHP routes, scripts, stylesheets, `data/` and `img/schools/` together.
+`api/index.php` initializes Laravel through `public/index.php`. The community `vercel-php@0.9.0` runtime installs locked Composer dependencies. Vercel routes expose public assets and send website requests to Laravel, while blocking application source directories. Writable runtime storage uses the temporary directory; sessions and rate limits remain database-backed.
 
-The public directory and dashboard share the 72 existing schools in `data/schools.json`, with sector information in `data/sectors.json`. Keep school IDs stable when updating the catalog: favorites reference those IDs. Signed-in users can save schools in the directory, search/remove them in their dashboard, and update their name, phone and photo. The login email is read-only. Favorites and photos are stored in MySQL per user, so they persist across sessions and devices. No application tracking, deadline or notification placeholders are included.
+Set these project environment variables before deploying:
 
-Photos accept JPEG, PNG or WebP up to 1 MiB and 4096 pixels per side (12 million pixels total). They are stored as database blobs rather than Vercel filesystem uploads; the private avatar route serves only the current user's photo. Initials appear until a photo is saved. PHP requires `fileinfo` and `mbstring` as well as PDO MySQL. Google linking is shown in the dashboard only when its environment variables are configured.
+- `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://babaali-tawjih.vercel.app`.
+- A stable `APP_KEY` generated with `php artisan key:generate --show`; store it privately and keep it unchanged between deployments.
+- Hosted database credentials described above, `DB_CONNECTION=mysql`.
+- `SESSION_DRIVER=database`, `SESSION_TABLE=laravel_sessions`, `SESSION_SECURE_COOKIE=true`.
+- `CACHE_STORE=database`, `DB_CACHE_TABLE=laravel_cache`, `DB_CACHE_LOCK_TABLE=laravel_cache_locks`, `QUEUE_CONNECTION=sync`.
 
-Validation: `php tests/personal.php` uses an ephemeral SQLite database with MySQL upsert syntax translated for the test driver. It checks idempotent saves, isolation between accounts, CSRF validation, profile persistence, photo validation/replacement/removal, and transaction rollback. The live MySQL migration and browser upload flow still need deployment verification: use two accounts, save the same school in each, remove it from one account, update a photo, log out and back in, and confirm the other account's data is unaffected.
+No production deployment or hosted database migration was performed as part of this source migration. Existing production credentials alone do not replace the required new APP_KEY and infrastructure migration.
 
-`node --test tests/dashboard-ui.cjs` checks directory rendering/filtering and the favorite client flow, including signed-out/error states and concurrent saves. `php tests/render-dashboard.php` creates synthetic empty/populated previews under `tests/`; these previews are excluded from deployment. The previews were checked in a browser at desktop and mobile widths, in light and dark themes, including saved-school search.
+## Google connection
 
-No package.json or npm build is needed. Do not publish a static-only copy of the PHP files.
+Create a Google OAuth **Web application** client with the authorized redirect URI `https://babaali-tawjih.vercel.app/google-callback.php`. Configure branding, consent and test users in Google Auth Platform. Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI` in Vercel; the redirect URI must match exactly. For local testing register a corresponding localhost URL.
 
-Status: Published at https://babaali-tawjih.vercel.app/ on 8 October 2026. PHP syntax, homepage assets, registration, login, persistent sessions, logout, contact submission, and blocking of private source paths passed checks. Public homepage, login, and registration pages were checked without Vercel authentication.
+Google login checks session state, uses PKCE, requires a verified email and stores only the Google subject association. Existing password accounts are linked only from an authenticated session with the same email. Missing configuration produces a clear message. Activation and real-account verification still require the Google client.
 
-The GitHub repository has not yet been updated. Commit this prepared copy before making another GitHub-triggered deployment. Otherwise the repository's old version may replace the tested deployment.
+## Password recovery
 
-## Session-aware navigation and shared school cards
+Resend is the configured Laravel mail transport. Set `MAIL_MAILER=resend`, `RESEND_API_KEY` and `RECOVERY_EMAIL_FROM` to a verified sender address, plus the production APP_URL. `MAIL_FROM_ADDRESS` can replace the sender alias. Configure the sender domain in Resend before testing delivery.
 
-`AuthNavigation.js` reads the private `auth-status.php` endpoint. Login/signup appear only for signed-out visitors; Mon espace/logout appear only for signed-in users, including after navigating back from logout. Both the directory and dashboard use `Schools.js` for campus photographs, filters and expandable detail cards. Removing a saved school updates the dashboard list immediately after the database confirms the change. Official website links are labelled accurately; a Drive label appears only for an actual Drive URL.
+Reset tokens expire after 30 minutes and are consumed after a successful reset. Public recovery responses do not reveal whether an account exists. Resetting rotates the remembered-login token and account session version. Live delivery has not been verified without provider credentials.
 
-School photos are local optimized WebP files, with image paths, descriptive alt text, campus captions and source links in `data/schools.json`. `img/schools/sources.json` records original photo URLs. Programs at the same campus share its photograph. ISPITS, BTS and CPGE identify their representative school in the caption. ERSSM uses a photograph of its officer training because an identifiable campus photograph could not be verified. Failed school images show the institution name instead of substituting an unrelated stock photo. Sector header illustrations remain separate from school photos.
+## Checks and rapport
 
-## Activate password recovery
+```powershell
+php artisan test
+node --test tests/dashboard-ui.cjs tests/navigation.cjs
+composer validate --no-check-publish
+```
 
-Run `database/password-recovery.sql` once in the hosted database. Add `RESEND_API_KEY`, `RECOVERY_EMAIL_FROM` (a sender on a verified Resend domain) and `SITE_URL=https://babaali-tawjih.vercel.app` in Vercel, then redeploy. The integration follows [Resend's send-email API](https://resend.com/docs/api-reference/emails/send-email). The application never logs raw reset tokens or provider keys.
+Tests cover legacy password compatibility, registration, account-isolated favorites, private avatar uploads, password resets, native email notifications, Google state/PKCE/linking, CSRF, contact submission and data-preserving migration. Provider calls and email notifications are mocked; tests use an isolated SQLite database. Hosted MySQL and real provider integration need deployment checks.
 
-Reset links expire after 30 minutes and can be used once. Only token hashes are stored. Reset requests are throttled by email and client IP; known and unknown email addresses receive the same response. Successful resets invalidate previous authenticated sessions for that account. The reset URL is cleared from the browser address before showing the password form. Without the email configuration or migration, recovery displays an availability message; live delivery must be checked with the configured provider.
+See `RAPPORT-LARAVEL.md` for the French report updates and `REPORT-GAPS.md` for remaining scope limits. The original Word report has not been edited. The old standalone PHP files remain only in an ignored local `legacy/` directory; active code does not load them.

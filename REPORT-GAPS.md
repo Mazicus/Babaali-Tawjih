@@ -1,36 +1,15 @@
-# Prototype scope compared with the internship report
+# Implemented scope and remaining report gaps
 
-Reference: RAPPORT_STAGE_IAGI_PROTOTYPE.docx, supplied by the user on 8 October 2026. The report was read, including the class, conceptual data and logical data diagrams. The user chose to publish the existing prototype and document gaps rather than implement all proposed features.
+The backend now uses Laravel 13, Blade views, Eloquent models, native authentication, database sessions, CSRF protection and additive migrations. Existing page layouts and public `.php` addresses are preserved. The standalone PHP implementation is no longer active.
 
-## Existing prototype
+Implemented: registration and password login, per-account school favorites, editable name and phone, uploaded profile photos with initials fallback, private photo retrieval, contact submission, Google OAuth with PKCE and explicit account linking, Resend-backed password recovery and invalidation of older sessions after a reset.
 
-The website retains the original homepage, services, process, school search, contact section, registration and login pages. The personal dashboard has been rebuilt around saved schools and editable profile information. Registration stores a full name, email, phone and hashed password. Login creates an authenticated session. Contact submissions are stored in a database.
+The catalogue remains in shared JSON files, with real institution photographs and source metadata. Administration of schools, training programmes and users, application tracking, calendars, personalised follow-up and notifications remain outside the implemented scope.
 
-These flows were verified on Vercel: account registration, password login, authenticated dashboard refresh, logout, and contact submission. Homepage assets and blocked private source paths were also checked. The public production link is https://babaali-tawjih.vercel.app/ and works without a Vercel account.
+The historical users and contact columns are preserved for compatibility. Laravel adds technical session, cache and reset-token tables. These technical tables are not new business entities for the report's conceptual model. Existing account data is retained by the adoption migration; prior sessions and old reset links require a fresh login or recovery request.
 
-## Features described in the report that are incomplete
+The Laravel migration was verified locally using an isolated SQLite database and automated PHP/JavaScript tests. Previously recorded production checks concerned the earlier PHP deployment and do not verify the Laravel version. Production deployment, hosted MySQL migration, real Google sign-in and actual email delivery still require configuration and verification.
 
-- Administration of establishments, courses and users has no implemented administration interface or role system.
-- The report diagrams contain ECOLE, FORMATION and CANDIDATURE entities. The school catalogue is shared through JSON files; courses and applications are not persisted in those proposed tables.
-- Google registration and login now have an OAuth implementation. Activation requires a Google Cloud web client, Vercel environment variables, the Google account database migration, and a redeployment; live Google sign-in has not yet been verified.
-- Password recovery now has expiring, single-use tokens and a Resend delivery adapter. Activation requires the recovery migration, a Resend API key and verified sender; live email delivery has not been verified.
-- Favorites and profile edits now have per-account persistence in MySQL, including private profile photos. Activation requires the personal-dashboard database migration and deployment. Application tracking and calendars are omitted; displayed school and city counts are calculated from the user's actual favorites.
-- Personalised follow-up and notifications mentioned in the registration description are not implemented.
+Vercel uses a community PHP runtime; TiDB Cloud is MySQL-compatible hosting rather than the local MySQL server described in the original XAMPP setup. Laravel requires PHP 8.3+, so PHP 8.0 cannot remain the application runtime.
 
-## Differences in the implemented data model
-
-The prototype's `users` table implements the report's UTILISATEUR concept using different field names: `id` maps to `id_user`, `full_name` to `nom`, `adress_email` to `email`, and `mot_de_passe` to `mot_de_passe`. The additional `phonenumber` field matches the registration form shown in the report.
-
-The prototype's `contact` table uses `id`, `full_name`, `adresse_email` and `message_TEXT`; the report's CONTACT entity uses `id_contact`, `nom`, `email`, `message` and `date`. The current prototype does not record the date or an association with a logged-in user. The report itself differs between the class diagram (free contact form) and MCD (contact associated with a user). The existing public contact form is retained.
-
-`site_sessions` is deployment infrastructure for persistent sessions on Vercel; it is not a business entity from the report.
-
-## Hosting details
-
-The original report describes PHP and MySQL developed locally using XAMPP. XAMPP remains a local development tool. The proposed hosted copy runs PHP through the community `vercel-php` runtime and stores data in TiDB Cloud, a MySQL-compatible database. TiDB is not the MySQL server product described in the report; this hosting difference must be stated accurately in any deployment section added to the report.
-
-The TiDB Starter instance and three prototype tables were created. Its monthly spending limit was set to $0. No existing local users or messages were migrated. Verification created one synthetic test account and one test contact message, labelled "Verification de deploiement", using an example.invalid email address. The prototype was deployed and promoted to the public domain on 8 October 2026.
-
-The deployment was made directly from the prepared files. The GitHub repository was not updated: the Git client could not access the private repository from this environment. Future GitHub-triggered deployments can replace this version until the prepared files are committed to the repository.
-
-Do not describe the conceptual diagrams, prototype screens or future enhancements as proof that these missing features are functional.
+`RAPPORT-LARAVEL.md` contains French replacement material and the sections to revise. The original `RAPPORT_STAGE_IAGI_PROTOTYPE.docx` was referenced in earlier work but is not available in this workspace and was not modified here.

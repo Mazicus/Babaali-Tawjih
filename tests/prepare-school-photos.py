@@ -1,7 +1,7 @@
 from pathlib import Path
 from PIL import Image, ImageOps, ImageDraw
 
-folder = Path('img/schools')
+folder = Path('public/img/schools')
 tiles = []
 for source in sorted(folder.glob('*.original'), key=lambda p: int(p.stem)):
     try:

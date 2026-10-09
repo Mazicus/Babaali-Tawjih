@@ -2,8 +2,11 @@
 .vscode/
 .env
 .env.*
-database/
-README.md
-REPORT-GAPS.md
+.tools/
+legacy/
 tests/
-img/schools/*.original
+*.md
+database/*.sql
+database/*.sqlite*
+public/img/schools/*.original
+storage/logs/*

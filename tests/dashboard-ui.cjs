@@ -3,19 +3,19 @@ const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const tick = () => new Promise(setImmediate);
-const html = fs.readFileSync('index.html', 'utf8');
-const schools = JSON.parse(fs.readFileSync('data/schools.json', 'utf8'));
-const sectors = JSON.parse(fs.readFileSync('data/sectors.json', 'utf8'));
+const html = fs.readFileSync('resources/views/home.blade.php', 'utf8');
+const schools = JSON.parse(fs.readFileSync('public/data/schools.json', 'utf8'));
+const sectors = JSON.parse(fs.readFileSync('public/data/sectors.json', 'utf8'));
 
 test('every school has a local institution photo, descriptive caption and source', () => {
     for (const school of schools) {
         assert(school.image.startsWith('/img/'), school.name);
-        assert(fs.existsSync('.' + school.image), `Missing campus photo: ${school.name}`);
+        assert(fs.existsSync('public' + school.image), `Missing campus photo: ${school.name}`);
         assert(school.imageAlt.includes(school.imageCaption) || school.id === 54, school.name);
         assert(school.imageCaption.length > 3, school.name);
         assert(school.imageSource.startsWith('https://') || school.imageSource.startsWith('http://'), school.name);
     }
-    assert(!fs.readFileSync('Schools.js', 'utf8').includes('unsplash.com'));
+    assert(!fs.readFileSync('public/Schools.js', 'utf8').includes('unsplash.com'));
 });
 
 test('public directory renders the shared catalog and favorites after filtering', async () => {
@@ -25,7 +25,7 @@ test('public directory renders the shared catalog and favorites after filtering'
         return elements.get(id);
     };
     let refreshes = 0;
-    await vm.runInNewContext(fs.readFileSync('Schools.js', 'utf8'), {
+    await vm.runInNewContext(fs.readFileSync('public/Schools.js', 'utf8'), {
         document: { getElementById: id => id === 'saved-school-data' ? null : get(id), querySelector: () => null, querySelectorAll: () => [], addEventListener() {} },
         fetch: async url => ({ ok: true, json: async () => url.includes('sectors') ? sectors : schools }),
         window: { schoolFavorites: { refresh: () => refreshes++ }, addEventListener() {} },
@@ -49,7 +49,7 @@ test('dashboard renders only saved schools and removes a card after a confirmed 
         return elements.get(id);
     };
     let changed;
-    await vm.runInNewContext(fs.readFileSync('Schools.js', 'utf8'), {
+    await vm.runInNewContext(fs.readFileSync('public/Schools.js', 'utf8'), {
         document: { getElementById: get, querySelector: () => null, querySelectorAll: () => [], addEventListener() {} },
         fetch: async url => ({ ok: true, json: async () => url.includes('sectors') ? sectors : schools }),
         window: { schoolFavorites: { refresh() {} }, addEventListener: (event, fn) => { changed = fn; } },
@@ -73,7 +73,7 @@ function favoritesUI(fetch) {
     }));
     const area = { children: [], replaceChildren(...children) { this.children = children; }, append(child) { this.children.push(child); } };
     let onClick;
-    vm.runInNewContext(fs.readFileSync('Favorites.js', 'utf8'), {
+    vm.runInNewContext(fs.readFileSync('public/Favorites.js', 'utf8'), {
         URLSearchParams,
         document: {
             querySelectorAll: () => buttons, getElementById: () => area,
@@ -91,7 +91,7 @@ test('favorite save/remove updates button state only after successful persistenc
     const ui = favoritesUI(async (url, options) => {
         if (!options.method) return response([1]);
         actions.push(options.body.get('action'));
-        assert.equal(options.body.get('csrf'), 'token');
+        assert.equal(options.body.get('_token'), 'token');
         return response(options.body.get('action') === 'save' ? [1, 2] : [2]);
     });
     await tick();
@@ -143,7 +143,7 @@ test('failed persistence leaves the favorite unsaved and shows the server error'
 test('account navigation shows only actions matching the current session', async () => {
     for (const authenticated of [false, true]) {
         const elements = ['guest', 'member', 'guest'].map(auth => ({ dataset: { auth }, hidden: true }));
-        vm.runInNewContext(fs.readFileSync('AuthNavigation.js', 'utf8'), {
+        vm.runInNewContext(fs.readFileSync('public/AuthNavigation.js', 'utf8'), {
             document: { querySelectorAll: () => elements }, window: { addEventListener() {} },
             fetch: async () => ({ ok: true, json: async () => ({ authenticated }) }),
         });

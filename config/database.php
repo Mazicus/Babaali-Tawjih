@@ -1,47 +1,26 @@
 <?php
-declare(strict_types=1);
-
-function siteDatabase(): PDO
-{
-    static $connection;
-    if ($connection instanceof PDO) {
-        return $connection;
+$options = [PDO::ATTR_TIMEOUT => 10];
+if (extension_loaded('pdo_mysql')) {
+    $ca = env('MYSQL_ATTR_SSL_CA');
+    if (!$ca && env('DB_SSL_CA')) {
+        $ca = sys_get_temp_dir().'/babaali-ca-'.hash('sha256', env('DB_SSL_CA')).'.pem';
+        if (!is_file($ca)) { file_put_contents($ca, env('DB_SSL_CA')); }
     }
-    $host = getenv('DB_HOST');
-    $name = getenv('DB_NAME');
-    $user = getenv('DB_USER');
-    if (!$host || !$name || !$user) {
-        throw new RuntimeException('Set DB_HOST, DB_NAME, DB_USER and DB_PASSWORD in Vercel.');
+    $ca ??= str_contains((string) env('DB_HOST'), 'tidbcloud.com') && is_file(__DIR__.'/tidb-ca.crt') ? __DIR__.'/tidb-ca.crt' : null;
+    if ($ca) {
+        $options[defined('Pdo\\Mysql::ATTR_SSL_CA') ? constant('Pdo\\Mysql::ATTR_SSL_CA') : PDO::MYSQL_ATTR_SSL_CA] = $ca;
+        $options[defined('Pdo\\Mysql::ATTR_SSL_VERIFY_SERVER_CERT') ? constant('Pdo\\Mysql::ATTR_SSL_VERIFY_SERVER_CERT') : PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
     }
-    $port = getenv('DB_PORT') ?: '3306';
-    if (!ctype_digit($port) || preg_match('/[;\r\n]/', $host . $name)) {
-        throw new RuntimeException('Invalid database configuration.');
-    }
-    $options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-        PDO::ATTR_TIMEOUT => 10,
-    ];
-    $certificate = getenv('DB_SSL_CA');
-    if ($certificate) {
-        $caPath = sys_get_temp_dir() . '/babaali-mysql-ca-' . hash('sha256', $certificate) . '.pem';
-        if (!is_file($caPath)) {
-            file_put_contents($caPath, $certificate);
-        }
-        $options[PDO::MYSQL_ATTR_SSL_CA] = $caPath;
-        $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
-    } elseif (is_file(__DIR__ . '/tidb-ca.crt')) {
-        $options[PDO::MYSQL_ATTR_SSL_CA] = __DIR__ . '/tidb-ca.crt';
-        $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
-    }
-    $connection = new PDO(
-        "mysql:host=$host;port=$port;dbname=$name;charset=utf8mb4",
-        $user,
-        getenv('DB_PASSWORD') ?: '',
-        $options
-    );
-    return $connection;
 }
-
-$pdo = siteDatabase();
+return [
+    'default' => env('DB_CONNECTION', 'mysql'),
+    'connections' => [
+        'mysql' => ['driver'=>'mysql','url'=>env('DB_URL'),'host'=>env('DB_HOST','127.0.0.1'),'port'=>env('DB_PORT','3306'),
+            'database'=>env('DB_DATABASE',env('DB_NAME','babaali')),'username'=>env('DB_USERNAME',env('DB_USER','root')),
+            'password'=>env('DB_PASSWORD',''),'unix_socket'=>'','charset'=>'utf8mb4','collation'=>'utf8mb4_unicode_ci',
+            'prefix'=>'','prefix_indexes'=>true,'strict'=>true,'engine'=>null,'options'=>$options],
+        'sqlite' => ['driver'=>'sqlite','url'=>env('DB_URL'),'database'=>env('DB_DATABASE',database_path('database.sqlite')),
+            'prefix'=>'','foreign_key_constraints'=>true,'busy_timeout'=>5000],
+    ],
+    'migrations' => ['table'=>'migrations','update_date_on_publish'=>true],
+];
