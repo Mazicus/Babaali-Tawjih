@@ -1410,6 +1410,7 @@ footer h3 { color: var(--secondary); }
 /* Color background layer (hidden by default, appears on hover) */
 .section-header::after {
     content: '';
+    border-radius: inherit;
     position: absolute;
     top: 0;
     left: 0;
@@ -1510,8 +1511,7 @@ footer h3 { color: var(--secondary); }
     transition: transform 0.3s ease;
 }
 
-.section-toggle:hover,
-.section-toggle:focus-visible {
+.section-toggle[aria-expanded="true"] {
     background: var(--ec-navy);
     border-color: var(--ec-navy);
     color: #fff;
@@ -1522,24 +1522,23 @@ footer h3 { color: var(--secondary); }
     outline-offset: 2px;
 }
 
-.ecole-subsection.section-secondary .section-toggle:hover,
-.ecole-subsection.section-secondary .section-toggle:focus-visible {
+.ecole-subsection.section-secondary .section-toggle[aria-expanded="true"] {
     background: var(--ec-gold);
     border-color: var(--ec-gold);
     color: var(--ec-navy-deep);
 }
 
-/* Rotate the chevron when the section is collapsed */
-.section-toggle[aria-expanded="false"] i {
+/* Point the chevron upward when the section is expanded. */
+.section-toggle[aria-expanded="true"] i {
     transform: rotate(-180deg);
 }
 
-.ecole-subsection.is-collapsed .section-toggle {
+.ecole-subsection:not(.is-collapsed) .section-toggle {
     background: var(--ec-navy);
     color: #fff;
 }
 
-.ecole-subsection.section-secondary.is-collapsed .section-toggle {
+.ecole-subsection.section-secondary:not(.is-collapsed) .section-toggle {
     background: var(--ec-gold);
     color: var(--ec-navy-deep);
 }
@@ -1753,26 +1752,24 @@ footer h3 { color: var(--secondary); }
     color: var(--ec-gold-light);
 }
 
-.darkmode .section-toggle:hover,
-.darkmode .section-toggle:focus-visible {
+.darkmode .section-toggle[aria-expanded="true"] {
     background: var(--ec-navy-soft);
     border-color: var(--ec-navy-soft);
     color: #fff;
 }
 
-.darkmode .ecole-subsection.section-secondary .section-toggle:hover,
-.darkmode .ecole-subsection.section-secondary .section-toggle:focus-visible {
+.darkmode .ecole-subsection.section-secondary .section-toggle[aria-expanded="true"] {
     background: var(--ec-gold);
     border-color: var(--ec-gold);
     color: var(--ec-navy-deep);
 }
 
-.darkmode .ecole-subsection.is-collapsed .section-toggle {
+.darkmode .ecole-subsection:not(.is-collapsed) .section-toggle {
     background: var(--ec-navy-soft);
     color: #fff;
 }
 
-.darkmode .ecole-subsection.section-secondary.is-collapsed .section-toggle {
+.darkmode .ecole-subsection.section-secondary:not(.is-collapsed) .section-toggle {
     background: var(--ec-gold);
     color: var(--ec-navy-deep);
 }

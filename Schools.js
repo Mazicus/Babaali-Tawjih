@@ -50,7 +50,7 @@
                     const sectionClass = isPrimary ? 'section-primary' : 'section-secondary';
 
                     html += `
-                        <div class="ecole-subsection ${sectionClass}" data-sector-key="${key}">
+                        <div class="ecole-subsection ${sectionClass} is-collapsed" data-sector-key="${key}">
                             <div class="section-header">
                                 <div class="section-header-content">
                                     <div class="section-icon">
@@ -61,14 +61,14 @@
                                         <span class="section-count">${items.length} établissements</span>
                                     </div>
                                 </div>
-                                <button type="button" class="section-toggle" aria-expanded="true" aria-controls="ecole-collapse-${key}" aria-label="Réduire la section ${config.label}">
+                                <button type="button" class="section-toggle" aria-expanded="false" aria-controls="ecole-collapse-${key}" data-section-label="${escapeAttribute(config.label)}" aria-label="Développer la section ${config.label}">
                                     <i class="fas fa-chevron-down" aria-hidden="true"></i>
                                 </button>
                                 <div class="section-image" aria-hidden="true">
                                     <img src="${config.image}" data-fallback="/img/Graduate.png" alt="" loading="lazy">
                                 </div>
                             </div>
-                            <div class="ecole-section-collapse" id="ecole-collapse-${key}">
+                            <div class="ecole-section-collapse" id="ecole-collapse-${key}" aria-hidden="true" inert>
                                 <div class="ecole-section-collapse-inner">
                                     <hr class="section-divider">
                                     <div class="ecole-section">
@@ -77,7 +77,7 @@
                                         const sectorLabel = sectorConfig[ecole.sector]?.label || ecole.sector;
                                         const sectorShort = sectorLabel.split(' ')[0].replaceAll(",", "");
                                         const typeLabel = ecole.type === 'public' ? 'Public' : 'Privé';
-                                        const hasDrive = Boolean(ecole.drive);
+                                        const documentsLink = `https://wa.me/212700059552?text=${encodeURIComponent('Bonjour, je souhaite recevoir les documents pour ' + ecole.name + '.')}`;
                                         return `
                                         <article class="ecole-card" data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
                                             <figure class="ecole-card-image"><img src="${escapeAttribute(ecole.image)}" alt="${escapeAttribute(ecole.imageAlt)}" loading="lazy" decoding="async" width="1200" height="800"><figcaption>${escapeAttribute(ecole.imageCaption)}</figcaption></figure>
@@ -134,10 +134,10 @@
                                                 </div>
                                             </div>
                                             <button type="button" class="school-favorite" data-school-id="${ecole.id}" aria-pressed="false" aria-label="Enregistrer ${ecole.name}" disabled><i class="far fa-heart" aria-hidden="true"></i><span>Enregistrer</span></button>
-                                            ${hasDrive ? `<a href="${escapeAttribute(ecole.drive)}" target="_blank" rel="noopener noreferrer" class="ecole-card-drive" aria-label="Documents Drive - ${escapeAttribute(ecole.name)}">` : '<span class="ecole-card-drive" aria-disabled="true">'}
+                                            <a href="${escapeAttribute(documentsLink)}" target="_blank" rel="noopener noreferrer" class="ecole-card-drive" aria-label="Demander les documents sur WhatsApp - ${escapeAttribute(ecole.name)}">
                                                 <i class="fa-brands fa-google-drive" aria-hidden="true"></i>
-                                                <span>${hasDrive ? 'Documents sur Drive' : 'Documents Drive indisponibles'}</span>
-                                            ${hasDrive ? '</a>' : '</span>'}
+                                                <span>Demander les documents</span>
+                                            </a>
                                         </article>
                                     `;
                                     }).join('')}
@@ -257,6 +257,10 @@
                     if (!subsection) return;
                     const isCollapsed = subsection.classList.toggle('is-collapsed');
                     sectionToggle.setAttribute('aria-expanded', String(!isCollapsed));
+                    sectionToggle.setAttribute('aria-label', `${isCollapsed ? 'Développer' : 'Réduire'} la section ${sectionToggle.dataset.sectionLabel}`);
+                    const sectionPanel = subsection.querySelector('.ecole-section-collapse');
+                    sectionPanel.inert = isCollapsed;
+                    sectionPanel.setAttribute('aria-hidden', String(isCollapsed));
                     return;
                 }
 

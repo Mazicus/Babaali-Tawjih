@@ -105,7 +105,7 @@ try { googleConfiguration(); $googleConfigured = true; } catch (RuntimeException
     <aside class="workspace-sidebar">
         <p class="sidebar-label">MON ORIENTATION</p>
         <nav aria-label="Navigation personnelle"><a class="sidebar-active" href="#favorites"><i class="far fa-heart" aria-hidden="true"></i> Mes écoles <span class="favorites-count"><?php echo $favoritesAvailable ? count($favorites) : '—'; ?></span></a><a href="#profile"> Mon profil</a><a href="/index.html#ecoles"> Explorer les écoles</a></nav>
-        <div class="sidebar-help"><h2>Un choix à clarifier ?</h2><p>Notre équipe vous aide à trouver votre direction.</p><a href="/index.html#contact">Contacter un conseiller <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+        <div class="sidebar-help"><h2>Un choix à clarifier ?</h2><p>Notre équipe vous aide à trouver votre direction.</p><a href="https://wa.me/212700059552" target="_blank" rel="noopener noreferrer">Contacter un conseiller <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
         <a class="sidebar-logout" href="/logout.php"><i class="fas fa-arrow-right-from-bracket" aria-hidden="true"></i> Se déconnecter</a>
         <p class="sidebar-signature" lang="ar" dir="rtl">نوجهوك للطريق الصحيح</p>
     </aside>
