@@ -227,7 +227,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, .photo-picker:focus-
 
 .workspace-sidebar nav .sidebar-active {
     color: var(--primary);
-    background: var(--light-blue-bg);
+    background: var(--ec-surface-sunken);
     font-weight: 600;
 }
 

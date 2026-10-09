@@ -70,7 +70,6 @@
                             </div>
                             <div class="ecole-section-collapse" id="ecole-collapse-${key}" aria-hidden="true" inert>
                                 <div class="ecole-section-collapse-inner">
-                                    <hr class="section-divider">
                                     <div class="ecole-section">
                                         <div class="section-grid">
                                             ${items.map(ecole => {
