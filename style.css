@@ -129,7 +129,12 @@ body {
     transition: transform 0.3s ease;
 }
 .login:hover {
-    transform: scale(1.1);
+    transform: translateY(-1px);
+}
+.login:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 5px;
+    border-radius: 4px;
 }
 .login:active {
     transform: scale(.99);
@@ -140,7 +145,7 @@ body {
     flex-shrink: 0;
 }
 .login svg path {
-    stroke: var(--primary);
+    stroke: currentColor;
 }
 .btn-inscr {
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-dark));
@@ -896,7 +901,7 @@ footer h3 { color: var(--secondary); }
         color: var(--accent-blue);
     }
 
-    .mobile-login .login svg { display: none; }
+    .mobile-login .login svg { display: block; width: 20px; height: 20px; }
 
     .mobile-login .btn-inscr {
         width: 100%;
@@ -2151,7 +2156,9 @@ footer h3 { color: var(--secondary); }
         color: var(--accent-blue);
     }
     .mobile-login .login svg {
-        display: none;
+        display: block;
+        width: 20px;
+        height: 20px;
     }
     .mobile-login .btn-inscr {
         width: 100%;

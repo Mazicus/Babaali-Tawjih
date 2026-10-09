@@ -192,7 +192,7 @@ try { googleConfiguration(); $googleConfigured = true; } catch (RuntimeException
                 <?php if ($googleConfigured): ?><div class="profile-google"><i class="fab fa-google" aria-hidden="true"></i><div><h3>Connexion Google</h3><p>Associez Google pour vos prochaines visites.</p><a href="/google-oauth.php">Associer mon compte <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div></div><?php endif; ?>
             </section>
         </div>
-        <footer class="workspace-footer"><span>© <?php echo date('Y'); ?> BABAALI TAWJIH</span><a href="/index.html#contact">Besoin d’aide ?</a></footer>
+        <footer class="workspace-footer"><span>© <?php echo date('Y'); ?> BABAALI TAWJIH</span><a href="https://wa.me/212700059552">Besoin d’aide ?</a></footer>
     </main>
 </div>
 </body>
