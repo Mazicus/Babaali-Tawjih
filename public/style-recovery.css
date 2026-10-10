@@ -1,0 +1,41 @@
+/* Recovery uses the same card, logo, fields and theme styles as login. */
+.recovery-copy {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+.recovery-alert {
+  margin: 0 0 20px;
+  background: var(--gray);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.recovery-label {
+  display: block;
+  color: var(--text-gray);
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.recovery-links {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  text-align: center;
+}
+
+.recovery-links a {
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.recovery-links a:hover {
+  text-decoration: underline;
+}
