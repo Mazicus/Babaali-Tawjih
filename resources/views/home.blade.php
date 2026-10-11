@@ -12,6 +12,7 @@
         <script src="./DarkMode.js" defer></script>
         <script src="/AuthNavigation.js" defer></script>
         <script src="/Favorites.js" defer></script>
+        <script src="/SectionReveals.js" defer></script>
         <script src="/Schools.js" defer></script>
         <link rel="stylesheet" href="/favorites.css">
     </head>

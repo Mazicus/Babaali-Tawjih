@@ -281,6 +281,7 @@ body {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .btn {
@@ -2541,3 +2542,67 @@ footer h3 { color: var(--secondary); }
 }
 form.login { margin: 0; }
 form.login button { background: transparent; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 0; }
+
+/* Author display rules must respect the account state and responsive menu. */
+[data-auth][hidden] { display: none !important; }
+
+.header .login,
+.header .btn-inscr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    scale: 1;
+    transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+}
+
+.header .login {
+    color: var(--primary);
+    border: 1px solid var(--border-gray);
+    background: var(--light);
+    gap: 8px;
+}
+
+.header .login:hover { background: var(--gray); }
+.header .btn-inscr:hover { scale: 1; transform: translateY(-1px); }
+.header .login:focus-visible,
+.header .btn-inscr:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .header .login, .header .btn-inscr { padding: 8px 12px; font-size: 12px; }
+}
+
+@media (max-width: 991px) {
+    .header .mobile-login .login,
+    .header .mobile-login .btn-inscr { width: 100%; }
+}
+
+/* A short, one-time reveal; no scroll handlers or persistent blur layers. */
+.section-reveal {
+    transition: opacity 0.22s ease-out, filter 0.22s ease-out, transform 0.22s ease-out;
+}
+
+.section-reveal.reveal-pending {
+    opacity: 0.65;
+    filter: blur(2px);
+    transform: translateY(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section-reveal, .section-reveal.reveal-pending {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        transition: none;
+    }
+    .ecole-section-collapse { transition: none; }
+}

@@ -154,6 +154,7 @@
                 }
                 container.innerHTML = html;
                 window.schoolFavorites?.refresh();
+                window.sectionReveals?.observe(container);
             }
 
             // Filter
@@ -249,17 +250,29 @@
             });
 
             // Ecole card - progressive disclosure (expand/collapse)
+            function setSectionExpanded(subsection, expanded) {
+                subsection.classList.toggle('is-collapsed', !expanded);
+                const button = subsection.querySelector('.section-toggle');
+                button.setAttribute('aria-expanded', String(expanded));
+                button.setAttribute('aria-label', `${expanded ? 'Réduire' : 'Développer'} la section ${button.dataset.sectionLabel}`);
+                const panel = subsection.querySelector('.ecole-section-collapse');
+                panel.inert = !expanded;
+                panel.setAttribute('aria-hidden', String(!expanded));
+            }
+
+            directory.addEventListener('pointerover', function (event) {
+                if (event.pointerType !== 'mouse' || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+                const header = event.target.closest('.section-header');
+                if (!header || header.contains(event.relatedTarget)) return;
+                setSectionExpanded(header.closest('.ecole-subsection'), true);
+            });
+
             document.getElementById('ecolesSections')?.addEventListener('click', function (e) {
                 const sectionToggle = e.target.closest('.section-toggle');
                 if (sectionToggle) {
                     const subsection = sectionToggle.closest('.ecole-subsection');
                     if (!subsection) return;
-                    const isCollapsed = subsection.classList.toggle('is-collapsed');
-                    sectionToggle.setAttribute('aria-expanded', String(!isCollapsed));
-                    sectionToggle.setAttribute('aria-label', `${isCollapsed ? 'Développer' : 'Réduire'} la section ${sectionToggle.dataset.sectionLabel}`);
-                    const sectionPanel = subsection.querySelector('.ecole-section-collapse');
-                    sectionPanel.inert = isCollapsed;
-                    sectionPanel.setAttribute('aria-hidden', String(isCollapsed));
+                    setSectionExpanded(subsection, subsection.classList.contains('is-collapsed'));
                     return;
                 }
 
