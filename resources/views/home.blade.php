@@ -6,7 +6,9 @@
         <title>BABAALI TAWJIH | Orientation et Accompagnement Académique</title>
         <link rel="icon" href="./img/BABA_ALI_TAWJIH2.png" style="height: max-content; width:max-content">
         <meta name="description" content="Expertise en orientation et accompagnement stratégique vers les grandes écoles, instituts et universités au Maroc.">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="./style.css">
         <script src="./DarkMode.js" defer></script>
@@ -81,7 +83,7 @@
             <div class="hero-content">
                 <h1>
                     BABAALI TAWJIH<br>
-                    <span>نوجهوك للطريق الصحيح</span>
+                    <span lang="ar" dir="rtl">نوجهوك للطريق الصحيح</span>
                 </h1>
                 <p>
                     Expertise en orientation et accompagnement stratégique vers les grandes écoles,
@@ -298,7 +300,7 @@
         <footer>
             <h3>BABAALI TAWJIH</h3>
             <p>Choisir aujourd'hui, réussir demain.</p>
-            <p>نوجهوك للطريق الصحيح</p>
+            <p lang="ar" dir="rtl">نوجهوك للطريق الصحيح</p>
             <br>
             <div class="social-media">
                 <a target="_blank" rel="noopener noreferrer" aria-label="Facebook" href="https://www.facebook.com/profile.php?id=61565968660252">

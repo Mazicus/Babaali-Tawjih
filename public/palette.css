@@ -1,3 +1,9 @@
+:lang(ar) {
+    font-family: 'Tajawal', 'Segoe UI', sans-serif;
+    letter-spacing: normal;
+    line-height: 1.6;
+}
+
 :root{
 --primary:#082a7a;
 --secondary:#ffc400;
