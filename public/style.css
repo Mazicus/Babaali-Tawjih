@@ -314,23 +314,24 @@ body {
     position: relative;
     width: 100%;
     max-width: 560px;
-    margin: 0 auto;
+    margin: 0 auto -60px;
+    align-self: stretch;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 }
 
-/* FIXED: Image positioned on top of SVG */
+/* Anchor the cutout to the hero boundary so its crop edge is hidden. */
 .hero-image img {
-    position: absolute;
+    position: relative;
     z-index: 2;
     width: 130%;
     max-width: 660px;
     height: auto;
     object-fit: contain;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -45%);
+    display: block;
+    flex-shrink: 0;
+    border-radius: 0;
 }
 
 /* FIXED: SVG as background with inversion */
@@ -339,7 +340,8 @@ body {
     display: block;
     width: 100%;
     height: auto;
-    position: relative;
+    position: absolute;
+    bottom: 0;
     z-index: 1;
     /* Invert the SVG colors */
     filter: invert(1) brightness(0.9);
@@ -715,13 +717,23 @@ footer h3 { color: var(--secondary); }
 }
 
 .social-media a {
-    display: inline-block;
-    transition: transform 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s, background 0.3s;
 }
 
 .social-media a:hover { transform: scale(1.1); }
 
-.social-media svg { fill: #fff; }
+.social-media svg { width: 24px; height: 24px; fill: currentColor; }
+.social-media a:hover { background: rgba(255, 255, 255, 0.12); }
+.social-media a:focus-visible { outline: 3px solid var(--secondary); outline-offset: 4px; }
 
 /* ==========================================================================
    10. WHATSAPP FLOATING BUTTON
@@ -923,10 +935,10 @@ footer h3 { color: var(--secondary); }
     .hero h1 { font-size: 38px; }
 
     .hero-image img {
-        transform: translate(-205px, -195px);
+        transform: none;
         width: 100%;
         max-width: 500px;
-        border-radius: 40px;
+        border-radius: 0;
     }
 
     .btns { justify-content: center; }
@@ -1375,6 +1387,7 @@ footer h3 { color: var(--secondary); }
 
 /* Section header */
 .section-header {
+    background: var(--ec-surface);
     position: relative;
     display: flex;
     flex-wrap: nowrap;
@@ -1406,7 +1419,7 @@ footer h3 { color: var(--secondary); }
     background-color: var(--ec-surface);
     background-blend-mode: luminosity;
     border-radius: var(--ec-radius-lg);
-    opacity: 1;
+    opacity: 0.18;
     transition: opacity 1s ease;
     z-index: 0;
     pointer-events: none;
@@ -1583,7 +1596,7 @@ footer h3 { color: var(--secondary); }
 
 /* On hover: fade in the color background */
 .ecole-subsection:hover .section-header::after {
-    opacity: 1;
+    opacity: 0.22;
 }
 
 /* Optional: If you want the section header border to change on hover */
@@ -2357,7 +2370,7 @@ footer h3 { color: var(--secondary); }
 
     .ecole-subsection { gap: 18px; }
 
-    .section-title-wrapper h3 {font-size: .9rem;color: var(--ec-navy-deep);}
+    .section-title-wrapper h3 {font-size: .9rem;color: var(--ec-text);}
 
     .section-icon {
         width: 42px;

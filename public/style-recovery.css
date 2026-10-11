@@ -23,7 +23,7 @@
 .recovery-links {
   margin-top: 24px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px 18px;
   text-align: center;
