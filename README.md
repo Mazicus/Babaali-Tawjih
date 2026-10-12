@@ -1,66 +1,146 @@
-# Babaali Tawjih — Laravel backend
+# Babaali Tawjih
 
-The existing website now runs on Laravel 13. Its homepage, login, registration, dashboard, school photographs and shared school renderer are retained. Account authentication, favorites, profile photos, contact submissions, Google OAuth and password recovery use Laravel routes, controllers and Eloquent models.
+An education orientation portal for students exploring schools, institutes and universities in Morocco. Browse the institution catalogue, save favorite schools and manage your account from a personal dashboard.
 
-## Local setup
+**Website:** [babaali-tawjih.vercel.app](https://babaali-tawjih.vercel.app)
 
-Requires PHP 8.3+ with PDO, mbstring, OpenSSL, cURL and fileinfo, plus Composer. Use pdo_mysql for the hosted database or pdo_sqlite for a local database. PHP 8.0 from the previous XAMPP installation cannot run this application.
+> This is the configured deployment address. The Laravel version has been verified locally; production deployment, hosted database migration, Google sign-in and recovery email delivery still require verification.
+
+## Features
+
+- Institution catalogue with photographs and source metadata.
+- Registration, password login and a personal dashboard.
+- School favorites saved separately for each account.
+- Profile editing and private profile photo uploads.
+- Contact form submissions.
+- Google sign-in and account linking when OAuth credentials are configured.
+- Password recovery through Resend when a verified sender is configured.
+
+## Technology
+
+| Layer | Technology |
+| --- | --- |
+| Backend | Laravel 13, PHP 8.3+, Eloquent |
+| Templates and frontend | Blade, CSS and JavaScript |
+| Institution catalogue | Shared JSON files |
+| Database | MySQL-compatible hosting; SQLite for local development |
+| Authentication | Laravel authentication, database sessions, Google OAuth with PKCE |
+| Email | Resend |
+| Deployment | Vercel with the community `vercel-php@0.9.0` runtime |
+
+## Run locally
+
+Install PHP 8.3+ and Composer. Enable PDO, mbstring, OpenSSL, cURL and fileinfo, plus `pdo_sqlite` for the setup below. Node.js is needed only for the JavaScript checks.
+
+From the project directory, run these commands in PowerShell:
 
 ```powershell
 composer install
 Copy-Item .env.example .env
 php artisan key:generate
-# Set database credentials in .env before the next command.
+New-Item -ItemType File -Path database/database.sqlite -Force
+```
+
+Set these values in `.env`:
+
+```dotenv
+APP_ENV=local
+APP_URL=http://localhost:8000
+DB_CONNECTION=sqlite
+```
+
+Leave `DB_DATABASE` unset to use `database/database.sqlite`. Then start the application:
+
+```powershell
 php artisan migrate
 php artisan serve
 ```
 
-This workspace also has an ignored portable PHP runtime under `.tools/php/` and Composer under `.tools/composer.phar`; they are local conveniences and are not deployed. The current local `.env` uses an isolated SQLite database. For a fresh SQLite setup, create `database/database.sqlite`, set `DB_CONNECTION=sqlite` and `DB_DATABASE` to its absolute path, then migrate.
+Open [localhost:8000](http://localhost:8000). Google sign-in and recovery email require the provider settings below.
 
-The web server document root must be `public/`. Frontend files moved there, and templates now live in `resources/views/`. Existing links such as `/index.html`, `/login.php` and `/Dashboard.php` are Laravel routes, not separate executable scripts. Logout uses a protected POST form; a GET to the old logout address returns to the dashboard.
+For local MySQL, enable `pdo_mysql`, set `DB_CONNECTION=mysql` and provide `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER` and `DB_PASSWORD`. The aliases `DB_DATABASE` and `DB_USERNAME` are also supported.
 
-## Database and existing accounts
+## Deploy to Vercel
 
-The adoption migration creates missing tables and adds `users.remember_token` and `users.auth_version`. It preserves existing users, password hashes, favorites, avatar images, Google associations and contact messages. Existing authentication versions are copied when available. Existing sessions and old password-reset links are not imported; users sign in again and request fresh recovery links.
+The repository includes `vercel.json` and `api/index.php`. Website requests pass through Laravel, public assets are served from `public/`, and writable runtime files use temporary storage. Sessions and cache use the hosted database.
 
-Use `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` for the existing hosted setup. Laravel's `DB_DATABASE` and `DB_USERNAME` aliases are also supported. A bundled CA certificate is used for TiDB Cloud; another provider can supply its full CA PEM in `DB_SSL_CA` or a readable certificate path in `MYSQL_ATTR_SSL_CA`.
+Configure the following project environment variables:
 
-Back up the hosted database before running `php artisan migrate --force` with its credentials. Run migrations once from a trusted PHP environment before serving the new deployment. Do not use `migrate:fresh`, which deletes tables. This adoption migration intentionally cannot be rolled back destructively; restore a verified backup when reverting. Old SQL files are historical references, not the installation procedure for this Laravel version.
+```dotenv
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://babaali-tawjih.vercel.app
+APP_KEY=<generated-application-key>
+DB_CONNECTION=mysql
+DB_HOST=<database-host>
+DB_PORT=3306
+DB_NAME=<database-name>
+DB_USER=<database-user>
+DB_PASSWORD=<database-password>
+SESSION_DRIVER=database
+SESSION_TABLE=laravel_sessions
+SESSION_SECURE_COOKIE=true
+CACHE_STORE=database
+DB_CACHE_TABLE=laravel_cache
+DB_CACHE_LOCK_TABLE=laravel_cache_locks
+QUEUE_CONNECTION=sync
+```
 
-## Vercel deployment
+Generate the production key with `php artisan key:generate --show`, store it privately and keep it stable between deployments. Do not commit `.env` or provider secrets.
 
-`api/index.php` initializes Laravel through `public/index.php`. The community `vercel-php@0.9.0` runtime installs locked Composer dependencies. Vercel routes expose public assets and send website requests to Laravel, while blocking application source directories. Writable runtime storage uses the temporary directory; sessions and rate limits remain database-backed.
+Back up the hosted database, then run `php artisan migrate --force` once from a trusted PHP environment configured for that database before serving the deployment. The adoption migration preserves existing accounts and application data. **Do not use `migrate:fresh` on an existing database.** Prior sessions and old reset links require a fresh login or recovery request; reverting the adoption migration requires restoring a verified backup.
 
-Set these project environment variables before deploying:
+For TiDB Cloud, the application can use the bundled CA certificate. Other providers can supply CA PEM through `DB_SSL_CA` or a readable certificate path through `MYSQL_ATTR_SSL_CA`.
 
-- `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://babaali-tawjih.vercel.app`.
-- A stable `APP_KEY` generated with `php artisan key:generate --show`; store it privately and keep it unchanged between deployments.
-- Hosted database credentials described above, `DB_CONNECTION=mysql`.
-- `SESSION_DRIVER=database`, `SESSION_TABLE=laravel_sessions`, `SESSION_SECURE_COOKIE=true`.
-- `CACHE_STORE=database`, `DB_CACHE_TABLE=laravel_cache`, `DB_CACHE_LOCK_TABLE=laravel_cache_locks`, `QUEUE_CONNECTION=sync`.
+After deployment, verify registration, login, favorites, profile updates and contact submission against the hosted database.
 
-No production deployment or hosted database migration was performed as part of this source migration. Existing production credentials alone do not replace the required new APP_KEY and infrastructure migration.
+### Google sign-in
 
-## Google connection
+Create a Google OAuth Web application client and register this exact redirect URI:
 
-Create a Google OAuth **Web application** client with the authorized redirect URI `https://babaali-tawjih.vercel.app/google-callback.php`. Configure branding, consent and test users in Google Auth Platform. Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI` in Vercel; the redirect URI must match exactly. For local testing register a corresponding localhost URL.
+```text
+https://babaali-tawjih.vercel.app/google-callback.php
+```
 
-Google login checks session state, uses PKCE, requires a verified email and stores only the Google subject association. Existing password accounts are linked only from an authenticated session with the same email. Missing configuration produces a clear message. Activation and real-account verification still require the Google client.
+Set `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` and `GOOGLE_REDIRECT_URI`. Configure the consent screen and test users as required by your Google project. For local use, register the corresponding localhost callback URL.
 
-## Password recovery
+Account linking requires an authenticated session with the same email. Test a real Google account after configuring the provider.
 
-Resend is the configured Laravel mail transport. Set `MAIL_MAILER=resend`, `RESEND_API_KEY` and `RECOVERY_EMAIL_FROM` to a verified sender address, plus the production APP_URL. `MAIL_FROM_ADDRESS` can replace the sender alias. Configure the sender domain in Resend before testing delivery.
+### Password recovery
 
-Reset tokens expire after 30 minutes and are consumed after a successful reset. Public recovery responses do not reveal whether an account exists. Resetting rotates the remembered-login token and account session version. Live delivery has not been verified without provider credentials.
+Set `MAIL_MAILER=resend`, `RESEND_API_KEY` and `RECOVERY_EMAIL_FROM` to a verified sender address. `MAIL_FROM_ADDRESS` is also supported. Keep `APP_URL` set to the public website URL so recovery links point to the correct deployment.
 
-## Checks and rapport
+Recovery tokens expire after 30 minutes and become invalid after a successful reset. Test actual delivery after configuring the sender in Resend.
+
+## Project structure
+
+```text
+app/                 Controllers, models and application logic
+api/index.php        Vercel entry point
+config/              Application and provider configuration
+database/            Data-preserving migrations
+public/              Public assets and Laravel entry point
+resources/views/     Blade page templates
+routes/web.php       Website routes
+tests/              PHP and JavaScript checks
+```
+
+The web server document root must be `public/`. Addresses such as `/login.php` and `/Dashboard.php` are Laravel routes retained for compatibility.
+
+## Verification
 
 ```powershell
 php artisan test
-node --test tests/dashboard-ui.cjs tests/navigation.cjs
+node --testtests/dashboard-ui.cjstests/navigation.cjs
 composer validate --no-check-publish
 ```
 
-Tests cover legacy password compatibility, registration, account-isolated favorites, private avatar uploads, password resets, native email notifications, Google state/PKCE/linking, CSRF, contact submission and data-preserving migration. Provider calls and email notifications are mocked; tests use an isolated SQLite database. Hosted MySQL and real provider integration need deployment checks.
+The tests cover authentication, legacy password compatibility, account-isolated favorites, avatars, recovery, Google OAuth, CSRF protection, contact submissions and data-preserving migrations. Tests use an isolated SQLite database and mocked provider calls; they do not verify hosted MySQL or live provider services.
 
-See `RAPPORT-LARAVEL.md` for the French report updates and `REPORT-GAPS.md` for remaining scope limits. The original Word report has not been edited. The old standalone PHP files remain only in an ignored local `legacy/` directory; active code does not load them.
+## Scope and supporting documentation
+
+School and user administration, application tracking, calendars, personalized follow-up and notifications are outside the current implementation.
+
+- [Laravel report updates](RAPPORT-LARAVEL.md): French material describing the backend migration.
+- [Implementation scope and remaining checks](REPORT-GAPS.md): implemented features and outstanding verification.
+
