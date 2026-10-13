@@ -2617,9 +2617,9 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
 .guidance-services .section-title h2, .guidance-process .section-title h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.2; letter-spacing: -.035em; }
 .guidance-services .section-title p, .guidance-process .section-title p { margin-top: 16px; font-size: 16px; line-height: 1.7; }
 .guidance-services .services { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.guidance-services .service-card { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; border: 1px solid var(--border-gray); border-radius: 20px; text-align: left; box-shadow: 0 4px 16px var(--shadow-subtle); transition: transform .2s, border-color .2s, box-shadow .2s; }
+.guidance-services .service-card {display: flex;flex-direction: column;align-items: center;padding: 28px;border: 1px solid var(--border-gray);border-radius: 20px;text-align: left;box-shadow: 0 4px 16px var(--shadow-subtle);transition: transform .2s, border-color .2s, box-shadow .2s;}
 .guidance-services .service-card:hover { transform: translateY(-4px); border-color: var(--accent-blue); box-shadow: 0 12px 28px var(--shadow-light); }
-.service-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 24px; border-radius: 14px; background: var(--secondary-transparent); }
+.service-icon {display: grid;place-items: center;width: 48px;height: 48px;margin-bottom: 24px;border-radius: 14px;}
 .guidance-services .service-icon i { margin: 0; font-size: 21px; color: var(--accent-blue); }
 .guidance-services .service-card h3 { margin: 0 0 12px; font-size: 18px; line-height: 1.4; letter-spacing: -.02em; }
 .guidance-services .service-card p { margin: 0 0 24px; font-size: 14px; line-height: 1.8; }
