@@ -110,39 +110,39 @@
         <!-- Services -->
         <section id="services">
             <div class="section-title">
-                <h2>Nos Services</h2>
-                <p>Un accompagnement complet vers votre réussite académique.</p>
+                <h2>Nos services</h2>
+                <p>Comprendre vos options, choisir une formation adaptée et préparer vos candidatures avec confiance.</p>
             </div>
             <div class="services">
                 <div class="card">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <h3>Orientation Post-Bac</h3>
-                    <p>Choix stratégique des filières et établissements.</p>
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                    <h3>Orientation après le bac</h3>
+                    <p>Explorez les filières accessibles selon votre bac, vos résultats et vos centres d’intérêt pour construire un projet d’études cohérent.</p>
                 </div>
                 <div class="card">
-                    <i class="fa-solid fa-user-group"></i>
-                    <h3>Accompagnement Personnalisé</h3>
-                    <p>Suivi adapté à chaque étudiant.</p>
+                    <i class="fa-solid fa-user-group" aria-hidden="true"></i>
+                    <h3>Conseil personnalisé</h3>
+                    <p>Faites le point sur vos envies, vos points forts et vos contraintes avec un accompagnement adapté à votre situation.</p>
                 </div>
                 <div class="card">
-                    <i class="fa-solid fa-school"></i>
-                    <h3>Grandes Écoles</h3>
-                    <p>Inscription et accompagnement complet.</p>
+                    <i class="fa-solid fa-school" aria-hidden="true"></i>
+                    <h3>Choix des établissements</h3>
+                    <p>Comparez les écoles, instituts et universités selon leurs formations, leurs conditions d’accès, leur localisation et votre budget.</p>
                 </div>
                 <div class="card">
-                    <i class="fa-solid fa-bell"></i>
-                    <h3>Concours & Résultats</h3>
-                    <p>Veille et suivi des opportunités.</p>
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                    <h3>Concours et admissions</h3>
+                    <p>Identifiez les modalités de sélection et les dates à vérifier auprès des établissements pour préparer vos prochaines démarches.</p>
                 </div>
                 <div class="card">
-                    <i class="fa-solid fa-bullseye"></i>
-                    <h3>Conseils Stratégiques</h3>
-                    <p>Orientation selon votre profil.</p>
+                    <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+                    <h3>Construire votre projet</h3>
+                    <p>Reliez vos choix de formation aux métiers qui vous intéressent et prévoyez des alternatives adaptées à votre profil.</p>
                 </div>
                 <div class="card">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <h3>Assistance Administrative</h3>
-                    <p>Préparation et gestion des dossiers.</p>
+                    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                    <h3>Préparation des dossiers</h3>
+                    <p>Repérez les pièces demandées, organisez vos documents et vérifiez les consignes avant de déposer votre candidature.</p>
                 </div>
             </div>
         </section>
@@ -150,28 +150,29 @@
         <!-- Process -->
         <section id="process">
             <div class="section-title">
-                <h2>Notre Processus</h2>
+                <h2>Notre processus</h2>
+                <p>Quatre étapes pour passer de vos premières questions à des candidatures bien préparées.</p>
             </div>
             <div class="timeline">
                 <div class="step">
                     <div class="number">1</div>
-                    <h3>Analyse du Profil</h3>
-                    <p>Étude approfondie du parcours et des objectifs.</p>
+                    <h3>Faire le point avec vous</h3>
+                    <p>Nous échangeons sur votre parcours, vos résultats, vos envies et vos contraintes pour préciser votre projet d’études.</p>
                 </div>
                 <div class="step">
                     <div class="number">2</div>
-                    <h3>Choix Stratégique</h3>
-                    <p>Sélection des meilleures opportunités.</p>
+                    <h3>Comparer vos options</h3>
+                    <p>Nous vous aidons à sélectionner des formations compatibles avec votre profil et à comparer leurs conditions d’accès, leurs coûts et leurs débouchés.</p>
                 </div>
                 <div class="step">
                     <div class="number">3</div>
-                    <h3>Préparation des Dossiers</h3>
-                    <p>Constitution et vérification des documents.</p>
+                    <h3>Préparer vos candidatures</h3>
+                    <p>Nous passons en revue les documents et les démarches demandés pour vous aider à constituer un dossier clair et complet dans les délais annoncés.</p>
                 </div>
                 <div class="step">
                     <div class="number">4</div>
-                    <h3>Inscription & Suivi</h3>
-                    <p>Accompagnement jusqu'à l'admission.</p>
+                    <h3>Avancer vers votre inscription</h3>
+                    <p>Nous vous aidons à comprendre les réponses des établissements et les prochaines formalités pour organiser la suite de votre parcours.</p>
                 </div>
             </div>
         </section>
