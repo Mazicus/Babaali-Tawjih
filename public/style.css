@@ -12,7 +12,7 @@ html {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--light);
     color: var(--black);
     overflow-x: hidden;
@@ -641,7 +641,7 @@ section {
     width: 100%;
     padding: 15px 20px;
     margin-bottom: 15px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     color: var(--black);
     background: var(--light);
@@ -1130,7 +1130,7 @@ footer h3 { color: var(--secondary); }
 .search-box input {
     flex: 1;
     padding: 16px 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     color: var(--ec-text);
     background: transparent;

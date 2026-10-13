@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
 body {
@@ -64,12 +64,12 @@ body {
     text-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 #babaali{
-    font-family:'Poppins',sans-serif;
+    font-family:'Inter',sans-serif;
     font-weight: 600;
     color: var(--primary-switch);
 }
 #tawjih{
-    font-family:'Poppins',sans-serif;
+    font-family:'Inter',sans-serif;
     font-weight: 600;
     color: var(--secondary-switch);
 }
