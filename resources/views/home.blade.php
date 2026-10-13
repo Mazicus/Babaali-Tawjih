@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="./style.css">
         <script src="./DarkMode.js" defer></script>
         <script src="/AuthNavigation.js" defer></script>
+        <script src="/MobileNavigation.js" defer></script>
         <script src="/Favorites.js" defer></script>
         <script src="/SectionReveals.js" defer></script>
         <script src="/Schools.js" defer></script>
@@ -31,10 +32,12 @@
                     </a>
                 </div>
                 <input type="checkbox" id="menu">
-                <nav class="nav" id="nav">
-                    <label for="menu" class="close-btn">
-                        <i class="fas fa-times"></i>
-                    </label>
+                <label for="menu" class="nav-backdrop" aria-hidden="true"></label>
+                <nav class="nav" id="nav" aria-label="Navigation principale">
+                    <div class="nav-heading"><strong>BABAALI TAWJIH</strong><span>Votre orientation, simplement.</span></div>
+                    <button type="button" class="close-btn" aria-label="Fermer le menu">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
                     <ul>
                         <li><a href="#logo">Accueil</a></li>
                         <li><a href="#services">Services</a></li>
@@ -70,9 +73,9 @@
                             </svg>
                         </button>
                     </div>
-                    <label for="menu" class="menu-btn">
-                        <i class="fas fa-bars"></i>
-                    </label>
+                    <button type="button" class="menu-btn" aria-label="Ouvrir le menu" aria-controls="nav" aria-expanded="false">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </header>
