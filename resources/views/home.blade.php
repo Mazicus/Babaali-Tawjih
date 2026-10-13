@@ -108,71 +108,100 @@
         </section>
 
         <!-- Services -->
-        <section id="services">
+        <section id="services" class="guidance-services" aria-labelledby="services-title">
             <div class="section-title">
-                <h2>Nos Services</h2>
-                <p>Un accompagnement complet vers votre réussite académique.</p>
+                <span class="section-eyebrow">À vos côtés</span>
+                <h2 id="services-title">Nos services</h2>
+                <p>Des conseils concrets pour faire vos choix et préparer la suite de vos études.</p>
             </div>
             <div class="services">
-                <div class="card">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                    <h3>Orientation Post-Bac</h3>
-                    <p>Choix stratégique des filières et établissements.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-user-group"></i>
-                    <h3>Accompagnement Personnalisé</h3>
-                    <p>Suivi adapté à chaque étudiant.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-school"></i>
-                    <h3>Grandes Écoles</h3>
-                    <p>Inscription et accompagnement complet.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-bell"></i>
-                    <h3>Concours & Résultats</h3>
-                    <p>Veille et suivi des opportunités.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-bullseye"></i>
-                    <h3>Conseils Stratégiques</h3>
-                    <p>Orientation selon votre profil.</p>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-file-lines"></i>
-                    <h3>Assistance Administrative</h3>
-                    <p>Préparation et gestion des dossiers.</p>
-                </div>
+                <article class="card service-card">
+                    <span class="service-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
+                    <h3>Orientation post-bac</h3>
+                    <p>Trouvez une filière qui correspond à vos envies, à vos résultats et à votre projet d’avenir.</p>
+                    <span class="service-note">Explorer les possibilités</span>
+                </article>
+                <article class="card service-card">
+                    <span class="service-icon"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span>
+                    <h3>Accompagnement personnalisé</h3>
+                    <p>Faites le point sur votre parcours et avancez avec des conseils adaptés à votre situation.</p>
+                    <span class="service-note">Clarifier votre projet</span>
+                </article>
+                <article class="card service-card">
+                    <span class="service-icon"><i class="fa-solid fa-school" aria-hidden="true"></i></span>
+                    <h3>Choix des grandes écoles</h3>
+                    <p>Comparez les formations, les conditions d’accès et les établissements pour choisir avec confiance.</p>
+                    <span class="service-note">Comparer les établissements</span>
+                </article>
+                <article class="card service-card">
+                    <span class="service-icon"><i class="fa-solid fa-bell" aria-hidden="true"></i></span>
+                    <h3>Concours et admissions</h3>
+                    <p>Repérez les modalités de sélection et les échéances à vérifier pour préparer vos candidatures.</p>
+                    <span class="service-note">Anticiper les démarches</span>
+                </article>
+                <article class="card service-card">
+                    <span class="service-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>
+                    <h3>Conseils d’orientation</h3>
+                    <p>Construisez un parcours cohérent avec les métiers qui vous intéressent, en prévoyant des alternatives.</p>
+                    <span class="service-note">Définir vos priorités</span>
+                </article>
+                <article class="card service-card">
+                    <span class="service-icon"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span>
+                    <h3>Assistance administrative</h3>
+                    <p>Organisez les pièces demandées et vérifiez les consignes avant de transmettre vos dossiers.</p>
+                    <span class="service-note">Préparer vos dossiers</span>
+                </article>
             </div>
         </section>
 
         <!-- Process -->
-        <section id="process">
+        <section id="process" class="guidance-process" aria-labelledby="process-title">
             <div class="section-title">
-                <h2>Notre Processus</h2>
+                <span class="section-eyebrow">Pas à pas</span>
+                <h2 id="process-title">Un parcours clair, à chaque étape</h2>
+                <p>De vos premières questions aux démarches d’inscription, voici comment nous vous accompagnons.</p>
             </div>
-            <div class="timeline">
-                <div class="step">
-                    <div class="number">1</div>
-                    <h3>Analyse du Profil</h3>
-                    <p>Étude approfondie du parcours et des objectifs.</p>
-                </div>
-                <div class="step">
-                    <div class="number">2</div>
-                    <h3>Choix Stratégique</h3>
-                    <p>Sélection des meilleures opportunités.</p>
-                </div>
-                <div class="step">
-                    <div class="number">3</div>
-                    <h3>Préparation des Dossiers</h3>
-                    <p>Constitution et vérification des documents.</p>
-                </div>
-                <div class="step">
-                    <div class="number">4</div>
-                    <h3>Inscription & Suivi</h3>
-                    <p>Accompagnement jusqu'à l'admission.</p>
-                </div>
+            <ol class="timeline process-timeline">
+                <li class="step process-step">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="process-copy">
+                        <span class="step-label">01 <span>— Votre point de départ</span></span>
+                        <h3>Comprendre votre profil</h3>
+                        <p>Un échange sur vos résultats, vos centres d’intérêt et vos objectifs pour préciser ce que vous recherchez.</p>
+                        <span class="step-result"><i class="fa-solid fa-check" aria-hidden="true"></i>Un projet mieux défini</span>
+                    </div>
+                </li>
+                <li class="step process-step">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="process-copy">
+                        <span class="step-label">02 <span>— Les options possibles</span></span>
+                        <h3>Choisir votre direction</h3>
+                        <p>Nous comparons les filières et les établissements selon votre profil, leurs conditions d’accès et vos contraintes.</p>
+                        <span class="step-result"><i class="fa-solid fa-check" aria-hidden="true"></i>Une sélection adaptée</span>
+                    </div>
+                </li>
+                <li class="step process-step">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="process-copy">
+                        <span class="step-label">03 <span>— La mise en pratique</span></span>
+                        <h3>Préparer vos dossiers</h3>
+                        <p>Nous vous aidons à organiser les documents nécessaires et à vérifier les démarches et les délais de candidature.</p>
+                        <span class="step-result"><i class="fa-solid fa-check" aria-hidden="true"></i>Des candidatures préparées</span>
+                    </div>
+                </li>
+                <li class="step process-step">
+                    <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
+                    <div class="process-copy">
+                        <span class="step-label">04 <span>— La prochaine étape</span></span>
+                        <h3>Avancer vers l’inscription</h3>
+                        <p>Nous vous aidons à comprendre les réponses des établissements et à préparer les formalités qui suivent.</p>
+                        <span class="step-result"><i class="fa-solid fa-check" aria-hidden="true"></i>Les prochaines démarches clarifiées</span>
+                    </div>
+                </li>
+            </ol>
+            <div class="process-next">
+                <p>Vous ne savez pas par où commencer ? <strong>Parlons de votre projet.</strong></p>
+                <a href="#contact" class="process-contact">Faire le premier pas <span aria-hidden="true">↗</span></a>
             </div>
         </section>
 
