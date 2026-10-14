@@ -2672,20 +2672,28 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
     animation: process-copy-entrance 1s cubic-bezier(.25, .1, .25, 1) var(--reveal-delay, 0ms) both;
 }
 @media (min-width: 992px) {
-    .guidance-process .process-timeline { grid-template-rows: auto 54px auto; }
+    .guidance-process { padding-inline: clamp(32px, 5vw, 96px); }
+    .guidance-process .process-timeline {
+        width: 100%;
+        margin-inline: auto;
+        grid-template-rows: 1fr 54px 1fr;
+    }
     .guidance-process .process-step {
         display: grid;
         grid-template-rows: subgrid;
         grid-row: 1 / 4;
         row-gap: 0;
+        padding: 0;
+        text-align: center;
     }
     .process-step:nth-child(1) { grid-column: 1; }
     .process-step:nth-child(2) { grid-column: 2; }
     .process-step:nth-child(3) { grid-column: 3; }
     .process-step:nth-child(4) { grid-column: 4; }
-    .process-step .timeline-marker { grid-row: 2; margin-bottom: 0; }
-    .process-step .process-copy { grid-row: 3; padding-top: 24px; }
-    .process-step:nth-child(even) .process-copy { grid-row: 1; align-self: end; padding: 0 0 24px; }
+    .process-step .timeline-marker { grid-row: 2; margin-bottom: 0; justify-content: center; }
+    .process-step .timeline-marker::after { left: calc(50% + 12px); right: calc(-50% + 12px); }
+    .process-step .process-copy { grid-row: 3; padding: 24px clamp(12px, 1.5vw, 28px) 0; }
+    .process-step:nth-child(even) .process-copy { grid-row: 1; align-self: end; padding: 0 clamp(12px, 1.5vw, 28px) 24px; }
 }
 @keyframes process-step-entrance {
     from { opacity: 0; }
