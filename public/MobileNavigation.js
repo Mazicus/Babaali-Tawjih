@@ -4,7 +4,14 @@
     const nav = document.getElementById('nav');
     if (!toggle || !checkbox || !nav) return;
     const mobile = window.matchMedia('(max-width: 991px)');
-    const focusable = () => [...nav.querySelectorAll('a, button')].filter(el => el.getClientRects().length && !el.disabled);
+    const focusable = () => [...nav.querySelectorAll('a, button, [role="button"][tabindex="0"]')].filter(el => el.getClientRects().length && !el.disabled);
+    [toggle, nav.querySelector('.close-btn')].forEach(control => {
+        control.addEventListener('keydown', event => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            control.click();
+        });
+    });
     function sync() {
         const open = mobile.matches && checkbox.checked;
         toggle.setAttribute('aria-expanded', String(open));
