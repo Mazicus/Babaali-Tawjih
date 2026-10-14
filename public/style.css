@@ -2589,23 +2589,35 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
     .header .mobile-login .btn-inscr { width: 100%; }
 }
 
-/* A short, one-time reveal; no scroll handlers or persistent blur layers. */
+/* Keep section space stable while content waits to enter the viewport. */
 .section-reveal {
-    transition: opacity 0.22s ease-out, filter 0.22s ease-out, transform 0.22s ease-out;
+    transition: opacity .7s ease, filter .7s ease, transform .7s cubic-bezier(.22, 1, .36, 1), visibility .7s;
 }
 
-.section-reveal.reveal-pending {
-    opacity: 0.65;
-    filter: blur(2px);
-    transform: translateY(6px);
+.section-reveal.reveal-pending, .reveal-item.reveal-pending {
+    visibility: hidden;
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(28px);
+}
+
+.reveal-item.reveal-visible {
+    animation: section-entrance .75s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms) both;
+}
+
+@keyframes section-entrance {
+    from { opacity: 0; filter: blur(8px); transform: translateY(24px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .section-reveal, .section-reveal.reveal-pending {
+    .section-reveal, .section-reveal.reveal-pending, .reveal-item.reveal-pending, .reveal-item.reveal-visible {
+        visibility: visible;
         opacity: 1;
         filter: none;
         transform: none;
         transition: none;
+        animation: none;
     }
     .ecole-section-collapse { transition: none; }
 }
@@ -2646,15 +2658,36 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
 .process-contact { display: inline-flex; justify-content: center; align-items: center; gap: 20px; min-height: 48px; padding: 12px 20px; border-radius: 12px; background: var(--primary); color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
 .process-contact:hover { background: var(--accent-blue-hover); }
 .process-contact:focus-visible { outline: 3px solid var(--secondary); outline-offset: 4px; }
+.guidance-process .process-step.reveal-pending { transform: translateY(28px); }
+.process-step.reveal-visible .timeline-dot {
+    animation: process-marker .55s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms) both;
+}
+.process-step.reveal-visible .timeline-marker::after {
+    transform-origin: top left;
+    animation: process-connector .65s ease calc(var(--reveal-delay, 0ms) + .2s) both;
+}
+@keyframes process-marker {
+    from { opacity: 0; transform: scale(.45); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes process-connector {
+    from { opacity: 0; transform: scaleX(0); }
+    to { opacity: 1; transform: scaleX(1); }
+}
 @media (max-width: 991px) {
     .guidance-services .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .guidance-process .process-timeline { grid-template-columns: 1fr; }
     .guidance-process .process-step { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 20px; padding: 0 0 32px; }
     .timeline-marker { height: auto; margin: 0; align-items: flex-start; padding-top: 4px; }
     .timeline-marker::after { left: 11px; right: auto; top: 28px; bottom: -36px; width: 2px; height: auto; }
+    .process-step.reveal-visible .timeline-marker::after { animation-name: process-connector-vertical; }
     .process-step:last-child { padding-bottom: 0; }
     .process-copy { padding: 0 0 8px; }
     .step-result { margin-top: 12px; }
+}
+@keyframes process-connector-vertical {
+    from { opacity: 0; transform: scaleY(0); }
+    to { opacity: 1; transform: scaleY(1); }
 }
 @media (max-width: 600px) {
     .guidance-services, .guidance-process { padding: 56px 20px; }
@@ -2665,6 +2698,9 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
     .process-next { align-items: stretch; flex-direction: column; padding: 22px; gap: 18px; margin-top: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
+    .guidance-process .process-step.reveal-pending { transform: none; }
+    .process-step.reveal-visible .timeline-dot,
+    .process-step.reveal-visible .timeline-marker::after { animation: none; }
     .guidance-services .service-card { transition: none; }
     .guidance-services .service-card:hover { transform: none; }
 }

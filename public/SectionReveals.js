@@ -1,32 +1,47 @@
 (() => {
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const observed = new WeakSet();
+    function reveal(target) {
+        target.classList.remove('reveal-pending');
+        target.classList.add('reveal-visible');
+        observer.unobserve(target);
+    }
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-            entry.target.classList.remove('reveal-pending');
-            observer.unobserve(entry.target);
+            reveal(entry.target);
         });
-    }, { rootMargin: '0px 0px 40px 0px', threshold: 0 });
+    }, { rootMargin: '0px 0px -32px 0px', threshold: 0 });
 
     function observe(root) {
-        root.querySelectorAll('#services, #process, #contact, .ecole-subsection').forEach(section => {
+        root.querySelectorAll('body > section, .ecole-subsection').forEach(section => {
             if (observed.has(section)) return;
             observed.add(section);
-            // Visible content stays sharp; animate only sections approached on scroll.
-            if (section.getBoundingClientRect().top <= window.innerHeight) return;
             section.classList.add('section-reveal', 'reveal-pending');
             observer.observe(section);
+        });
+        root.querySelectorAll('.hero-content, .hero-image, section > .section-title, .service-card, .process-step, .process-next').forEach(item => {
+            if (observed.has(item)) return;
+            observed.add(item);
+            const siblings = [...item.parentElement.children].filter(child => child.matches('.service-card, .process-step'));
+            item.style.setProperty('--reveal-delay', `${Math.max(0, siblings.indexOf(item)) * 90}ms`);
+            item.classList.add('reveal-item', 'reveal-pending');
+            observer.observe(item);
         });
     }
     window.sectionReveals = { observe };
     observe(document);
     // Keyboard navigation and anchor links expose content immediately.
     document.addEventListener('focusin', event => {
-        const section = event.target.closest('.reveal-pending');
-        if (section) {
-            section.classList.remove('reveal-pending');
-            observer.unobserve(section);
+        let target = event.target;
+        while (target instanceof Element) {
+            if (target.classList.contains('reveal-pending')) reveal(target);
+            target = target.parentElement;
         }
+    });
+    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', event => {
+        if (!event.matches) return;
+        observer.disconnect();
+        document.querySelectorAll('.reveal-pending').forEach(reveal);
     });
 })();

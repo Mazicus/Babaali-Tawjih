@@ -34,7 +34,6 @@
                 <input type="checkbox" id="menu">
                 <label for="menu" class="nav-backdrop" aria-hidden="true"></label>
                 <nav class="nav" id="nav" aria-label="Navigation principale">
-                    <div class="nav-heading"><strong>BABAALI TAWJIH</strong><span>Votre orientation, simplement.</span></div>
                     <button type="button" class="close-btn" aria-label="Fermer le menu">
                         <i class="fas fa-times" aria-hidden="true"></i>
                     </button>
@@ -165,7 +164,7 @@
                 <li class="step process-step">
                     <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
                     <div class="process-copy">
-                        <span class="step-label">01 <span> Votre point de départ</span></span>
+                        <span class="step-label">01 <span>  Votre point de départ</span></span>
                         <h3>Comprendre votre profil</h3>
                         <p>Un échange sur vos résultats, vos centres d’intérêt et vos objectifs pour préciser ce que vous recherchez.</p>
                     </div>
@@ -173,7 +172,7 @@
                 <li class="step process-step">
                     <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
                     <div class="process-copy">
-                        <span class="step-label">02 <span> Les options possibles</span></span>
+                        <span class="step-label">02 <span>  Les options possibles</span></span>
                         <h3>Choisir votre direction</h3>
                         <p>Nous comparons les filières et les établissements selon votre profil, leurs conditions d’accès et vos contraintes.</p>
                     </div>
@@ -181,7 +180,7 @@
                 <li class="step process-step">
                     <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
                     <div class="process-copy">
-                        <span class="step-label">03 <span> La mise en pratique</span></span>
+                        <span class="step-label">03 <span>  La mise en pratique</span></span>
                         <h3>Préparer vos dossiers</h3>
                         <p>Nous vous aidons à organiser les documents nécessaires et à vérifier les démarches et les délais de candidature.</p>
                     </div>
@@ -189,7 +188,7 @@
                 <li class="step process-step">
                     <div class="timeline-marker" aria-hidden="true"><span class="timeline-dot"></span></div>
                     <div class="process-copy">
-                        <span class="step-label">04 <span> La prochaine étape</span></span>
+                        <span class="step-label">04 <span>  La prochaine étape</span></span>
                         <h3>Avancer vers l’inscription</h3>
                         <p>Nous vous aidons à comprendre les réponses des établissements et à préparer les formalités qui suivent.</p>
                     </div>
