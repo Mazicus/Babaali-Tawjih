@@ -5,6 +5,12 @@
         target.classList.remove('reveal-pending');
         target.classList.add('reveal-visible');
         observer.unobserve(target);
+        if (target.matches('.process-timeline')) {
+            target.querySelectorAll('.process-step').forEach(step => {
+                step.classList.remove('reveal-pending');
+                step.classList.add('reveal-visible');
+            });
+        }
     }
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -20,7 +26,16 @@
             section.classList.add('section-reveal', 'reveal-pending');
             observer.observe(section);
         });
-        root.querySelectorAll('.hero-content, .hero-image, section > .section-title, .service-card, .process-step, .process-next').forEach(item => {
+        root.querySelectorAll('.process-timeline').forEach(timeline => {
+            if (observed.has(timeline)) return;
+            observed.add(timeline);
+            timeline.querySelectorAll('.process-step').forEach((step, index) => {
+                step.style.setProperty('--reveal-delay', `${250 + index * 850}ms`);
+                step.classList.add('reveal-item', 'reveal-pending');
+            });
+            observer.observe(timeline);
+        });
+        root.querySelectorAll('.hero-content, .hero-image, section > .section-title, .service-card, .process-next').forEach(item => {
             if (observed.has(item)) return;
             observed.add(item);
             const siblings = [...item.parentElement.children].filter(child => child.matches('.service-card, .process-step'));

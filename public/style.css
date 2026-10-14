@@ -2660,15 +2660,23 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
 .process-contact:focus-visible { outline: 3px solid var(--secondary); outline-offset: 4px; }
 .guidance-process .process-step.reveal-pending { transform: translateY(28px); }
 .process-step.reveal-visible .timeline-dot {
-    animation: process-marker .55s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms) both;
+    animation: process-marker .8s cubic-bezier(.22, 1, .36, 1) var(--reveal-delay, 0ms) both;
+}
+.process-step.reveal-visible .step-label {
+    animation: process-indicator .8s ease var(--reveal-delay, 0ms) both;
 }
 .process-step.reveal-visible .timeline-marker::after {
     transform-origin: top left;
     animation: process-connector .65s ease calc(var(--reveal-delay, 0ms) + .2s) both;
 }
 @keyframes process-marker {
-    from { opacity: 0; transform: scale(.45); }
-    to { opacity: 1; transform: scale(1); }
+    0% { opacity: 0; transform: scale(.45); }
+    45% { opacity: 1; transform: scale(1.25); box-shadow: 0 0 0 12px var(--gray), 0 0 0 14px var(--accent-blue); }
+    100% { opacity: 1; transform: scale(1); }
+}
+@keyframes process-indicator {
+    0%, 100% { transform: translateX(0); }
+    45% { transform: translateX(6px); color: var(--black); }
 }
 @keyframes process-connector {
     from { opacity: 0; transform: scaleX(0); }
@@ -2700,6 +2708,7 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
 @media (prefers-reduced-motion: reduce) {
     .guidance-process .process-step.reveal-pending { transform: none; }
     .process-step.reveal-visible .timeline-dot,
+    .process-step.reveal-visible .step-label,
     .process-step.reveal-visible .timeline-marker::after { animation: none; }
     .guidance-services .service-card { transition: none; }
     .guidance-services .service-card:hover { transform: none; }
