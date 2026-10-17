@@ -77,7 +77,7 @@
                                         const typeLabel = ecole.type === 'public' ? 'Public' : 'Privé';
                                         const documentsLink = `https://wa.me/212700059552?text=${encodeURIComponent('Bonjour, je souhaite recevoir les documents pour ' + ecole.name + '.')}`;
                                         return `
-                                        <article class="ecole-card" ${index >= 6 ? 'hidden' : ''} data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
+                                        <article class="ecole-card" ${index >= 10 ? 'hidden' : ''} data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
                                             <figure class="ecole-card-image"><img src="${escapeAttribute(ecole.image)}" alt="${escapeAttribute(ecole.imageAlt)}" loading="lazy" decoding="async" width="1200" height="800"></figure>
                                             <div class="school-overview">
                                                 <span class="ecole-card-badges">
@@ -130,7 +130,7 @@
                                     `;
                                     }).join('')}
                                         </div>
-                                        ${items.length > 6 ? `<div class="school-pagination"><span class="school-page-count" aria-live="polite">6 sur ${items.length} établissements</span><button type="button" class="school-show-more" aria-controls="school-grid-${key}">Voir plus d’établissements <i class="fas fa-arrow-down" aria-hidden="true"></i></button></div>` : ''}
+                                        ${items.length > 10 ? `<div class="school-pagination"><span class="school-page-count" aria-live="polite">10 sur ${items.length} établissements</span><button type="button" class="school-show-more" aria-controls="school-grid-${key}">Voir plus d’établissements <i class="fas fa-arrow-down" aria-hidden="true"></i></button></div>` : ''}
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +262,7 @@
                 if (more) {
                     const section = more.closest('.ecole-section');
                     const cards = [...section.querySelectorAll('.ecole-card')];
-                    const next = cards.filter(card => card.hidden).slice(0, 6);
+                    const next = cards.filter(card => card.hidden).slice(0, 10);
                     next.forEach(card => { card.hidden = false; });
                     const visible = cards.filter(card => !card.hidden).length;
                     section.querySelector('.school-page-count').textContent = visible + ' sur ' + cards.length + ' établissements';

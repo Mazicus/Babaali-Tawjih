@@ -104,3 +104,17 @@
 @media (min-width: 992px) {
     .ecole-section .section-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+@media (min-width: 1200px) {
+    .ecole-section { padding: 24px; }
+    .ecole-section .section-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+    .ecole-section .ecole-card { border-radius: 16px; }
+    .ecole-section .school-overview { padding: 16px; gap: 12px; }
+    .ecole-section .school-overview .card-title { font-size: 16px; }
+    .ecole-section .school-overview .card-summary-list { padding-top: 12px; gap: 10px 8px; }
+    .ecole-section .school-overview .detail-item { gap: 6px; grid-template-columns: 14px minmax(0, 1fr); font-size: 12px; }
+    .ecole-section .ecole-card-toggle { width: calc(100% - 32px); margin-inline: 16px; gap: 6px; font-size: 11px; padding-block: 10px; }
+    .ecole-section .ecole-card-panel-inner { padding-inline: 16px; }
+    .ecole-section .ecole-card.is-expanded .ecole-card-panel-inner { padding: 6px 16px 16px; }
+    .ecole-section .school-favorite { margin-inline: 16px; margin-bottom: 14px; font-size: 12px; }
+    .ecole-section .ecole-card-drive { padding-inline: 10px; gap: 6px; font-size: 11px; }
+}
