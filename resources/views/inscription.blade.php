@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,10 +39,10 @@
                 pour suivre votre orientation académique.
             </p>
             <ul>
-                <li>✓ Suivi personnalisé</li>
+                <li>✓ Votre sélection d’établissements</li>
                 <li>✓ Accès aux informations des écoles</li>
                 <li>✓ Conseils d'orientation</li>
-                <li>✓ Notifications importantes</li>
+                <li>✓ Un contact avec notre équipe</li>
             </ul>
             <!-- message container -->
             <?php if ($error_message): ?>

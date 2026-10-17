@@ -88,12 +88,12 @@
                     <span lang="ar" dir="rtl">نوجهوك للطريق الصحيح</span>
                 </h1>
                 <p>
-                    Expertise en orientation et accompagnement stratégique vers les grandes écoles,
-                    instituts et universités au Maroc.
+                    Choisissez votre parcours avec confiance. Un accompagnement en orientation
+                    stratégique vers les écoles supérieures, de vos premières questions jusqu’à l’admission.
                 </p>
                 <div class="btns">
-                    <a href="#contact" class="btn btn-primary">Commencer maintenant</a>
-                    <a href="#contact" class="btn btn-secondary">Nous contacter</a>
+                    <a href="#contact" class="btn btn-primary">Parler de mon orientation</a>
+                    <a href="#ecoles" class="btn btn-secondary">Explorer les écoles</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -111,7 +111,7 @@
             <div class="section-title">
                 <span class="section-eyebrow">À vos côtés</span>
                 <h2 id="services-title">Nos services</h2>
-                <p>Des conseils concrets pour faire vos choix et préparer la suite de vos études.</p>
+                <p>Choisir un parcours adapté, découvrir les écoles supérieures et avancer dans vos démarches d’admission.</p>
             </div>
             <div class="services">
                 <article class="card service-card">
@@ -140,7 +140,7 @@
                 </article>
                 <article class="card service-card">
                     <span class="service-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>
-                    <h3>Conseils d’orientation</h3>
+                    <h3>Orientation stratégique</h3>
                     <p>Construisez un parcours cohérent avec les métiers qui vous intéressent, en prévoyant des alternatives.</p>
                     <span class="service-note">Définir vos priorités</span>
                 </article>
@@ -158,7 +158,7 @@
             <div class="section-title">
                 <span class="section-eyebrow">Pas à pas</span>
                 <h2 id="process-title">Un parcours clair, à chaque étape</h2>
-                <p>De vos premières questions aux démarches d’inscription, voici comment nous vous accompagnons.</p>
+                <p>Un accompagnement depuis le choix de votre parcours jusqu’aux démarches d’admission.</p>
             </div>
             <ol class="timeline process-timeline">
                 <li class="step process-step">
@@ -266,6 +266,20 @@
             <p id="favorite-status" role="status" aria-live="polite"></p>
             <div class="ecoles-sections" id="ecolesSections">
                 <!-- Cards will be dynamically rendered here -->
+            </div>
+        </section>
+
+        <section id="actualites" class="official-updates" aria-labelledby="updates-title">
+            <div class="official-updates-copy">
+                <span class="section-eyebrow">Le compte officiel · @babaalitawjih</span>
+                <h2 id="updates-title">Gardez le fil de votre orientation.</h2>
+                <p>Retrouvez les publications de BABAALI TAWJIH sur Instagram : orientation, écoles supérieures et informations sur les admissions.</p>
+                <p lang="ar" dir="rtl">اختيار المسار المناسب بثقة، ومرافقة من البداية حتى القبول.</p>
+            </div>
+            <div class="official-updates-action">
+                <span class="official-updates-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
+                <a href="https://www.instagram.com/babaalitawjih/" target="_blank" rel="noopener noreferrer">Suivre @babaalitawjih <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                <span>Les publications s’ouvrent sur Instagram.</span>
             </div>
         </section>
 

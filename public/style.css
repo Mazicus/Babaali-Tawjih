@@ -2622,6 +2622,25 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
     .ecole-section-collapse { transition: none; }
 }
 
+.official-updates {
+    display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(240px, 1fr);
+    align-items: center; gap: 48px; padding: 64px max(6%, calc((100vw - 1200px) / 2));
+    background: var(--ec-surface-alt); border-block: 1px solid var(--ec-border);
+}
+.official-updates h2 { color: var(--primary); font-size: clamp(26px, 3vw, 36px); line-height: 1.25; letter-spacing: -.03em; margin-bottom: 18px; }
+.official-updates-copy p { color: var(--text-muted); line-height: 1.8; max-width: 640px; }
+.official-updates-copy p[lang="ar"] { margin-top: 16px; font-size: 19px; text-align: left; }
+.official-updates-action { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+.official-updates-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 16px; background: var(--ec-gold-soft); color: var(--primary); font-size: 28px; }
+.official-updates-action a { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 12px 20px; border-radius: 10px; background: #163c80; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
+.official-updates-action a:hover { background: #0c2b63; }
+.official-updates-action a:focus-visible { outline: 3px solid var(--secondary); outline-offset: 4px; }
+.official-updates-action > span:last-child { color: var(--text-muted); font-size: 12px; }
+@media (max-width: 767px) {
+    .official-updates { grid-template-columns: 1fr; gap: 28px; padding: 48px 6%; }
+    .official-updates-action { align-items: flex-start; text-align: left; }
+}
+
 /* Guidance: balanced service cards and a connected, ordered process. */
 .guidance-services, .guidance-process { padding: 88px max(6%, calc((100vw - 1200px) / 2)); }
 .guidance-services .section-title, .guidance-process .section-title { max-width: 720px; margin: 0 auto 44px; }

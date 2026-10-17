@@ -93,7 +93,7 @@
 }
 .ecole-section .school-overview .type-tag.prive { background: var(--card-gold-soft); color: var(--card-gold-ink); border-color: var(--ec-gold); }
 .ecole-section .school-overview .detail-item i { color: var(--card-accent); }
-.ecole-section .school-overview .detail-item:first-child i { color: var(--card-gold-ink); }
+.ecole-section .school-overview .detail-item:first-child i { color: var(--card-accent); }
 .ecole-section .school-favorite { color: var(--card-accent); border-color: var(--card-accent-border); }
 .ecole-section .school-favorite i { color: var(--card-accent); }
 .ecole-section .school-favorite:hover { background: var(--card-accent-soft); }
