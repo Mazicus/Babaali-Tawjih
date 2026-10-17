@@ -71,18 +71,16 @@
                             <div class="ecole-section-collapse" id="ecole-collapse-${key}" aria-hidden="true" inert>
                                 <div class="ecole-section-collapse-inner">
                                     <div class="ecole-section">
-                                        <div class="section-grid">
-                                            ${items.map(ecole => {
+                                        <div class="section-grid" id="school-grid-${key}">
+                                            ${items.map((ecole, index) => {
                                         const sectorLabel = sectorConfig[ecole.sector]?.label || ecole.sector;
-                                        const sectorShort = sectorLabel.split(' ')[0].replaceAll(",", "");
                                         const typeLabel = ecole.type === 'public' ? 'Public' : 'Privé';
                                         const documentsLink = `https://wa.me/212700059552?text=${encodeURIComponent('Bonjour, je souhaite recevoir les documents pour ' + ecole.name + '.')}`;
                                         return `
-                                        <article class="ecole-card" data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
-                                            <figure class="ecole-card-image"><img src="${escapeAttribute(ecole.image)}" alt="${escapeAttribute(ecole.imageAlt)}" loading="lazy" decoding="async" width="1200" height="800"><figcaption>${escapeAttribute(ecole.imageCaption)}</figcaption></figure>
+                                        <article class="ecole-card" ${index >= 6 ? 'hidden' : ''} data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
+                                            <figure class="ecole-card-image"><img src="${escapeAttribute(ecole.image)}" alt="${escapeAttribute(ecole.imageAlt)}" loading="lazy" decoding="async" width="1200" height="800"></figure>
                                             <div class="school-overview">
                                                 <span class="ecole-card-badges">
-                                                    <span class="sector-tag">${sectorShort}</span>
                                                     <span class="type-tag ${ecole.type}">${typeLabel}</span>
                                                 </span>
                                                 <h3 class="card-title">${ecole.name}</h3>
@@ -132,6 +130,7 @@
                                     `;
                                     }).join('')}
                                         </div>
+                                        ${items.length > 6 ? `<div class="school-pagination"><span class="school-page-count" aria-live="polite">6 sur ${items.length} établissements</span><button type="button" class="school-show-more" aria-controls="school-grid-${key}">Voir plus d’établissements <i class="fas fa-arrow-down" aria-hidden="true"></i></button></div>` : ''}
                                     </div>
                                 </div>
                             </div>
@@ -259,6 +258,19 @@
             });
 
             document.getElementById('ecolesSections')?.addEventListener('click', function (e) {
+                const more = e.target.closest('.school-show-more');
+                if (more) {
+                    const section = more.closest('.ecole-section');
+                    const cards = [...section.querySelectorAll('.ecole-card')];
+                    const next = cards.filter(card => card.hidden).slice(0, 6);
+                    next.forEach(card => { card.hidden = false; });
+                    const visible = cards.filter(card => !card.hidden).length;
+                    section.querySelector('.school-page-count').textContent = visible + ' sur ' + cards.length + ' établissements';
+                    if (visible === cards.length) more.hidden = true;
+                    next[0]?.querySelector('.ecole-card-toggle')?.focus({ preventScroll: true });
+                    next[0]?.scrollIntoView({ block: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+                    return;
+                }
                 const sectionToggle = e.target.closest('.section-toggle');
                 if (sectionToggle) {
                     const subsection = sectionToggle.closest('.ecole-subsection');

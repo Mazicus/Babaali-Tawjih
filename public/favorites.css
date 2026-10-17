@@ -71,3 +71,36 @@
 .ecole-section .school-favorite { margin-top: auto; }
 .ecole-section .ecole-card-drive { background: var(--ec-surface-alt); font-weight: 600; }
 .ecole-section .ecole-card-image figcaption { background: rgba(5, 22, 59, .85); font-weight: 500; }
+
+/* An uncluttered identity block, followed by consistently aligned facts. */
+.ecole-section .school-overview { gap: 18px; }
+.ecole-section .school-overview .ecole-card-badges { justify-content: center; }
+.ecole-section .school-overview .card-title { text-align: center; line-height: 1.35; margin: 0; }
+.ecole-section .school-overview .card-summary-list {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px 20px; padding-top: 18px; border-top: 1px solid var(--ec-border);
+}
+.ecole-section .school-overview .detail-item { display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: center; gap: 10px; }
+.ecole-section .school-overview .detail-item span { overflow-wrap: anywhere; }
+.ecole-section .school-overview .detail-item:first-child { padding-bottom: 2px; }
+.ecole-section .ecole-card-toggle { font-size: 12px; line-height: 1.5; }
+.ecole-section .ecole-card-toggle > span:first-child { text-align: left; }
+.ecole-section .ecole-card-drive:hover,
+.ecole-section .ecole-card-drive:focus-visible {
+    color: #fff; background: #183a70;
+}
+.ecole-section .ecole-card-drive:hover i,
+.ecole-section .ecole-card-drive:focus-visible i { color: #fff; }
+.school-pagination { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 32px; }
+.school-page-count { color: var(--ec-text-muted); font-size: 12px; }
+.school-show-more {
+    display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+    min-height: 46px; padding: 12px 22px; border: 1px solid var(--ec-border);
+    border-radius: 10px; font: inherit; font-size: 13px; font-weight: 600;
+    color: var(--ec-text); background: var(--ec-surface-alt); cursor: pointer;
+}
+.school-show-more:hover { background: var(--ec-surface-sunken); }
+.school-show-more:focus-visible { outline: 3px solid var(--ec-gold); outline-offset: 4px; }
+@media (min-width: 992px) {
+    .ecole-section .section-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
