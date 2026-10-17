@@ -72,6 +72,40 @@
 .ecole-section .ecole-card-drive { background: var(--ec-surface-alt); font-weight: 600; }
 .ecole-section .ecole-card-image figcaption { background: rgba(5, 22, 59, .85); font-weight: 500; }
 
+/* Card accents share a restrained blue and gold palette in both themes. */
+.ecole-section {
+    --card-accent: #2144a3;
+    --card-accent-soft: #edf3ff;
+    --card-accent-border: #ccdaf6;
+    --card-gold-ink: #805800;
+    --card-gold-soft: #fff6d9;
+}
+.darkmode .ecole-section {
+    --card-accent: #9cbbff;
+    --card-accent-soft: #1b2947;
+    --card-accent-border: #354d78;
+    --card-gold-ink: #fcd76b;
+    --card-gold-soft: #332c1a;
+}
+.ecole-section .school-overview .card-title { color: var(--card-accent); }
+.ecole-section .school-overview .type-tag {
+    background: var(--card-accent-soft); border-color: var(--card-accent-border); color: var(--card-accent);
+}
+.ecole-section .school-overview .type-tag.prive { background: var(--card-gold-soft); color: var(--card-gold-ink); border-color: var(--ec-gold); }
+.ecole-section .school-overview .detail-item i { color: var(--card-accent); }
+.ecole-section .school-overview .detail-item:first-child i { color: var(--card-gold-ink); }
+.ecole-section .school-favorite { color: var(--card-accent); border-color: var(--card-accent-border); }
+.ecole-section .school-favorite i { color: var(--card-accent); }
+.ecole-section .school-favorite:hover { background: var(--card-accent-soft); }
+.ecole-section .school-favorite[aria-pressed="true"] { background: var(--card-gold-soft); color: var(--card-gold-ink); border-color: var(--ec-gold); }
+.ecole-section .school-favorite[aria-pressed="true"] i { color: var(--card-gold-ink); }
+.ecole-section .ecole-card-drive { background: var(--card-accent-soft); color: var(--card-accent); border-top-color: var(--card-accent-border); }
+.ecole-section .ecole-card-drive i { color: var(--card-accent); }
+.darkmode .ecole-section .ecole-card { border-color: #303b52; }
+.darkmode .ecole-section .ecole-card:hover,
+.darkmode .ecole-section .ecole-card.is-expanded { border-color: #7197e8; }
+.ecole-section .ecole-card-toggle:hover { color: var(--card-accent); }
+
 /* An uncluttered identity block, followed by consistently aligned facts. */
 .ecole-section .school-overview { gap: 18px; }
 .ecole-section .school-overview .ecole-card-badges { justify-content: center; }
