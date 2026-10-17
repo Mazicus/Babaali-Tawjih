@@ -1,0 +1,12 @@
+<svg class="custom-svg-background-1" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1920 537"
+        data-appear-animation-svg="true">
+        <path fill="#F4F4F4"
+            d="M964.33,189.3L1110.08,0H0v537h1338.31L972.96,255.7C952.24,239.74,948.38,210.02,964.33,189.3z" />
+        <path  data-appear-animation="customLineAnim2"
+            data-appear-animation-delay="500" data-appear-animation-duration="5s"
+            data-plugin-options="{'accY': -400}" fill="none" stroke="#1C5FA8" stroke-width="2"
+            stroke-miterlimit="10" d="M1854.35,105.63l-485.31-340.84c-18.3-12.85-43.56-8.44-56.42,9.86L971.79,259.96
+                c-12.85,18.3-8.44,43.56,9.86,56.42l485.31,340.84c18.3,12.85,43.56,8.44,56.42-9.86l340.84-485.31
+                C1877.07,143.74,1872.65,118.48,1854.35,105.63z" />
+    </svg>
