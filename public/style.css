@@ -2646,13 +2646,13 @@ form.login button { background: transparent; border: 0; color: inherit; font: in
 .guidance-services { position: relative; isolation: isolate; overflow: hidden; }
 .guidance-services::before {
     content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    background: url('/svg/ensam-left-decoration.svg') left center / auto 100% no-repeat;
+    background: url('/svg/ensam-left-decoration.svg') left center / 100% auto no-repeat;
     opacity: .18;
 }
 .guidance-services .service-card { background: var(--light); }
 .darkmode .guidance-services::before { opacity: .12; }
 @media (max-width: 767px) {
-    .guidance-services::before { background-size: auto 60%; background-position: left top; opacity: .1; }
+    .guidance-services::before { background-size: 160% auto; background-position: left top; opacity: .1; }
 }
 .guidance-services .section-title, .guidance-process .section-title { max-width: 720px; margin: 0 auto 44px; }
 .section-eyebrow { display: inline-block; margin-bottom: 14px; color: var(--accent-blue); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
