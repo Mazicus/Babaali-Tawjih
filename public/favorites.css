@@ -24,6 +24,11 @@
 .ecole-card[data-school-id="54"] .ecole-card-image img { width: 183%; max-width: none; transform: translateX(-45%); }
 
 /* Give every campus enough space for readable details and clear actions. */
+.ecole-section .school-overview { display: flex; flex-direction: column; gap: 16px; padding: 22px; }
+.ecole-section .school-overview .card-title { font-size: 19px; letter-spacing: -.025em; }
+.ecole-section .school-overview .card-summary-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ecole-section .school-overview .detail-item:first-child { grid-column: 1 / -1; }
+.ecole-section .school-overview .detail-item i { color: var(--ec-text-muted); }
 .ecole-section { padding: clamp(16px, 2.5vw, 36px); }
 .ecole-section .section-grid {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
@@ -48,3 +53,21 @@
     .ecole-section .section-grid { gap: 20px; }
     .ecole-section .ecole-card-image { aspect-ratio: 16 / 9; }
 }
+
+/* A dedicated disclosure separates reading the card from opening more details. */
+.ecole-section .ecole-card-toggle {
+    flex: none; flex-direction: row; align-items: center; justify-content: space-between;
+    width: calc(100% - 44px); margin: 0 22px; padding: 14px 0;
+    border-top: 1px solid var(--ec-border); gap: 12px;
+    font-size: 12px; font-weight: 600; color: var(--ec-text-muted);
+}
+.ecole-section .ecole-card-chevron { position: static; flex-shrink: 0; width: 24px; height: 24px; background: transparent; color: inherit; }
+.ecole-section .ecole-card.is-expanded .ecole-card-chevron { background: var(--ec-surface-sunken); color: var(--ec-text); }
+.ecole-section .ecole-card-panel-inner { padding-inline: 22px; }
+.ecole-section .ecole-card.is-expanded .ecole-card-panel-inner { padding: 6px 22px 20px; border-top: 0; }
+.ecole-section .card-full-list .detail-item { font-size: 12px; line-height: 1.65; align-items: baseline; }
+.ecole-section .btn-card { border: 0; border-radius: 6px; padding: 4px 0; font-size: 12px; gap: 10px; }
+.ecole-section .btn-card:hover { background: transparent; color: var(--ec-text); box-shadow: none; transform: none; text-decoration: underline; }
+.ecole-section .school-favorite { margin-top: auto; }
+.ecole-section .ecole-card-drive { background: var(--ec-surface-alt); font-weight: 600; }
+.ecole-section .ecole-card-image figcaption { background: rgba(5, 22, 59, .85); font-weight: 500; }

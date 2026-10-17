@@ -80,7 +80,7 @@
                                         return `
                                         <article class="ecole-card" data-school-id="${ecole.id}" data-sector="${ecole.sector}" data-duration="${ecole.durationValue}" data-type="${ecole.type}">
                                             <figure class="ecole-card-image"><img src="${escapeAttribute(ecole.image)}" alt="${escapeAttribute(ecole.imageAlt)}" loading="lazy" decoding="async" width="1200" height="800"><figcaption>${escapeAttribute(ecole.imageCaption)}</figcaption></figure>
-                                            <button type="button" class="ecole-card-toggle" aria-expanded="false" aria-controls="ecole-panel-${ecole.id}" id="ecole-toggle-${ecole.id}">
+                                            <div class="school-overview">
                                                 <span class="ecole-card-badges">
                                                     <span class="sector-tag">${sectorShort}</span>
                                                     <span class="type-tag ${ecole.type}">${typeLabel}</span>
@@ -100,6 +100,9 @@
                                                         <span>${ecole.location}</span>
                                                     </li>
                                                 </ul>
+                                                </div>
+                                            <button type="button" class="ecole-card-toggle" aria-expanded="false" aria-controls="ecole-panel-${ecole.id}" id="ecole-toggle-${ecole.id}">
+                                                <span>Informations complémentaires</span>
                                                 <span class="ecole-card-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
                                             </button>
                                             <div class="ecole-card-panel" aria-hidden="true" inert id="ecole-panel-${ecole.id}" role="region" aria-labelledby="ecole-toggle-${ecole.id}">
@@ -109,18 +112,6 @@
                                                             <i class="fas fa-layer-group" aria-hidden="true"></i>
                                                             <span><strong>Secteur :</strong> ${sectorLabel}</span>
                                                         </li>
-                                                        <li class="detail-item">
-                                                            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                                                            <span><strong>Diplôme :</strong> ${ecole.diploma}</span>
-                                                        </li>
-                                                        <li class="detail-item">
-                                                            <i class="fas fa-clock" aria-hidden="true"></i>
-                                                            <span><strong>Durée :</strong> ${ecole.duration}</span>
-                                                        </li>
-                                                        <li class="detail-item">
-                                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                                            <span><strong>Ville :</strong> ${ecole.location}</span>
-                                                        </li>
                                                         ${ecole.fees ? `
                                                         <li class="detail-item">
                                                             <i class="fas fa-coins" aria-hidden="true"></i>
@@ -128,13 +119,13 @@
                                                         </li>` : ''}
                                                     </ul>
                                                     <a href="${ecole.link}" target="_blank" rel="noopener noreferrer" class="btn-card">
-                                                        En savoir plus <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                        Consulter le site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                             <button type="button" class="school-favorite" data-school-id="${ecole.id}" aria-pressed="false" aria-label="Enregistrer ${ecole.name}" disabled><i class="far fa-heart" aria-hidden="true"></i><span>Enregistrer</span></button>
                                             <a href="${escapeAttribute(documentsLink)}" target="_blank" rel="noopener noreferrer" class="ecole-card-drive" aria-label="Demander les documents sur WhatsApp - ${escapeAttribute(ecole.name)}">
-                                                <i class="fa-brands fa-google-drive" aria-hidden="true"></i>
+                                                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                                                 <span>Demander les documents</span>
                                             </a>
                                         </article>
